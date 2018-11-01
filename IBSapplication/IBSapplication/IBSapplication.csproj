@@ -47,15 +47,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="PrimaryForm.cs">
+    <Compile Include="PresentationLayer\CalibrateForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PrimaryForm.Designer.cs">
+    <Compile Include="PresentationLayer\CalibrateForm.Designer.cs">
+      <DependentUpon>CalibrateForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PresentationLayer\PrimaryForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PresentationLayer\PrimaryForm.Designer.cs">
       <DependentUpon>PrimaryForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="PrimaryForm.resx">
+    <EmbeddedResource Include="PresentationLayer\CalibrateForm.resx">
+      <DependentUpon>CalibrateForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PresentationLayer\PrimaryForm.resx">
       <DependentUpon>PrimaryForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -79,6 +88,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="BusinessLayer\" />
+    <Folder Include="DataLayer\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
