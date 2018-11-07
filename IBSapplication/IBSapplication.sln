@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PresentationLayer", "Presen
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Interfaces", "Interfaces\Interfaces.csproj", "{2BBDAB17-F120-43E5-BEB7-3F14826DA951}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NI-DAQ", "NI-DAQ\NI-DAQ.csproj", "{C2E48E80-6235-4C2D-A258-050DE8240A95}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{2BBDAB17-F120-43E5-BEB7-3F14826DA951}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2BBDAB17-F120-43E5-BEB7-3F14826DA951}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2BBDAB17-F120-43E5-BEB7-3F14826DA951}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C2E48E80-6235-4C2D-A258-050DE8240A95}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C2E48E80-6235-4C2D-A258-050DE8240A95}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C2E48E80-6235-4C2D-A258-050DE8240A95}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C2E48E80-6235-4C2D-A258-050DE8240A95}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
