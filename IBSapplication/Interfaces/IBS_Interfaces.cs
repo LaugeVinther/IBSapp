@@ -6,16 +6,16 @@ using System.Threading.Tasks;
 
 namespace Interfaces
 {
-    public interface DataLogic
+    public interface DataLogicIF
     {
     }
 
-    public interface BuisnessLogic
+    public interface BuisnessLogicIF
     {
 
     }
 
-    public interface PresentationLogic
+    public interface PresentationLogicIF
     {
 
     }
