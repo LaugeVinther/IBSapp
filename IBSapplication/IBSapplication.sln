@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NI-DAQ", "NI-DAQ\NI-DAQ.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DTOLogic", "DTOLogic\DTOLogic.csproj", "{8F170BC4-6C47-4FDA-B210-CBB0FAF0CA62}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MainApplication", "MainApplication\MainApplication.csproj", "{CFE9FF22-A409-4970-A270-F461FAC29939}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{8F170BC4-6C47-4FDA-B210-CBB0FAF0CA62}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8F170BC4-6C47-4FDA-B210-CBB0FAF0CA62}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8F170BC4-6C47-4FDA-B210-CBB0FAF0CA62}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CFE9FF22-A409-4970-A270-F461FAC29939}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CFE9FF22-A409-4970-A270-F461FAC29939}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CFE9FF22-A409-4970-A270-F461FAC29939}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CFE9FF22-A409-4970-A270-F461FAC29939}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

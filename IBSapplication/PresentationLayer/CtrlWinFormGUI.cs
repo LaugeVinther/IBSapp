@@ -9,5 +9,11 @@ namespace PresentationLayer
 {
     public class CtrlWinFormGUI : PresentationLogicIF
     {
+        private BuisnessLogicIF currentBuisnessLogic;
+
+        public CtrlWinFormGUI (BuisnessLogicIF buisnessLogic)
+        {
+            this.currentBuisnessLogic = buisnessLogic;
+        }
     }
 }
