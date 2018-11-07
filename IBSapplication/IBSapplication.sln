@@ -9,11 +9,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BuisnessLogic", "BuisnessLo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataLogic", "DataLogic\DataLogic.csproj", "{ACB9BA68-740E-4097-9DBF-987518960AD7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PresentationLayer", "PresentationLayer\PresentationLayer.csproj", "{5987D301-297D-4933-82F2-A82246E183B9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PresentationLogic", "PresentationLayer\PresentationLogic.csproj", "{5987D301-297D-4933-82F2-A82246E183B9}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Interfaces", "Interfaces\Interfaces.csproj", "{2BBDAB17-F120-43E5-BEB7-3F14826DA951}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NI-DAQ", "NI-DAQ\NI-DAQ.csproj", "{C2E48E80-6235-4C2D-A258-050DE8240A95}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DTOLogic", "DTOLogic\DTOLogic.csproj", "{8F170BC4-6C47-4FDA-B210-CBB0FAF0CA62}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{C2E48E80-6235-4C2D-A258-050DE8240A95}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C2E48E80-6235-4C2D-A258-050DE8240A95}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C2E48E80-6235-4C2D-A258-050DE8240A95}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8F170BC4-6C47-4FDA-B210-CBB0FAF0CA62}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8F170BC4-6C47-4FDA-B210-CBB0FAF0CA62}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8F170BC4-6C47-4FDA-B210-CBB0FAF0CA62}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8F170BC4-6C47-4FDA-B210-CBB0FAF0CA62}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
