@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{3A551706-C4E4-44C3-A307-66A69A58E35B}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
+    <OutputType>Library</OutputType>
     <RootNamespace>IBSapplication</RootNamespace>
     <AssemblyName>IBSapplication</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
@@ -32,6 +32,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -47,24 +50,43 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="PresentationLayer\CalibrateForm.cs">
+    <Compile Include="CalibrateForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PresentationLayer\CalibrateForm.Designer.cs">
+    <Compile Include="CalibrateForm.Designer.cs">
       <DependentUpon>CalibrateForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="PresentationLayer\PrimaryForm.cs">
+    <Compile Include="CalibrateLoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PresentationLayer\PrimaryForm.Designer.cs">
+    <Compile Include="CalibrateLoginForm.Designer.cs">
+      <DependentUpon>CalibrateLoginForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CtrlPresentationLogic.cs" />
+    <Compile Include="PrimaryForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PrimaryForm.Designer.cs">
       <DependentUpon>PrimaryForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="PresentationLayer\CalibrateForm.resx">
+    <Compile Include="SaveDataForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SaveDataForm.Designer.cs">
+      <DependentUpon>SaveDataForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ZeroPointAdjustmentForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ZeroPointAdjustmentForm.Designer.cs">
+      <DependentUpon>ZeroPointAdjustmentForm.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="CalibrateForm.resx">
       <DependentUpon>CalibrateForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PresentationLayer\PrimaryForm.resx">
+    <EmbeddedResource Include="PrimaryForm.resx">
       <DependentUpon>PrimaryForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -89,6 +111,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Interfaces\Interfaces.csproj">
+      <Project>{2bbdab17-f120-43e5-beb7-3f14826da951}</Project>
+      <Name>Interfaces</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
