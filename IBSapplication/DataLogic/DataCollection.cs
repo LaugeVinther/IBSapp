@@ -3,11 +3,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DTOLogic;
 
 namespace DataLogic
 {
     class DataCollection
     {
+        private DTO_MeasuredData _DTOMeasuredData;
+
+
+        public void LoadData()
+        {
+
+        }
+
+        //Nedenfor er kode fra sidste semester.
         List<DTO_EKGDAQ> EKG_DataListe;
         double[] EKG_DataArray;
         public List<DTO_EKGDAQ> GetEKGdata()
