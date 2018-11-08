@@ -14,31 +14,33 @@ namespace PresentationLogic
     public partial class PrimaryForm : Form
     {
         private BuisnessLogicIF currentBuisnessLogic;
+        private CalibrateLoginForm _calibrateLoginForm;
+        private SaveDataForm _saveDataForm;
+        private ZeroPointAdjustmentForm _zeroPointAdjustmentForm;
 
+        
         public PrimaryForm(BuisnessLogicIF buisnessLogic)
         {
             currentBuisnessLogic = buisnessLogic;
             InitializeComponent();
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void CalibrationBT_Click(object sender, EventArgs e)
         {
-
+            _calibrateLoginForm = new CalibrateLoginForm();
+            _calibrateLoginForm.ShowDialog();
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
+        private void SaveBT_Click(object sender, EventArgs e)
         {
-
+            _saveDataForm = new SaveDataForm();
+            _saveDataForm.ShowDialog();
         }
 
-        private void chart1_Click(object sender, EventArgs e)
+        private void ZeroPointAdjustmentBT_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void button4_Click(object sender, EventArgs e)
-        {
-
+            _zeroPointAdjustmentForm = new ZeroPointAdjustmentForm();
+            _zeroPointAdjustmentForm.ShowDialog();
         }
     }
 }
