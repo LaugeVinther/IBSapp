@@ -52,5 +52,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DTOLogic\DTOLogic.csproj">
+      <Project>{8f170bc4-6c47-4fda-b210-cbb0faf0ca62}</Project>
+      <Name>DTOLogic</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

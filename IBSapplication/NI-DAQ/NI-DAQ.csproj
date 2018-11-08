@@ -36,6 +36,30 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="NationalInstruments.Common, Version=15.1.40.49152, Culture=neutral, PublicKeyToken=dc6ad606294fc298, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\2. semester\Semesterprojekt 2 - EKG diagnostik\DAQ DAQ\ST2PRJ2Support\ST2Prj2LibNI-DAQ\bin\Debug\NationalInstruments.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="NationalInstruments.Common.Native, Version=8.7.35.133, Culture=neutral, PublicKeyToken=18cbae0f9955702a, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\2. semester\Semesterprojekt 2 - EKG diagnostik\DAQ DAQ\ST2PRJ2Support\ST2Prj2LibNI-DAQ\bin\Debug\NationalInstruments.Common.Native.dll</HintPath>
+    </Reference>
+    <Reference Include="NationalInstruments.DAQmx, Version=17.1.45.99, Culture=neutral, PublicKeyToken=4febd62461bf11a4, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\2. semester\Semesterprojekt 2 - EKG diagnostik\DAQ DAQ\ST2PRJ2Support\ST2Prj2LibNI-DAQ\bin\Debug\NationalInstruments.DAQmx.dll</HintPath>
+    </Reference>
+    <Reference Include="NationalInstruments.MStudioCLM, Version=15.1.40.49152, Culture=neutral, PublicKeyToken=dc6ad606294fc298, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>..\..\..\..\..\..\2. semester\Semesterprojekt 2 - EKG diagnostik\DAQ DAQ\ST2PRJ2Support\ST2Prj2LibNI-DAQ\bin\Debug\NationalInstruments.MStudioCLM.dll</HintPath>
+    </Reference>
+    <Reference Include="NationalInstruments.NiLmClientDLL, Version=15.1.40.49152, Culture=neutral, PublicKeyToken=dc6ad606294fc298, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\2. semester\Semesterprojekt 2 - EKG diagnostik\DAQ DAQ\ST2PRJ2Support\ST2Prj2LibNI-DAQ\bin\Debug\NationalInstruments.NiLmClientDLL.dll</HintPath>
+    </Reference>
+    <Reference Include="ST2Prj2LibNI-DAQ">
+      <HintPath>..\..\..\..\..\..\2. semester\Semesterprojekt 2 - EKG diagnostik\DAQ DAQ\ST2Prj2LibNI-DAQ.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -46,7 +70,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
+    <Compile Include="DAQ.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
