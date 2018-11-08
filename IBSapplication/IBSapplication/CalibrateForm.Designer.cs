@@ -1,4 +1,4 @@
-﻿namespace IBSapplication.PresentationLayer
+﻿namespace PresentationLogic
 {
     partial class CalibrateForm
     {
@@ -46,6 +46,7 @@
             this.button1.TabIndex = 0;
             this.button1.Text = "Meassure 10 mmHg";
             this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // button2
             // 
@@ -57,6 +58,7 @@
             this.button2.TabIndex = 1;
             this.button2.Text = "Meassure 50 mmHg";
             this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button3
             // 
@@ -68,6 +70,7 @@
             this.button3.TabIndex = 2;
             this.button3.Text = "Meassure 100 mmHg";
             this.button3.UseVisualStyleBackColor = false;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // label1
             // 
@@ -78,6 +81,7 @@
             this.label1.Size = new System.Drawing.Size(222, 46);
             this.label1.TabIndex = 3;
             this.label1.Text = "Calibration";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // label2
             // 
@@ -88,6 +92,7 @@
             this.label2.Size = new System.Drawing.Size(290, 25);
             this.label2.TabIndex = 4;
             this.label2.Text = "Please choose a pressure value";
+            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // button4
             // 
@@ -99,6 +104,7 @@
             this.button4.TabIndex = 5;
             this.button4.Text = "Calibration";
             this.button4.UseVisualStyleBackColor = false;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // CalibrateForm
             // 

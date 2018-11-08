@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{3A551706-C4E4-44C3-A307-66A69A58E35B}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>IBSapplication</RootNamespace>
-    <AssemblyName>IBSapplication</AssemblyName>
+    <RootNamespace>PresentationLogic</RootNamespace>
+    <AssemblyName>PresentaionLogic</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -85,6 +85,9 @@
     <EmbeddedResource Include="CalibrateForm.resx">
       <DependentUpon>CalibrateForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="CalibrateLoginForm.resx">
+      <DependentUpon>CalibrateLoginForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PrimaryForm.resx">
       <DependentUpon>PrimaryForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -96,6 +99,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
