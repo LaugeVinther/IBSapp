@@ -8,13 +8,18 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace IBSapplication
+namespace PresentationLogic
 {
     public partial class CalibrateLoginForm : Form
     {
         public CalibrateLoginForm()
         {
             InitializeComponent();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

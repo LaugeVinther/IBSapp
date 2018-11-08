@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Interfaces;
 
-namespace BuisnessLogic
+namespace BusinessLogic
 {
     class BloodPressure : IBloodPressure
     {

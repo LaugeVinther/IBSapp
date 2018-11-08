@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BusinessLogic
+namespace Interfaces
 {
-    class AlarmSettings
-    {
-    }
+   public interface IPulse
+   {
+      void CalculatePulse();
+   }
 }
