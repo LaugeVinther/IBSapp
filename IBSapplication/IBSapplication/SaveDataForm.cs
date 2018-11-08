@@ -10,21 +10,11 @@ using System.Windows.Forms;
 
 namespace IBSapplication
 {
-    public partial class PrimaryForm : Form
+    public partial class SaveDataForm : Form
     {
-        public PrimaryForm()
+        public SaveDataForm()
         {
             InitializeComponent();
-        }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }
