@@ -7,13 +7,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Interfaces;
 
-namespace IBSapplication
+namespace PresentationLogic
 {
     public partial class PrimaryForm : Form
     {
-        public PrimaryForm()
+        private BuisnessLogicIF currentBuisnessLogic;
+
+        public PrimaryForm(BuisnessLogicIF buisnessLogic)
         {
+            currentBuisnessLogic = buisnessLogic;
             InitializeComponent();
         }
 
