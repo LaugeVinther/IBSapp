@@ -62,14 +62,13 @@
     <Compile Include="CalibrateLoginForm.Designer.cs">
       <DependentUpon>CalibrateLoginForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="CtrlPresentationLogic.cs" />
+    <Compile Include="CtrlWinFormGUI.cs" />
     <Compile Include="PrimaryForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="PrimaryForm.Designer.cs">
       <DependentUpon>PrimaryForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SaveDataForm.cs">
       <SubType>Form</SubType>
