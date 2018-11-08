@@ -1,4 +1,4 @@
-﻿namespace IBSapplication
+﻿namespace PresentationLogic
 {
     partial class ZeroPointAdjustmentForm
     {
