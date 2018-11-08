@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace Interfaces
 {
-    public interface ICalibrate
+    public interface IDigitalFilter
     {
+        void FilterBPSignal();
     }
 }

@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.trackBar1 = new System.Windows.Forms.TrackBar();
             this.label9 = new System.Windows.Forms.Label();
             this.textBox7 = new System.Windows.Forms.TextBox();
@@ -41,9 +41,9 @@
             this.label7 = new System.Windows.Forms.Label();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.CalibrationBT = new System.Windows.Forms.Button();
+            this.ZeroPointAdjustmentBT = new System.Windows.Forms.Button();
+            this.SaveBT = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -156,43 +156,45 @@
             this.label5.TabIndex = 34;
             this.label5.Text = "Adjust Thresholds";
             // 
-            // button4
+            // CalibrationBT
             // 
-            this.button4.BackColor = System.Drawing.Color.DimGray;
-            this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button4.Location = new System.Drawing.Point(597, 414);
-            this.button4.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(196, 62);
-            this.button4.TabIndex = 33;
-            this.button4.Text = "Calibration";
-            this.button4.UseVisualStyleBackColor = false;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
+            this.CalibrationBT.BackColor = System.Drawing.Color.DimGray;
+            this.CalibrationBT.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CalibrationBT.Location = new System.Drawing.Point(597, 414);
+            this.CalibrationBT.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.CalibrationBT.Name = "CalibrationBT";
+            this.CalibrationBT.Size = new System.Drawing.Size(196, 62);
+            this.CalibrationBT.TabIndex = 33;
+            this.CalibrationBT.Text = "Calibration";
+            this.CalibrationBT.UseVisualStyleBackColor = false;
+            this.CalibrationBT.Click += new System.EventHandler(this.CalibrationBT_Click);
             // 
-            // button3
+            // ZeroPointAdjustmentBT
             // 
-            this.button3.BackColor = System.Drawing.Color.DimGray;
-            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.Location = new System.Drawing.Point(335, 414);
-            this.button3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(236, 62);
-            this.button3.TabIndex = 32;
-            this.button3.Text = "Zero Point Adjustment";
-            this.button3.UseVisualStyleBackColor = false;
+            this.ZeroPointAdjustmentBT.BackColor = System.Drawing.Color.DimGray;
+            this.ZeroPointAdjustmentBT.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ZeroPointAdjustmentBT.Location = new System.Drawing.Point(335, 414);
+            this.ZeroPointAdjustmentBT.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.ZeroPointAdjustmentBT.Name = "ZeroPointAdjustmentBT";
+            this.ZeroPointAdjustmentBT.Size = new System.Drawing.Size(236, 62);
+            this.ZeroPointAdjustmentBT.TabIndex = 32;
+            this.ZeroPointAdjustmentBT.Text = "Zero Point Adjustment";
+            this.ZeroPointAdjustmentBT.UseVisualStyleBackColor = false;
+            this.ZeroPointAdjustmentBT.Click += new System.EventHandler(this.ZeroPointAdjustmentBT_Click);
             // 
-            // button2
+            // SaveBT
             // 
-            this.button2.BackColor = System.Drawing.Color.DimGray;
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.ForeColor = System.Drawing.Color.Black;
-            this.button2.Location = new System.Drawing.Point(597, 335);
-            this.button2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(196, 62);
-            this.button2.TabIndex = 31;
-            this.button2.Text = "Save";
-            this.button2.UseVisualStyleBackColor = false;
+            this.SaveBT.BackColor = System.Drawing.Color.DimGray;
+            this.SaveBT.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SaveBT.ForeColor = System.Drawing.Color.Black;
+            this.SaveBT.Location = new System.Drawing.Point(597, 335);
+            this.SaveBT.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.SaveBT.Name = "SaveBT";
+            this.SaveBT.Size = new System.Drawing.Size(196, 62);
+            this.SaveBT.TabIndex = 31;
+            this.SaveBT.Text = "Save";
+            this.SaveBT.UseVisualStyleBackColor = false;
+            this.SaveBT.Click += new System.EventHandler(this.SaveBT_Click);
             // 
             // button5
             // 
@@ -307,33 +309,32 @@
             // chart1
             // 
             this.chart1.BackColor = System.Drawing.Color.Black;
-            chartArea1.AxisX.Title = "Time (ms)";
-            chartArea1.AxisX.TitleForeColor = System.Drawing.Color.Lime;
-            chartArea1.AxisY.Title = "Pressure (mmHg)";
-            chartArea1.AxisY.TitleForeColor = System.Drawing.Color.Lime;
-            chartArea1.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea1);
-            legend1.Enabled = false;
-            legend1.Name = "Legend1";
-            this.chart1.Legends.Add(legend1);
+            chartArea3.AxisX.Title = "Time (ms)";
+            chartArea3.AxisX.TitleForeColor = System.Drawing.Color.Lime;
+            chartArea3.AxisY.Title = "Pressure (mmHg)";
+            chartArea3.AxisY.TitleForeColor = System.Drawing.Color.Lime;
+            chartArea3.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea3);
+            legend3.Enabled = false;
+            legend3.Name = "Legend1";
+            this.chart1.Legends.Add(legend3);
             this.chart1.Location = new System.Drawing.Point(11, 10);
             this.chart1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.chart1.Name = "chart1";
-            series1.BorderColor = System.Drawing.Color.Black;
-            series1.BorderWidth = 3;
-            series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series1.Color = System.Drawing.Color.Lime;
-            series1.LabelBackColor = System.Drawing.Color.Black;
-            series1.LabelBorderColor = System.Drawing.Color.Black;
-            series1.LabelForeColor = System.Drawing.Color.Lime;
-            series1.Legend = "Legend1";
-            series1.Name = "Blood Pressure";
-            this.chart1.Series.Add(series1);
+            series3.BorderColor = System.Drawing.Color.Black;
+            series3.BorderWidth = 3;
+            series3.ChartArea = "ChartArea1";
+            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series3.Color = System.Drawing.Color.Lime;
+            series3.LabelBackColor = System.Drawing.Color.Black;
+            series3.LabelBorderColor = System.Drawing.Color.Black;
+            series3.LabelForeColor = System.Drawing.Color.Lime;
+            series3.Legend = "Legend1";
+            series3.Name = "Blood Pressure";
+            this.chart1.Series.Add(series3);
             this.chart1.Size = new System.Drawing.Size(803, 299);
             this.chart1.TabIndex = 46;
             this.chart1.Text = "Blood pressure";
-            this.chart1.Click += new System.EventHandler(this.chart1_Click);
             // 
             // PrimaryForm
             // 
@@ -354,9 +355,9 @@
             this.Controls.Add(this.label7);
             this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.button4);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.CalibrationBT);
+            this.Controls.Add(this.ZeroPointAdjustmentBT);
+            this.Controls.Add(this.SaveBT);
             this.Controls.Add(this.button5);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -366,7 +367,6 @@
             this.Controls.Add(this.textBox8);
             this.Name = "PrimaryForm";
             this.Text = "Invasiv Blodtrykssystem (IBS)";
-            this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
             this.ResumeLayout(false);
@@ -386,9 +386,9 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button CalibrationBT;
+        private System.Windows.Forms.Button ZeroPointAdjustmentBT;
+        private System.Windows.Forms.Button SaveBT;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
