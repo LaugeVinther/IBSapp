@@ -4,12 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DTOLogic;
+using NationalInstruments.DAQmx;
 
 namespace DataLogic
 {
     class DataCollection
     {
-        private DTO_MeasuredData _DTOMeasuredData;
+        //private DTO_MeasuredData _DTOMeasuredData;
 
 
         public void LoadData()
@@ -27,20 +28,20 @@ namespace DataLogic
 
 
             //1 Opret en ST2Prj2LibNI-DAQ komponent
-            NI_DAQVoltage datacollector = new NI_DAQVoltage();
+            NI_DAQ daq = new NI_DAQ();
 
 
             //4 Kun 10 målinger i dette eksempel. Property på datacollector
-            datacollector.samplesPerChannel = 2500;
+            daq.samplesPerChannel = 2500;
 
             //5 Valg af Dev1 enhed og ai0 input kanal. Property på datacollector
-            datacollector.deviceName = "Dev1/ai0";
+            daq.deviceName = "Dev1/ai0";
 
             //6 Begynd dataopsamlign med ST2Prj2LibNI-DAQ komponent 
             //og returnere først når alle målinger er udført
-            datacollector.getVoltageSeqBlocking();
+            daq.getVoltageSeqBlocking();
 
-            EKG_DataArray = datacollector.currentVoltageSeqArray;
+            EKG_DataArray = daq.currentVoltageSeqArray;
 
             for (int i = 0; i < EKG_DataArray.Length; i++)
             {
