@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using NationalInstruments.DAQmx;
 
+
 namespace DataLogic
 {
     class NI_DAQ
