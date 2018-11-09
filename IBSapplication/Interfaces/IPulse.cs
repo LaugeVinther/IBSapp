@@ -8,6 +8,6 @@ namespace Interfaces
 {
    public interface IPulse
    {
-      void CalculatePulse();
+      void CalculatePulse(double[] measurements);
    }
 }
