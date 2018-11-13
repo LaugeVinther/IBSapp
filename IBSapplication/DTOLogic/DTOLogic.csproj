@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="DTO_MeasuredData.cs" />
     <Compile Include="DTO_Pulse.cs" />
+    <Compile Include="DTO_mV.cs" />
     <Compile Include="DTO_SaveData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

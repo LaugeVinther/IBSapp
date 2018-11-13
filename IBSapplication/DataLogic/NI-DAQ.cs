@@ -71,10 +71,10 @@ namespace DataLogic
         public NI_DAQ()
         {
             // Initialize local variables
-            sampleRateInHz = 250;
-            rangeMinimumVolt = -1.2;
-            rangeMaximumVolt = 1.2;
-            samplesPerChannel = 3600;
+            sampleRateInHz = 1000;
+            rangeMinimumVolt = -2.5;
+            rangeMaximumVolt = 2.5;
+            samplesPerChannel = 500;
             deviceName = "Dev1/ai0";
             seqTimeOut = -1;
 
