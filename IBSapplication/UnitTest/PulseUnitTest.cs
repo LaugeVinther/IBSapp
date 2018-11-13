@@ -21,12 +21,21 @@ namespace UnitTest
       }
 
       [Test]
-      public void CalculatePulse_PositivNumbers_ExpectPulseIsX()
+      public void CalculatePulse_21PositivNumbers_ExpectPulseIs28()
       {
-         double [] positivMeasurements = new double[]{30,100,30,100,30,100,30,100,30};
-         int fs=2;
+         double [] positivMeasurements = new double[]{30,100,30,100,30,100,30,100,30,100,30, 100, 30, 100, 30, 100, 30, 100, 30,100,30};
+         double fs=1;
          uut.CalculatePulse(positivMeasurements,fs);
-         Assert.That(uut._dtoPulse.Pulse, Is.EqualTo(90));
+         Assert.That(uut._dtoPulse.Pulse, Is.EqualTo(28));
+      }
+
+      [Test]
+      public void CalculatePulse_21NegativNumbers_ExpectPulseIs28()
+      {
+         double[] negativMeasurements = new double[] { -30, -100, -30, -100, -30, -100, -30, -100, -30, -100, -30, -100, -30, -100, -30, -100, -30, -100, -30, -100, -30 };
+         double fs = 1;
+         uut.CalculatePulse(negativMeasurements, fs);
+         Assert.That(uut._dtoPulse.Pulse, Is.EqualTo(28));
       }
 
     }
