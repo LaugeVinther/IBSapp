@@ -38,36 +38,39 @@
             // 
             // Measure10mmHgBT
             // 
-            this.Measure10mmHgBT.BackColor = System.Drawing.SystemColors.Control;
-            this.Measure10mmHgBT.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Measure10mmHgBT.Location = new System.Drawing.Point(149, 145);
-            this.Measure10mmHgBT.Name = "Measure10mmHgBT";
-            this.Measure10mmHgBT.Size = new System.Drawing.Size(258, 49);
-            this.Measure10mmHgBT.TabIndex = 0;
-            this.Measure10mmHgBT.Text = "Meassure 10 mmHg";
-            this.Measure10mmHgBT.UseVisualStyleBackColor = false;
+            this.button1.BackColor = System.Drawing.SystemColors.Control;
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Location = new System.Drawing.Point(149, 145);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(258, 49);
+            this.button1.TabIndex = 0;
+            this.button1.Text = "Meassure 10 mmHg";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // Measure50mmHgBT
             // 
-            this.Measure50mmHgBT.BackColor = System.Drawing.SystemColors.Control;
-            this.Measure50mmHgBT.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Measure50mmHgBT.Location = new System.Drawing.Point(149, 218);
-            this.Measure50mmHgBT.Name = "Measure50mmHgBT";
-            this.Measure50mmHgBT.Size = new System.Drawing.Size(258, 53);
-            this.Measure50mmHgBT.TabIndex = 1;
-            this.Measure50mmHgBT.Text = "Meassure 50 mmHg";
-            this.Measure50mmHgBT.UseVisualStyleBackColor = false;
+            this.button2.BackColor = System.Drawing.SystemColors.Control;
+            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.Location = new System.Drawing.Point(149, 218);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(258, 53);
+            this.button2.TabIndex = 1;
+            this.button2.Text = "Meassure 50 mmHg";
+            this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // Measure100mmHgBT
             // 
-            this.Measure100mmHgBT.BackColor = System.Drawing.SystemColors.Control;
-            this.Measure100mmHgBT.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Measure100mmHgBT.Location = new System.Drawing.Point(149, 294);
-            this.Measure100mmHgBT.Name = "Measure100mmHgBT";
-            this.Measure100mmHgBT.Size = new System.Drawing.Size(258, 53);
-            this.Measure100mmHgBT.TabIndex = 2;
-            this.Measure100mmHgBT.Text = "Meassure 100 mmHg";
-            this.Measure100mmHgBT.UseVisualStyleBackColor = false;
+            this.button3.BackColor = System.Drawing.SystemColors.Control;
+            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button3.Location = new System.Drawing.Point(149, 294);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(258, 53);
+            this.button3.TabIndex = 2;
+            this.button3.Text = "Meassure 100 mmHg";
+            this.button3.UseVisualStyleBackColor = false;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // label1
             // 
@@ -91,15 +94,15 @@
             // 
             // CalibrationBT
             // 
-            this.CalibrationBT.BackColor = System.Drawing.Color.Lime;
-            this.CalibrationBT.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CalibrationBT.Location = new System.Drawing.Point(149, 374);
-            this.CalibrationBT.Name = "CalibrationBT";
-            this.CalibrationBT.Size = new System.Drawing.Size(258, 53);
-            this.CalibrationBT.TabIndex = 5;
-            this.CalibrationBT.Text = "Calibration";
-            this.CalibrationBT.UseVisualStyleBackColor = false;
-            this.CalibrationBT.Click += new System.EventHandler(this.CalibrationBT_Click);
+            this.button4.BackColor = System.Drawing.Color.Lime;
+            this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button4.Location = new System.Drawing.Point(149, 374);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(258, 53);
+            this.button4.TabIndex = 5;
+            this.button4.Text = "Calibration";
+            this.button4.UseVisualStyleBackColor = false;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // CalibrateForm
             // 
