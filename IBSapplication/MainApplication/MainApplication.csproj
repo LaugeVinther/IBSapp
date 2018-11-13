@@ -50,9 +50,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\BuisnessLogic\BuisnessLogic.csproj">
+    <ProjectReference Include="..\BuisnessLogic\BusinessLogic.csproj">
       <Project>{8c0cfe9d-bcfa-4117-8f9d-18dc95d723c7}</Project>
-      <Name>BuisnessLogic</Name>
+      <Name>BusinessLogic</Name>
     </ProjectReference>
     <ProjectReference Include="..\DataLogic\DataLogic.csproj">
       <Project>{acb9ba68-740e-4097-9dbf-987518960ad7}</Project>
@@ -61,6 +61,10 @@
     <ProjectReference Include="..\IBSapplication\PresentationLogic.csproj">
       <Project>{3a551706-c4e4-44c3-a307-66a69a58e35b}</Project>
       <Name>PresentationLogic</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Interfaces\Interfaces.csproj">
+      <Project>{2BBDAB17-F120-43E5-BEB7-3F14826DA951}</Project>
+      <Name>Interfaces</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

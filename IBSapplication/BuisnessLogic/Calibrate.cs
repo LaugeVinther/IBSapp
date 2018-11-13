@@ -7,7 +7,7 @@ using Interfaces;
 
 namespace BusinessLogic
 {
-    class Calibrate : ICalibrate
+    public class Calibrate : ICalibrate
     {
         public void Calibration()
         {
