@@ -5,12 +5,19 @@ using System.Text;
 using System.Threading.Tasks;
 using Interfaces;
 using static alglib;
+using DTOLogic;
 
 namespace BusinessLogic
 {
-    class Pulse : IPulse
+    public class Pulse : IPulse
     {
-       public void CalculatePulse(double[] measurements)
+       public DTO_Pulse _dtoPulse {  get; private set; }
+
+       public Pulse()
+       {
+          _dtoPulse = new DTO_Pulse();
+       }
+       public void CalculatePulse(double[] measurements, int f_sample)
        {
           double[] _measurements = measurements;
           int length = _measurements.Length;
@@ -36,17 +43,32 @@ namespace BusinessLogic
 
           //Gennemløb hele listen og find max amplituden - denne er grundfrekvensen
           double max = Amplitude[1];
-          foreach (var amplitude in Amplitude)
+          int index = 0;
+
+          //Vi skal se bort fra målingen på plads 0. 
+          for (int i = 1; i < Amplitude.Count; i++)
           {
-             if (amplitude > max)
+             if (Amplitude[i] > max)
              {
-                max = amplitude;
-                //gem plads
+                max = Amplitude[i];
+                index = i;
              }
           }
 
           //Beregn frekvensen til denne plads ved at finde frekvensopløsningen (formel fra DSB lektion 5)
-          
+          //Først beregnes frekvensopløsningen
+          double f_resolution = (double)f_sample / Amplitude.Count; 
+
+          //Beregn analysefrekvensen (frekvensen ved index i)
+          double f_analysis = f_resolution * index;
+
+          //Frekvensen er i Hz (svingninger pr sekund) det omregnes til puls
+          int _pulse = (int)(f_analysis * 60);
+
+          //Find 
+          _dtoPulse.Pulse = _pulse;
+
+
 
           //Arrayet vi får ud har på hver plads et komplekst tal. Amplituden er længden af det komplekse tal.
           //Regn amplituderne og find den med den højeste amplitude.

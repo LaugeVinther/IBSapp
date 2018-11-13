@@ -6,7 +6,12 @@ using System.Threading.Tasks;
 
 namespace DTOLogic
 {
-    class DTO_SaveData
+    public class DTO_SaveData
     {
+        public string fullName { get; set; }
+        public string CPRnumber { get; set; }
+        public string staffID { get; set; }
+
+        public DateTime date { get; set; }
     }
 }

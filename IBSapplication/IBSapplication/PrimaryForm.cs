@@ -23,10 +23,12 @@ namespace PresentationLogic
         {
             currentBuisnessLogic = buisnessLogic;
             InitializeComponent();
+
         }
 
         private void CalibrationBT_Click(object sender, EventArgs e)
         {
+
             _calibrateLoginForm = new CalibrateLoginForm();
             _calibrateLoginForm.ShowDialog();
         }
@@ -41,6 +43,11 @@ namespace PresentationLogic
         {
             _zeroPointAdjustmentForm = new ZeroPointAdjustmentForm();
             _zeroPointAdjustmentForm.ShowDialog();
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

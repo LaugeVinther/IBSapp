@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Dynamic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Interfaces
+namespace DTOLogic
 {
-   public interface IPulse
+   public class DTO_Pulse
    {
-      void CalculatePulse(double[] measurements, int f_sample);
+      public int Pulse { get; set; }
    }
 }
