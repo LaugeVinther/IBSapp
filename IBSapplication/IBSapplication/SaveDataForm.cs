@@ -12,16 +12,20 @@ namespace PresentationLogic
 {
     public partial class SaveDataForm : Form
     {
+        private DTO_SaveData myDTOsaveData;
         public SaveDataForm()
         {
             InitializeComponent();
-            DTO
+            myDTOsaveData = new DTO_SaveData();
             
         }
 
         private void SaveDataBT_Click(object sender, EventArgs e)
         {
-            fullNameTB.Text == 
+            myDTOsaveData.fullName = fullNameTB.Text;
+            myDTOsaveData.CPRnumber = cprTB.Text;
+            myDTOsaveData.staffID = staffIDTB.Text;
+            myDTOsaveData.date = DateTime.Now;
         }
     }
 }
