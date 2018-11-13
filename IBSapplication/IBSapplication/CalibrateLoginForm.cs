@@ -16,10 +16,6 @@ namespace PresentationLogic
         private CalibrateForm calibrateForm_;
         private CalibrateLogin calibrateLoginRef_;
 
-        public CalibrateLoginForm()
-        {
-        }
-
         public CalibrateLoginForm(CalibrateLogin calibrateLoginRef, CalibrateForm calibrateForm)
         {
             InitializeComponent();

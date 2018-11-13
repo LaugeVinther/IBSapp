@@ -48,6 +48,7 @@
   <ItemGroup>
     <Compile Include="IBloodPressure.cs" />
     <Compile Include="IBS_Interfaces.cs" />
+    <Compile Include="ICalibrateLogin.cs" />
     <Compile Include="IZeroPointAdjustment.cs" />
     <Compile Include="ICalibrate.cs" />
     <Compile Include="IDigitalFilter.cs" />

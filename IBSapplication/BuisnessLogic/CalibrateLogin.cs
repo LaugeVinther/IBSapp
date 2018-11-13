@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Interfaces;
 
 namespace BusinessLogic
 {
-    public class CalibrateLogin
+    public class CalibrateLogin : ICalibrateLogin
     {
         string username = "admin"; // OBS! dette skal ændres, når der er oprettet databaser 
         int password = 1234;

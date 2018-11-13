@@ -22,6 +22,7 @@ namespace PresentationLogic
         public PrimaryForm(BuisnessLogicIF buisnessLogic)
         {
             currentBuisnessLogic = buisnessLogic;
+            currentBuisnessLogic = new CalibrateForm();
             InitializeComponent();
 
         }
@@ -29,7 +30,7 @@ namespace PresentationLogic
         private void CalibrationBT_Click(object sender, EventArgs e)
         {
 
-            _calibrateLoginForm = new CalibrateLoginForm();
+            _calibrateLoginForm = new CalibrateLoginForm(currentBuisnessLogic, _calibrateLoginForm);
             _calibrateLoginForm.ShowDialog();
         }
 
