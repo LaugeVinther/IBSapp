@@ -6,7 +6,19 @@ using System.Threading.Tasks;
 
 namespace BusinessLogic
 {
-    class CalibrateLogin
+    public class CalibrateLogin
     {
+        string username = "admin"; // OBS! dette skal ændres, når der er oprettet databaser 
+        int password = 1234;
+
+        public bool CheckLogin(String username, String pw)
+        {
+            if (username == "admin" && password == 1234) // OBS! dette skal ændres, når der er oprettet databaser 
+            {
+                return true;
+            }
+            else
+                return false;
+        }
     }
 }

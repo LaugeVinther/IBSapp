@@ -16,7 +16,7 @@ namespace PresentationLogic
         private CalibrateLoginForm calibrateLogin_Form;
         private Calibrate calibrateLogic;
 
-        private bool LoginOK_ { get; set; }
+        public bool LoginOK_ { get; set; }
 
         public CalibrateForm()
         {
@@ -37,9 +37,9 @@ namespace PresentationLogic
 
         private void CalibrationBT_Click(object sender, EventArgs e)
         {
-
+            calibrateLogic = new Calibrate();
+            calibrateLogic.Calibration();
         }
     }
-
-    }
 }
+
