@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using DTOLogic;
 namespace PresentationLogic
 {
     public partial class SaveDataForm : Form
@@ -15,11 +15,13 @@ namespace PresentationLogic
         public SaveDataForm()
         {
             InitializeComponent();
+            DTO
+            
         }
 
-        private void label7_Click(object sender, EventArgs e)
+        private void SaveDataBT_Click(object sender, EventArgs e)
         {
-
+            fullNameTB.Text == 
         }
     }
 }

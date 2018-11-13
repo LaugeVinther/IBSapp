@@ -36,8 +36,8 @@
             this.cprTB = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.staffIDTB = new System.Windows.Forms.TextBox();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.SaveDataBT = new System.Windows.Forms.Button();
+            this.CancelBT = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.SuspendLayout();
@@ -113,44 +113,44 @@
             this.staffIDTB.Size = new System.Drawing.Size(272, 22);
             this.staffIDTB.TabIndex = 11;
             // 
-            // button2
+            // SaveDataBT
             // 
-            this.button2.Location = new System.Drawing.Point(343, 375);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(113, 57);
-            this.button2.TabIndex = 13;
-            this.button2.Text = "Save data";
-            this.button2.UseVisualStyleBackColor = true;
+            this.SaveDataBT.Location = new System.Drawing.Point(343, 375);
+            this.SaveDataBT.Name = "SaveDataBT";
+            this.SaveDataBT.Size = new System.Drawing.Size(113, 57);
+            this.SaveDataBT.TabIndex = 13;
+            this.SaveDataBT.Text = "Save data";
+            this.SaveDataBT.UseVisualStyleBackColor = true;
+            this.SaveDataBT.Click += new System.EventHandler(this.SaveDataBT_Click);
             // 
-            // button3
+            // CancelBT
             // 
-            this.button3.Location = new System.Drawing.Point(88, 394);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(84, 38);
-            this.button3.TabIndex = 14;
-            this.button3.Text = "Cancel";
-            this.button3.UseVisualStyleBackColor = true;
+            this.CancelBT.Location = new System.Drawing.Point(88, 394);
+            this.CancelBT.Name = "CancelBT";
+            this.CancelBT.Size = new System.Drawing.Size(84, 38);
+            this.CancelBT.TabIndex = 14;
+            this.CancelBT.Text = "Cancel";
+            this.CancelBT.UseVisualStyleBackColor = true;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(29, 308);
+            this.label6.Location = new System.Drawing.Point(40, 307);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(339, 17);
+            this.label6.Size = new System.Drawing.Size(381, 17);
             this.label6.TabIndex = 15;
-            this.label6.Text = "When \"Save data\" is clicked, the entered data will be";
+            this.label6.Text = "When \"Save data\" is clicked, the entered data will be saved";
             // 
             // label7
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(29, 334);
+            this.label7.Location = new System.Drawing.Point(40, 334);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(344, 17);
+            this.label7.Size = new System.Drawing.Size(396, 17);
             this.label7.TabIndex = 16;
-            this.label7.Text = "saved together with the patients blood pressure data.";
-            this.label7.Click += new System.EventHandler(this.label7_Click);
+            this.label7.Text = "together with date, time and the patients blood pressure data.";
             // 
             // SaveDataForm
             // 
@@ -160,8 +160,8 @@
             this.ClientSize = new System.Drawing.Size(521, 452);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.CancelBT);
+            this.Controls.Add(this.SaveDataBT);
             this.Controls.Add(this.staffIDTB);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.cprTB);
@@ -187,8 +187,8 @@
         private System.Windows.Forms.TextBox cprTB;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox staffIDTB;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button SaveDataBT;
+        private System.Windows.Forms.Button CancelBT;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
     }
