@@ -62,6 +62,10 @@
       <Project>{3a551706-c4e4-44c3-a307-66a69a58e35b}</Project>
       <Name>PresentationLogic</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Interfaces\Interfaces.csproj">
+      <Project>{2BBDAB17-F120-43E5-BEB7-3F14826DA951}</Project>
+      <Name>Interfaces</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

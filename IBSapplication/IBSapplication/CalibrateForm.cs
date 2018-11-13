@@ -7,44 +7,39 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using BusinessLogic;
 
 namespace PresentationLogic
 {
     public partial class CalibrateForm : Form
     {
+        private CalibrateLoginForm calibrateLogin_Form;
+        private Calibrate calibrateLogic;
+
+        private bool LoginOK_ { get; set; }
+
         public CalibrateForm()
         {
             InitializeComponent();
+
+            this.Visible = false; //CalibrateForm skjules
+
+            calibrateLogin_Form = new CalibrateLoginForm();
+            calibrateLogin_Form.ShowDialog();
+
+            if (this.LoginOK_ == true)
+            {
+                this.Visible = true;
+            }
+            else
+                this.Close();
         }
 
-        private void button4_Click(object sender, EventArgs e)
+        private void CalibrationBT_Click(object sender, EventArgs e)
         {
 
         }
+    }
 
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }
