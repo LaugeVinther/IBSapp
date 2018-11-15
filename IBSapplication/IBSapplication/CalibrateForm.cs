@@ -40,6 +40,11 @@ namespace PresentationLogic
             calibrateLogic = new Calibrate();
             calibrateLogic.Calibration();
         }
+
+        private void CalibrationBT_Click_1(object sender, EventArgs e)
+        {
+
+        }
     }
 }
 
