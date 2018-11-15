@@ -45,8 +45,8 @@ namespace BusinessLogic
           double max = Amplitude[1];
           int index = 0;
 
-          //Vi skal se bort fra målingen på plads 0. 
-          for (int i = 1; i < Amplitude.Count; i++)
+          //Vi skal se bort fra målingen på plads 0. Og dividere med 2 for at undgå spejling
+          for (int i = 1; i < Amplitude.Count/2; i++)
           {
              if (Amplitude[i] > max)
              {
