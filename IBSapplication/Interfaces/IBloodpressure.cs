@@ -3,15 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DTOLogic;
 
 namespace Interfaces
 {
     public interface IBloodPressure
     {
-        int CalculateAverage();
-
-        int CalculateSystolic();
-
-        int CalculateDiastolic();
+        void CalculateBP(double[] measurements, double f_sample, int Pulse);
     }
 }
