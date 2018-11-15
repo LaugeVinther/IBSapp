@@ -66,6 +66,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DataLogic\DataLogic.csproj">
+      <Project>{acb9ba68-740e-4097-9dbf-987518960ad7}</Project>
+      <Name>DataLogic</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DTOLogic\DTOLogic.csproj">
       <Project>{8f170bc4-6c47-4fda-b210-cbb0faf0ca62}</Project>
       <Name>DTOLogic</Name>

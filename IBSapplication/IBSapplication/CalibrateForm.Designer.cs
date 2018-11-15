@@ -33,7 +33,7 @@
             this.Measure100mmHgBT = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.CalibrationBT = new System.Windows.Forms.Button();
+            this.CalibrateBT = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // Measure10mmHgBT
@@ -89,17 +89,17 @@
             this.label2.TabIndex = 4;
             this.label2.Text = "Please choose a pressure value";
             // 
-            // CalibrationBT
+            // CalibrateBT
             // 
-            this.CalibrationBT.BackColor = System.Drawing.Color.Lime;
-            this.CalibrationBT.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CalibrationBT.Location = new System.Drawing.Point(149, 374);
-            this.CalibrationBT.Name = "CalibrationBT";
-            this.CalibrationBT.Size = new System.Drawing.Size(258, 53);
-            this.CalibrationBT.TabIndex = 5;
-            this.CalibrationBT.Text = "Calibration";
-            this.CalibrationBT.UseVisualStyleBackColor = false;
-            this.CalibrationBT.Click += new System.EventHandler(this.CalibrationBT_Click_1);
+            this.CalibrateBT.BackColor = System.Drawing.Color.Lime;
+            this.CalibrateBT.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CalibrateBT.Location = new System.Drawing.Point(149, 374);
+            this.CalibrateBT.Name = "CalibrateBT";
+            this.CalibrateBT.Size = new System.Drawing.Size(258, 53);
+            this.CalibrateBT.TabIndex = 5;
+            this.CalibrateBT.Text = "Calibrate";
+            this.CalibrateBT.UseVisualStyleBackColor = false;
+            this.CalibrateBT.Click += new System.EventHandler(this.CalibrationBT_Click_1);
             // 
             // CalibrateForm
             // 
@@ -107,7 +107,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.ClientSize = new System.Drawing.Size(581, 473);
-            this.Controls.Add(this.CalibrationBT);
+            this.Controls.Add(this.CalibrateBT);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.Measure100mmHgBT);
@@ -127,6 +127,6 @@
         private System.Windows.Forms.Button Measure100mmHgBT;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button CalibrationBT;
+        private System.Windows.Forms.Button CalibrateBT;
     }
 }

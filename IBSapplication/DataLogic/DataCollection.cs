@@ -7,10 +7,11 @@ using System.Threading.Tasks;
 using DTOLogic;
 using NationalInstruments.DAQmx;
 using System.Threading;
+using Interfaces;
 
 namespace DataLogic
 {
-    class DataCollection
+    public class DataCollection : DataLogicIF
     {
         private readonly BlockingCollection<DTO_mV> _dataQueue;
         private bool keepLoading = false;
@@ -47,6 +48,11 @@ namespace DataLogic
             //}
 
             _dataQueue.CompleteAdding();
+        }
+
+        public void GetOneDataPoint()
+        {
+
         }
     }
 }
