@@ -49,6 +49,9 @@
     <Compile Include="IBloodPressure.cs" />
     <Compile Include="IBS_Interfaces.cs" />
     <Compile Include="ICalibrateLogin.cs" />
+    <Compile Include="IDatabaseSaver.cs" />
+    <Compile Include="IDataCollection.cs" />
+    <Compile Include="IProcessedDataCollector.cs" />
     <Compile Include="IZeroPointAdjustment.cs" />
     <Compile Include="ICalibrate.cs" />
     <Compile Include="IDigitalFilter.cs" />

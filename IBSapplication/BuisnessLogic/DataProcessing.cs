@@ -12,7 +12,6 @@ namespace BusinessLogic
 {
     public class DataProcessing
     {
-        private DataCollection dataCollector;
         private DataLogicIF _dataobject;
         private BlockingCollection<DTO_mV> dataQueue;
         private Calibrate calibrate;

@@ -19,20 +19,29 @@ namespace BusinessLogic
        }
        public void CalculatePulse(double[] measurements, double f_sample)
        {
-          double[] _measurements = measurements;
+          double [] _measurements = new double[10000];
+
+          if (measurements.Length>f_sample*10)
+          {
+             int start = (measurements.Length-1) - (int)(10 * f_sample);
+             int element = 0;
+             for (int i = start; i < measurements.Length-1; i++)
+             {
+                _measurements[element] = measurements[i];
+                element++;
+             }
+          }
+          else
+          {
+            _measurements = measurements;
+         }
+
           int length = _measurements.Length;
           alglib.complex[] measurementsComplexs = new complex[length];
           List<double> Amplitude = new List<double>();
-          //Brug event-handler-delegation halløj til hele tiden at få den seneste liste fra ProcessedDataCollecter 
-          //Eller også ligger dette ovenfor i Datacontroller
-          //Lav liste over de sidste 10 sekunder
-          //Lav FFT på listen over de sidste 10 sekunder. 
-          //Find grundfrekvensen
-          //Bestem perioden for grundfrekvensen
-          //Omregn periden til puls (find ud af sammenhængen?)
-          //Skriv pulsen ind i DTO_Pulse
 
-          alglib.fftr1d(_measurements, out measurementsComplexs);
+         //Udfør Fourier
+         alglib.fftr1d(_measurements, out measurementsComplexs);
 
           //Regn amplituder for alle pladser i arrayet med komplekse værdier
           foreach (var measurement in measurementsComplexs)
@@ -42,7 +51,7 @@ namespace BusinessLogic
           }
 
           //Gennemløb hele listen og find max amplituden - denne er grundfrekvensen
-          double max = Amplitude[1];
+          double max = Amplitude[0];
           int index = 0;
 
           //Vi skal se bort fra målingen på plads 0. Og dividere med 2 for at undgå spejling

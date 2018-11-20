@@ -4,25 +4,29 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DTOLogic;
+using Interfaces;
 
 namespace BusinessLogic
 {
-    class ProcessedDataCollector
+    class ProcessedDataCollector : IProcessedDataCollector
     {
-        private DTO_mmHg mmHgDTO;
-        List<DTO_mmHg> ProcessedData = new List<DTO_mmHg>();
+      List<double> ProcessedData = new List<double>();
 
         public ProcessedDataCollector()
         {
-            mmHgDTO = new DTO_mmHg();
+           
         }
 
-        public void collectData()
+        public void collectData(DTO_mmHg mmHgDTO)
         {
-            ProcessedData.Add(mmHgDTO);
+            foreach (var sample in mmHgDTO.modifiedSamples)
+            {
+                ProcessedData.Add(sample);
+            }
+            
         }
 
-        public List<DTO_mmHg> GetAllProcessedData()
+        public List<double> GetAllProcessedData()
         {
             return ProcessedData;
         }
