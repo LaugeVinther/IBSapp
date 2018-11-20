@@ -57,13 +57,13 @@ namespace BusinessLogic
 
           //Beregn frekvensen til denne plads ved at finde frekvensopløsningen (formel fra DSB lektion 5)
           //Først beregnes frekvensopløsningen
-          double f_resolution = f_sample / Amplitude.Count; 
+          double f_req = (index*f_sample) / Amplitude.Count; 
 
           //Beregn analysefrekvensen (frekvensen ved index i)
-          double f_analysis = f_resolution * index;
+          //double f_analysis = f_resolution * index;
 
           //Frekvensen er i Hz (svingninger pr sekund) det omregnes til puls
-          int _pulse = (int)(f_analysis * 60);
+          int _pulse = (int)(f_req * 60);
 
           //Find 
           _dtoPulse.Pulse = _pulse;
