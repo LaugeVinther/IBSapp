@@ -19,8 +19,10 @@ namespace UnitTest
          uut = new BloodPressure();
       }
 
-      [Test]
-      public void CalculateBP_SinusSignalA5_ExpectedSysIs5()
+      [TestCase(5)]
+      [TestCase(10)]
+      [TestCase(20)]
+      public void CalculateBP_SinusSignalAmplitudeIsA_ExpectedSysIsA(int A)
       {
          int size = 1000;
          int f_sample = 1000;
@@ -29,14 +31,16 @@ namespace UnitTest
          double[] sinus = new double[size];
 
          for (int t = 0; t < size; t++)
-            sinus[t] = 5 * Math.Sin(2 * Math.PI * (t * ((1 * frequency) / (1.0 * f_sample))));
+            sinus[t] = A * Math.Sin(2 * Math.PI * (t * ((1 * frequency) / (1.0 * f_sample))));
 
          uut.CalculateBP(sinus, f_sample,60);
-         Assert.That(uut._dtoBloodpressure.Systolic, Is.EqualTo(5));
+         Assert.That(uut._dtoBloodpressure.Systolic, Is.EqualTo(A));
       }
 
-      [Test]
-      public void CalculateBP_SinusSignalA5_ExpectedDiaIsMinus5()
+      [TestCase(5)]
+      [TestCase(10)]
+      [TestCase(20)]
+      public void CalculateBP_SinusSignalAmplitudeIsA_ExpectedDiaIsMinusA(int A)
       {
          int size = 1000;
          int f_sample = 1000;
@@ -45,10 +49,10 @@ namespace UnitTest
          double[] sinus = new double[size];
 
          for (int t = 0; t < size; t++)
-            sinus[t] = 5 * Math.Sin(2 * Math.PI * (t * ((1 * frequency) / (1.0 * f_sample))));
+            sinus[t] = A * Math.Sin(2 * Math.PI * (t * ((1 * frequency) / (1.0 * f_sample))));
 
          uut.CalculateBP(sinus, f_sample, 60);
-         Assert.That(uut._dtoBloodpressure.Diastolic, Is.EqualTo(-5));
+         Assert.That(uut._dtoBloodpressure.Diastolic, Is.EqualTo(-A));
       }
 
       [TestCase(5)]
