@@ -8,6 +8,7 @@ namespace DTOLogic
 {
     public class DTO_mV
     {
-        private double rawSample { get; set; }
+        public List<double> rawSamples { get; set; }
+
     }
 }
