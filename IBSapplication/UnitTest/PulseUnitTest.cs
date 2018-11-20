@@ -25,16 +25,16 @@ namespace UnitTest
       {
 
          //Fra Lars
-         const int SIZE = 1000;
-         const int SAMPLINGSRATE = 1000;
-         const int FREQUENCY = 2;
+         const int size = 1000;
+         const int f_sample = 1000;
+         const int frequency = 2;
 
          // Funktionsbeskrivelsen
-         double[] sinus = new double[SIZE];
+         double[] sinus = new double[size];
          List<Double> ampl = new List<Double>();
 
-         for (int t = 0; t < SIZE; t++)
-            sinus[t] = 5 * Math.Sin(2 * Math.PI * (t * ((1 * FREQUENCY) / (1.0 * SAMPLINGSRATE))));
+         for (int t = 0; t < size; t++)
+            sinus[t] = 5 * Math.Sin(2 * Math.PI * (t * ((1 * frequency) / (1.0 * f_sample))));
          //Slut fra Lars
 
          //List<double> sinusList = new List<double>();
@@ -50,7 +50,7 @@ namespace UnitTest
          //double[] positivMeasurements = sinusList.ToArray();
          double[] positivMeasurements = sinus.ToArray();
          //double fs=50;
-         uut.CalculatePulse(positivMeasurements,SAMPLINGSRATE);
+         uut.CalculatePulse(positivMeasurements,f_sample);
          Assert.That(uut._dtoPulse.Pulse, Is.EqualTo(60));
       }
 
