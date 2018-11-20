@@ -14,12 +14,22 @@ namespace UnitTest
     [TestFixture]
     public class DataCollectionUnitTest
     {
-        private readonly BlockingCollection<>
+        private readonly BlockingCollection<DTO_mV> _dataQueue;
         private DataCollection _uut;
 
         [SetUp]
         public void SetUp()
         {
-            _uut = new DataCollection
+            _uut = new DataCollection(_dataQueue);
+        }
+
+        [Test]
+        public void GetOneDataPoint_WavegenDC1V_OndDataPointEqual1plusminus0point05()
+        {
+        //    double _oneDataPoint = 0;
+
+        //    _oneDataPoint = _uut.GetOneDataPoint();
+            Assert.That(_uut.GetOneDataPoint(), Is.EqualTo(1));
         }
     }
+}
