@@ -47,6 +47,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataCollectionUnitTest.cs" />
     <Compile Include="PulseUnitTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -54,6 +55,10 @@
     <ProjectReference Include="..\BuisnessLogic\BusinessLogic.csproj">
       <Project>{8c0cfe9d-bcfa-4117-8f9d-18dc95d723c7}</Project>
       <Name>BusinessLogic</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DataLogic\DataLogic.csproj">
+      <Project>{acb9ba68-740e-4097-9dbf-987518960ad7}</Project>
+      <Name>DataLogic</Name>
     </ProjectReference>
     <ProjectReference Include="..\DTOLogic\DTOLogic.csproj">
       <Project>{8f170bc4-6c47-4fda-b210-cbb0faf0ca62}</Project>
