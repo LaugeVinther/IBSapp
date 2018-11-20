@@ -11,8 +11,8 @@ namespace BusinessLogic
 {
     class DataProcessing
     {
-        private DataCollection dataCollector;
         private bool isRunning;
+        ProcessedDataCollector processedDataCollector_ = new ProcessedDataCollector();
 
 
         public void Start()
