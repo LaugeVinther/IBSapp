@@ -75,7 +75,7 @@ namespace DataLogic
             rangeMinimumVolt = -2.5;
             rangeMaximumVolt = 2.5;
             samplesPerChannel = 500;
-            deviceName = "Dev1/ai0";
+            deviceName = "Dev2/ai0";
             seqTimeOut = -1;
 
         }

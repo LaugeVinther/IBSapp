@@ -13,6 +13,9 @@ namespace BusinessLogic
 {
     public class Calibrate : ICalibrate
     {
+        private double[] array = new double[2];
+        private int counter = 0;
+
         private DTO_mmHg _DTOmmHg; // skal gemmes i denne DTO
 
         public Calibrate()
@@ -22,28 +25,33 @@ namespace BusinessLogic
 
         // Klassen skal snakke med DataProcessing 
 
-        public void Calibration(double 10mmHgMeasurement, double 50mmHgMeasurement, double 100mmHgMeasurement) // disse tre doubles skal sendes videre i parameteren 
+        public void Calibration(double VoltageMeasurement) // disse tre doubles skal sendes videre i parameteren 
         {
-            10mmHgMeasurement 
-
-            for (int i = 0; i < 3; i++)
+            for (int i = 0; i <= array.Length; i++)
             {
+                if (counter != 3)
+                {
+                    array[counter] = VoltageMeasurement;
 
-
+                }
+                else if (counter == 3)
+                {
+                    counter = 0; 
+                }
+                VoltageMeasurement += array[i];
             }
-            convertedDataPoint = _DTOmmHg.modifiedSample;
-
         }
 
-        public void LinearRegression(double[] Volt, double[] measurementsMmHg) // x og y koordinator
+        public double LinearRegression(double[] Volt, double[] calibrateMmHg) // x og y koordinator
         {
-            Volt = new double[] { 1, 2, 3 };
-            measurementsMmHg = new double[] { 3, 4, 5 };
+            Volt = new double[] {array[0], array[1], array[2]};
+            calibrateMmHg = new double[] { 10, 50, 100 };
 
-            Tuple<double, double> p = Fit.Line(Volt, measurementsMmHg);
+            Tuple<double, double> p = Fit.Line(Volt, calibrateMmHg);
             double a = p.Item1;
             double b = p.Item2;
 
+            return a;
 
         }
     }
