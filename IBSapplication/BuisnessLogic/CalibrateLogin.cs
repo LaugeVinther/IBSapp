@@ -9,8 +9,8 @@ namespace BusinessLogic
 {
     public class CalibrateLogin : ICalibrateLogin
     {
-        string username = "admin"; // OBS! dette skal ændres, når der er oprettet databaser 
-        int password = 1234;
+        string username; // OBS! dette skal ændres, når der er oprettet databaser 
+        int password;
 
         public bool CheckLogin(String username, String pw)
         {

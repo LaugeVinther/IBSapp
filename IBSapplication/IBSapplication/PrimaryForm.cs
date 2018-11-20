@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
 using Interfaces;
 
 namespace PresentationLogic
@@ -24,6 +25,35 @@ namespace PresentationLogic
             currentBuisnessLogic = buisnessLogic;
             _calibrateForm = new CalibrateForm();
             InitializeComponent();
+
+        }
+
+        private void graphSetting() // OBS! tallene skal laves om efter standarden!
+        {
+            //Major grid 
+            chart1.Series["Bloodpressure signal"].IsXValueIndexed = false;
+            chart1.ChartAreas["ChartArea1"].AxisX.Minimum = 0;
+            chart1.ChartAreas["ChartArea1"].AxisX.Maximum = 60; 
+            chart1.ChartAreas["ChartArea1"].AxisX.Interval = 10;
+            chart1.ChartAreas["ChartArea1"].AxisY.Minimum = 0;
+            chart1.ChartAreas["ChartArea1"].AxisY.Maximum = 200;
+            chart1.ChartAreas["ChartArea1"].AxisY.Interval = 20;
+            chart1.ChartAreas["ChartArea1"].AxisX.MajorGrid.LineWidth = 2;
+            chart1.ChartAreas["ChartArea1"].AxisY.MajorGrid.LineWidth = 2;
+            chart1.ChartAreas["ChartArea1"].AxisX.MajorGrid.LineColor = Color.LightGreen;
+            chart1.ChartAreas["ChartArea1"].AxisY.MajorGrid.LineColor = Color.LightGreen;
+
+            //Minor grid
+            chart1.ChartAreas["ChartArea1"].AxisX.MinorGrid.Enabled = true;
+            chart1.ChartAreas["ChartArea1"].AxisY.MinorGrid.Enabled = true;
+            chart1.ChartAreas["ChartArea1"].AxisX.MinorGrid.LineColor = Color.LightGreen;
+            chart1.ChartAreas["ChartArea1"].AxisY.MinorGrid.LineColor = Color.LightGreen;
+            chart1.ChartAreas["ChartArea1"].AxisX.MinorGrid.Interval = 20;
+            chart1.ChartAreas["ChartArea1"].AxisY.MinorGrid.Interval = 0.1;
+            chart1.ChartAreas["ChartArea1"].AxisY.MinorGrid.LineDashStyle = ChartDashStyle.Dot;
+            chart1.ChartAreas["ChartArea1"].AxisX.MinorGrid.LineDashStyle = ChartDashStyle.Dot;
+
+            chart1.Invalidate();
 
         }
 
@@ -46,6 +76,11 @@ namespace PresentationLogic
         }
 
         private void button5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void chart1_Click(object sender, EventArgs e)
         {
 
         }
