@@ -93,7 +93,7 @@
             // 
             this.CalibrateBT.BackColor = System.Drawing.Color.Lime;
             this.CalibrateBT.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CalibrateBT.Location = new System.Drawing.Point(149, 374);
+            this.CalibrateBT.Location = new System.Drawing.Point(149, 375);
             this.CalibrateBT.Name = "CalibrateBT";
             this.CalibrateBT.Size = new System.Drawing.Size(258, 53);
             this.CalibrateBT.TabIndex = 5;

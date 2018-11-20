@@ -336,6 +336,7 @@
             this.chart1.Size = new System.Drawing.Size(803, 299);
             this.chart1.TabIndex = 46;
             this.chart1.Text = "Blood pressure";
+            this.chart1.Click += new System.EventHandler(this.chart1_Click);
             // 
             // PrimaryForm
             // 

@@ -8,6 +8,6 @@ namespace DTOLogic
 {
     public class DTO_mmHg
     {
-        private double modifiedSample { get; set; }
+        public double modifiedSample { get; set; }
     }
 }

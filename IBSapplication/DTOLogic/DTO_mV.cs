@@ -8,6 +8,6 @@ namespace DTOLogic
 {
     public class DTO_mV
     {
-        private double rawSample { get; set; }
+        public double rawSample { get; set; }
     }
 }
