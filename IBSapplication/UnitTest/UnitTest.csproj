@@ -53,7 +53,7 @@
   <ItemGroup>
     <ProjectReference Include="..\BuisnessLogic\BusinessLogic.csproj">
       <Project>{8c0cfe9d-bcfa-4117-8f9d-18dc95d723c7}</Project>
-      <Name>BuisnessLogic</Name>
+      <Name>BusinessLogic</Name>
     </ProjectReference>
     <ProjectReference Include="..\DTOLogic\DTOLogic.csproj">
       <Project>{8f170bc4-6c47-4fda-b210-cbb0faf0ca62}</Project>

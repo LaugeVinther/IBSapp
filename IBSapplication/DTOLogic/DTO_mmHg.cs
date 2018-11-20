@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace DTOLogic
 {
-    public class DTO_mV
+    public class DTO_mmHg
     {
-        private double rawSample { get; set; }
+        private double modifiedSample { get; set; }
     }
 }

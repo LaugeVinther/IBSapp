@@ -14,7 +14,8 @@ namespace PresentationLogic
     public partial class CalibrateForm : Form
     {
         private CalibrateLoginForm calibrateLogin_Form;
-        private Calibrate calibrateLogic;
+        private CalibrateLogin calibrateLoginLogic;
+        private Calibrate calibrate;
 
         public bool LoginOK_ { get; set; }
 
@@ -22,9 +23,11 @@ namespace PresentationLogic
         {
             InitializeComponent();
 
+            calibrate = new Calibrate();
+            calibrateLoginLogic = new CalibrateLogin(); 
             this.Visible = false; //CalibrateForm skjules
 
-            calibrateLogin_Form = new CalibrateLoginForm();
+            calibrateLogin_Form = new CalibrateLoginForm(calibrateLoginLogic, this);
             calibrateLogin_Form.ShowDialog();
 
             if (this.LoginOK_ == true)
@@ -37,8 +40,13 @@ namespace PresentationLogic
 
         private void CalibrationBT_Click(object sender, EventArgs e)
         {
-            calibrateLogic = new Calibrate();
-            calibrateLogic.Calibration();
+            calibrate = new Calibrate();
+            calibrate.Calibration();
+        }
+
+        private void CalibrationBT_Click_1(object sender, EventArgs e)
+        {
+
         }
     }
 }

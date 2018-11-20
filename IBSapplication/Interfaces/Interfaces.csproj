@@ -48,6 +48,7 @@
   <ItemGroup>
     <Compile Include="IBloodPressure.cs" />
     <Compile Include="IBS_Interfaces.cs" />
+    <Compile Include="ICalibrateLogin.cs" />
     <Compile Include="IZeroPointAdjustment.cs" />
     <Compile Include="ICalibrate.cs" />
     <Compile Include="IDigitalFilter.cs" />
@@ -57,6 +58,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DTOLogic\DTOLogic.csproj">
+      <Project>{8F170BC4-6C47-4FDA-B210-CBB0FAF0CA62}</Project>
+      <Name>DTOLogic</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

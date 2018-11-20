@@ -14,7 +14,7 @@ namespace PresentationLogic
     public partial class PrimaryForm : Form
     {
         private BuisnessLogicIF currentBuisnessLogic;
-        private CalibrateLoginForm _calibrateLoginForm;
+        private CalibrateForm _calibrateForm;
         private SaveDataForm _saveDataForm;
         private ZeroPointAdjustmentForm _zeroPointAdjustmentForm;
 
@@ -22,15 +22,15 @@ namespace PresentationLogic
         public PrimaryForm(BuisnessLogicIF buisnessLogic)
         {
             currentBuisnessLogic = buisnessLogic;
+            _calibrateForm = new CalibrateForm();
             InitializeComponent();
 
         }
 
         private void CalibrationBT_Click(object sender, EventArgs e)
         {
-
-            _calibrateLoginForm = new CalibrateLoginForm();
-            _calibrateLoginForm.ShowDialog();
+            _calibrateForm = new CalibrateForm();
+            _calibrateForm.ShowDialog();
         }
 
         private void SaveBT_Click(object sender, EventArgs e)

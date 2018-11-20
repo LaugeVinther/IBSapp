@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DTOLogic
+namespace Interfaces
 {
-    public class DTO_mV
+    public interface ICalibrateLogin
     {
-        private double rawSample { get; set; }
+        bool CheckLogin(String username, String pw);
     }
 }

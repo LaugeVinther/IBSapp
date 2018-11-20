@@ -17,7 +17,7 @@ namespace BusinessLogic
        {
           _dtoPulse = new DTO_Pulse();
        }
-       public void CalculatePulse(double[] measurements, int f_sample)
+       public void CalculatePulse(double[] measurements, double f_sample)
        {
           double[] _measurements = measurements;
           int length = _measurements.Length;
@@ -45,8 +45,8 @@ namespace BusinessLogic
           double max = Amplitude[1];
           int index = 0;
 
-          //Vi skal se bort fra målingen på plads 0. 
-          for (int i = 1; i < Amplitude.Count; i++)
+          //Vi skal se bort fra målingen på plads 0. Og dividere med 2 for at undgå spejling
+          for (int i = 1; i < Amplitude.Count/2; i++)
           {
              if (Amplitude[i] > max)
              {
@@ -57,7 +57,7 @@ namespace BusinessLogic
 
           //Beregn frekvensen til denne plads ved at finde frekvensopløsningen (formel fra DSB lektion 5)
           //Først beregnes frekvensopløsningen
-          double f_resolution = (double)f_sample / Amplitude.Count; 
+          double f_resolution = f_sample / Amplitude.Count; 
 
           //Beregn analysefrekvensen (frekvensen ved index i)
           double f_analysis = f_resolution * index;
