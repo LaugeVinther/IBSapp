@@ -14,13 +14,15 @@ namespace BusinessLogic
     {
         private DataCollection dataCollector;
         private DataLogicIF _dataobject;
+        private BlockingCollection<DTO_mV> dataQueue;
+        private Calibrate calibrate;
 
         private bool isRunning;
         ProcessedDataCollector processedDataCollector_ = new ProcessedDataCollector();
 
         public DataProcessing()
         {
-            _dataobject = new DataCollection();
+            dataCollector = new DataCollection(dataQueue);
             _dataobjeckt = new DataBase
         }
 
@@ -32,9 +34,10 @@ namespace BusinessLogic
             }
         }
 
-        public void GetCalibration ()
+        public void GetCalibration (int pressureValue) // ændrer navn 
         {
-            _dataobject.GetOneDataPoint();
+            double oneDataPoint = dataCollector.GetOneDataPoint();
+            calibrate.AddVoltage(oneDataPoint, pressureValue);
         }
 
         public void Safe()

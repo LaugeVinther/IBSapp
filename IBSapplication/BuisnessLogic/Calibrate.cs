@@ -7,51 +7,56 @@ using Interfaces;
 using DTOLogic;
 using DataLogic;
 using System.Collections.Concurrent;
-using static alglib;
+
 
 namespace BusinessLogic
 {
     public class Calibrate : ICalibrate
     {
-        private double[] array = new double[2];
+        private double[] voltageArray = new double[2];
+        private double[] pressureArray = new double[2];
         private int counter = 0;
+        private DataProcessing _dataProcessing;
 
-        private DTO_mmHg _DTOmmHg; // skal gemmes i denne DTO
+        //private DTO_mmHg _DTOmmHg; // skal gemmes i denne DTO
 
         public Calibrate()
         {
-            _DTOmmHg = new DTO_mmHg();
+            // _DTOmmHg = new DTO_mmHg();
         }
 
         // Klassen skal snakke med DataProcessing 
 
-        public void Calibration(double VoltageMeasurement) // disse tre doubles skal sendes videre i parameteren 
+        public void AddVoltage(double voltage, int pressure)
         {
-            for (int i = 0; i <= array.Length; i++)
+            _dataProcessing = new DataProcessing();
+
+            for (int i = 0; i <= voltageArray.Length; i++)
             {
-                if (counter != 3)
+                if (counter <= 3)
                 {
-                    array[counter] = VoltageMeasurement;
+                    voltageArray[i] = voltage;
+                    pressureArray[i] = pressure;
 
                 }
-                else if (counter == 3)
+                else if (counter > 3)
                 {
-                    counter = 0; 
+                    counter = 0;
                 }
-                VoltageMeasurement += array[i];
             }
         }
 
-        public double LinearRegression(double[] Volt, double[] calibrateMmHg) // x og y koordinator
+        public double Calibration() 
         {
-            Volt = new double[] {array[0], array[1], array[2]};
-            calibrateMmHg = new double[] { 10, 50, 100 };
+            // regression 
+            double[] Volt = new double[] { voltageArray[0], voltageArray[1], voltageArray[2] };
+            double[] calibrateMmHg = new double[] { 10, 50, 100 };
 
-            Tuple<double, double> p = Fit.Line(Volt, calibrateMmHg);
-            double a = p.Item1;
-            double b = p.Item2;
+            double hældningskoefficient_a;
 
-            return a;
+            hældningskoefficient_a = (100 - voltageArray[2]) / (10 - voltageArray[0]); // y2 - y1 / x2 - x1 
+
+            return hældningskoefficient_a;
 
         }
     }

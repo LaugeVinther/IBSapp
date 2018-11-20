@@ -58,6 +58,7 @@
             this.Measure50mmHgBT.TabIndex = 1;
             this.Measure50mmHgBT.Text = "Meassure 50 mmHg";
             this.Measure50mmHgBT.UseVisualStyleBackColor = false;
+            this.Measure50mmHgBT.Click += new System.EventHandler(this.Measure50mmHgBT_Click);
             // 
             // Measure100mmHgBT
             // 
@@ -69,6 +70,7 @@
             this.Measure100mmHgBT.TabIndex = 2;
             this.Measure100mmHgBT.Text = "Meassure 100 mmHg";
             this.Measure100mmHgBT.UseVisualStyleBackColor = false;
+            this.Measure100mmHgBT.Click += new System.EventHandler(this.Measure100mmHgBT_Click);
             // 
             // label1
             // 
@@ -100,7 +102,6 @@
             this.CalibrateBT.TabIndex = 5;
             this.CalibrateBT.Text = "Calibrate";
             this.CalibrateBT.UseVisualStyleBackColor = false;
-            this.CalibrateBT.Click += new System.EventHandler(this.CalibrationBT_Click_1);
             // 
             // CalibrateForm
             // 
