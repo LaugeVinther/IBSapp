@@ -12,7 +12,6 @@ namespace BusinessLogic
 {
     public class DataProcessing
     {
-        private DataCollection dataCollector;
         private DataLogicIF _dataobject;
 
         private bool isRunning;
@@ -21,6 +20,7 @@ namespace BusinessLogic
         public DataProcessing()
         {
             _dataobject = new DataCollection();
+           
         }
 
         public void Start()

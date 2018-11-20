@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DTOLogic;
+using Interfaces;
 
 namespace BusinessLogic
 {
-    class ProcessedDataCollector
+    class ProcessedDataCollector : IProcessedDataCollector
     {
         private DTO_mmHg mmHgDTO;
         List<DTO_mmHg> ProcessedData = new List<DTO_mmHg>();

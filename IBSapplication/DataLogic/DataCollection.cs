@@ -11,7 +11,7 @@ using Interfaces;
 
 namespace DataLogic
 {
-    public class DataCollection : DataLogicIF
+    public class DataCollection : IDataCollection
     {
         private readonly BlockingCollection<DTO_mV> _dataQueue;
         private bool keepLoading = false;
@@ -50,7 +50,7 @@ namespace DataLogic
             _dataQueue.CompleteAdding();
         }
 
-        public void GetOneDataPoint()
+        public double GetOneDataPoint()
         {
 
         }
