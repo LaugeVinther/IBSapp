@@ -46,6 +46,7 @@
             this.Measure10mmHgBT.TabIndex = 0;
             this.Measure10mmHgBT.Text = "Meassure 10 mmHg";
             this.Measure10mmHgBT.UseVisualStyleBackColor = false;
+            this.Measure10mmHgBT.Click += new System.EventHandler(this.Measure10mmHgBT_Click);
             // 
             // Measure50mmHgBT
             // 

@@ -9,12 +9,22 @@ namespace BusinessLogic
 {
     class ProcessedDataCollector
     {
-        DTO_mmHg mmHgDTO = new DTO_mmHg();
+        private DTO_mmHg mmHgDTO;
         List<DTO_mmHg> ProcessedData = new List<DTO_mmHg>();
+
+        public ProcessedDataCollector()
+        {
+            mmHgDTO = new DTO_mmHg();
+        }
 
         public void collectData()
         {
             ProcessedData.Add(mmHgDTO);
+        }
+
+        public List<DTO_mmHg> GetAllProcessedData()
+        {
+            return ProcessedData;
         }
     }
 }
