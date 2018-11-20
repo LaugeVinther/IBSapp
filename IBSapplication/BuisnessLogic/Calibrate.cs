@@ -6,24 +6,51 @@ using System.Threading.Tasks;
 using Interfaces;
 using DTOLogic;
 using DataLogic;
-
+using System.Collections.Concurrent;
+using static alglib;
 
 namespace BusinessLogic
 {
     public class Calibrate : ICalibrate
     {
-        // private DataLogicIF dataObject; 
+        private BlockingCollection<DTO_mV> _dataQueue;
 
-        public Calibrate ()
+        private DataLogicIF _dataObject;
+        private DTO_mmHg _DTOmmHg; // skal gemmes i denne DTO
+
+        public Calibrate (BlockingCollection<DTO_mV> dataQueue)
         {
-            //dataObject = new DataCollection();
+            _dataQueue = dataQueue;
+            _DTOmmHg = new DTO_mmHg();
         }
 
         public void Calibration()
         {
-            // do calibrate
 
-            
+            double convertedDataPoint;
+
+            while (true)
+            {
+                for (int i = 0; i < 3; i++)
+                {
+                    var OneDataPoint = _dataQueue.Take();
+
+
+                }
+                convertedDataPoint = _DTOmmHg.modifiedSample;
+
+            }
+        }
+
+        public void LinearRegression(double[] Volt, double[] measurementsMmHg) // x og y koordinator
+        {
+            Volt = new double[] { 1, 2, 3 };
+            measurementsMmHg = new double[] { 3, 4, 5 };
+
+            Tuple<double, double> p = Fit.Line(Volt, measurementsMmHg);
+            double a = p.Item1;
+            double b = p.Item2;
+
 
         }
     }
