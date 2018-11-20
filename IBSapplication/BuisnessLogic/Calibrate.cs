@@ -13,44 +13,45 @@ namespace BusinessLogic
 {
     public class Calibrate : ICalibrate
     {
-        private BlockingCollection<DTO_mV> _dataQueue;
+        private double[] array = new double[2];
+        private int counter = 0;
 
-        private DataLogicIF _dataObject;
         private DTO_mmHg _DTOmmHg; // skal gemmes i denne DTO
 
-        public Calibrate (BlockingCollection<DTO_mV> dataQueue)
+        public Calibrate()
         {
-            _dataQueue = dataQueue;
             _DTOmmHg = new DTO_mmHg();
         }
 
-        public void Calibration()
+        // Klassen skal snakke med DataProcessing 
+
+        public void Calibration(double VoltageMeasurement) // disse tre doubles skal sendes videre i parameteren 
         {
-
-            double convertedDataPoint;
-
-            while (true)
+            for (int i = 0; i <= array.Length; i++)
             {
-                for (int i = 0; i < 3; i++)
+                if (counter != 3)
                 {
-                    var OneDataPoint = _dataQueue.Take();
-
+                    array[counter] = VoltageMeasurement;
 
                 }
-                convertedDataPoint = _DTOmmHg.modifiedSamples;
-
+                else if (counter == 3)
+                {
+                    counter = 0; 
+                }
+                VoltageMeasurement += array[i];
             }
         }
 
-        public void LinearRegression(double[] Volt, double[] measurementsMmHg) // x og y koordinator
+        public double LinearRegression(double[] Volt, double[] calibrateMmHg) // x og y koordinator
         {
-            Volt = new double[] { 1, 2, 3 };
-            measurementsMmHg = new double[] { 3, 4, 5 };
+            Volt = new double[] {array[0], array[1], array[2]};
+            calibrateMmHg = new double[] { 10, 50, 100 };
 
-            Tuple<double, double> p = Fit.Line(Volt, measurementsMmHg);
+            Tuple<double, double> p = Fit.Line(Volt, calibrateMmHg);
             double a = p.Item1;
             double b = p.Item2;
 
+            return a;
 
         }
     }

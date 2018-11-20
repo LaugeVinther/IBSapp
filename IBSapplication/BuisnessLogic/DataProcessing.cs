@@ -5,15 +5,24 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DataLogic;
+using Interfaces;
 using DTOLogic;
 
 namespace BusinessLogic
 {
-    class DataProcessing
+    public class DataProcessing
     {
         private DataCollection dataCollector;
-        private bool isRunning;
+        private DataLogicIF _dataobject;
 
+        private bool isRunning;
+        ProcessedDataCollector processedDataCollector_ = new ProcessedDataCollector();
+
+        public DataProcessing()
+        {
+            _dataobject = new DataCollection();
+            _dataobjeckt = new DataBase
+        }
 
         public void Start()
         {
@@ -21,6 +30,11 @@ namespace BusinessLogic
             {
 
             }
+        }
+
+        public void GetCalibration ()
+        {
+            _dataobject.GetOneDataPoint();
         }
 
         public void Safe()
