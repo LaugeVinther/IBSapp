@@ -25,7 +25,7 @@ namespace BusinessLogic
           {
              int start = (measurements.Length-1) - (int)(10 * f_sample);
              int element = 0;
-             for (int i = start; i < measurements.Length; i++)
+             for (int i = start; i < measurements.Length-1; i++)
              {
                 _measurements[element] = measurements[i];
                 element++;
