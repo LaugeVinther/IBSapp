@@ -37,7 +37,7 @@ namespace BusinessLogic
 
 
                 }
-                convertedDataPoint = _DTOmmHg.modifiedSample;
+                convertedDataPoint = _DTOmmHg.modifiedSamples;
 
             }
         }
