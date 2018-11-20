@@ -13,33 +13,26 @@ namespace BusinessLogic
 {
     public class Calibrate : ICalibrate
     {
-        private BlockingCollection<DTO_mV> _dataQueue;
-
-        private DataLogicIF _dataObject;
         private DTO_mmHg _DTOmmHg; // skal gemmes i denne DTO
 
-        public Calibrate (BlockingCollection<DTO_mV> dataQueue)
+        public Calibrate()
         {
-            _dataQueue = dataQueue;
             _DTOmmHg = new DTO_mmHg();
         }
 
-        public void Calibration()
+        // Klassen skal snakke med DataProcessing 
+
+        public void Calibration(double 10mmHgMeasurement, double 50mmHgMeasurement, double 100mmHgMeasurement) // disse tre doubles skal sendes videre i parameteren 
         {
+            10mmHgMeasurement 
 
-            double convertedDataPoint;
-
-            while (true)
+            for (int i = 0; i < 3; i++)
             {
-                for (int i = 0; i < 3; i++)
-                {
-                    var OneDataPoint = _dataQueue.Take();
 
-
-                }
-                convertedDataPoint = _DTOmmHg.modifiedSample;
 
             }
+            convertedDataPoint = _DTOmmHg.modifiedSample;
+
         }
 
         public void LinearRegression(double[] Volt, double[] measurementsMmHg) // x og y koordinator
