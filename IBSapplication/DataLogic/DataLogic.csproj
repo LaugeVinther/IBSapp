@@ -64,6 +64,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CtrlDataLogic.cs" />
+    <Compile Include="DatabaseSaver.cs" />
     <Compile Include="DataCollection.cs" />
     <Compile Include="NI-DAQ.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

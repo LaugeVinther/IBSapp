@@ -16,6 +16,7 @@ namespace BusinessLogic
         private DataLogicIF _dataobject;
 
         private bool isRunning;
+        ProcessedDataCollector processedDataCollector_ = new ProcessedDataCollector();
 
         public DataProcessing()
         {

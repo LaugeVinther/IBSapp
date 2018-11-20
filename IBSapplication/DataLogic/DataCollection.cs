@@ -27,11 +27,11 @@ namespace DataLogic
             NI_DAQ daq = new NI_DAQ();
 
             //5 Valg af Dev1 enhed og ai0 input kanal. Property på datacollector:
-            daq.deviceName = "Dev1/ai0";
+            daq.deviceName = "Dev2/ai0";
 
             while (keepLoading == true)
             {
-                DTO_mV currentDTO = new DTO_mV(); 
+                DTO_mV currentDTO = new DTO_mV();
                 daq.getVoltageSeqBlocking();
 
                 currentDTO.rawSamples = daq.currentVoltageSeq;
@@ -50,9 +50,29 @@ namespace DataLogic
             _dataQueue.CompleteAdding();
         }
 
-        public void GetOneDataPoint()
+        public double GetOneDataPoint()
         {
+            //Oprettelse af lokal double til at gemme det enkelte datapunkt
+            double oneDataPoint = 0;
 
+            //Oprettelse af DAQ:
+            NI_DAQ daq = new NI_DAQ();
+
+            //5 Valg af Dev1 enhed og ai0 input kanal. Property på datacollector:
+            daq.deviceName = "Dev2/ai0";
+
+            //Angivelse af samples der skal måles.
+            daq.samplesPerChannel = 1;
+
+
+            //Foretager målingen
+
+            daq.getVoltageSeqBlocking();
+
+            oneDataPoint = daq.currentVoltageSeq[0];
+
+
+            return oneDataPoint;
         }
     }
 }
