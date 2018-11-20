@@ -9,6 +9,6 @@ namespace Interfaces
 {
     public interface IDatabaseSaver
     {
-        void SaveToDatabase(DTO_SaveData basicData, List<DTO_mmHg> processedDataList);
+        void SaveToDatabase(DTO_SaveData basicData, List<double> processedDataList);
     }
 }

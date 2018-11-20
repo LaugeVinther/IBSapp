@@ -21,7 +21,7 @@ namespace DataLogic
             connection = new SqlConnection(@"Data Source=st-i4dab.uni.au.dk ;Initial Catalog=E18ST3PRJ3Gr4;Integrated Security=False;User ID=E18ST3PRJ3Gr4;Password=E18ST3PRJ3Gr4 ;Connect Timeout=15;Encrypt=False;TrustServerCertificate=False");
         }
 
-        public void SaveToDatabase(DTO_SaveData basicData, List<DTO_mmHg> processedDataList)
+        public void SaveToDatabase(DTO_SaveData basicData, List<double> processedDataList)
         {
             connection.Open();
 
@@ -31,8 +31,8 @@ namespace DataLogic
             command.Parameters.AddWithValue("@FullName", basicData.fullName);
             command.Parameters.AddWithValue("@Date", basicData.date);
             command.Parameters.AddWithValue("@StaffID", basicData.staffID);
-            command.Parameters.AddWithValue("@BloodPressureData", );
-            command.Parameters.AddWithValue("@Dato", EKGMåling.Dato_);
+            command.Parameters.AddWithValue("@BloodPressureData", processedDataList); //måske skal den gemme i en seperat tabel
+          
 
         }
     }

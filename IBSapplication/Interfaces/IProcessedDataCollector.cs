@@ -9,7 +9,7 @@ namespace Interfaces
 {
     public interface IProcessedDataCollector
     {
-        void collectData();
-        List<DTO_mmHg> GetAllProcessedData();
+        void collectData(DTO_mmHg mmHgDTO);
+        List<double> GetAllProcessedData();
     }
 }
