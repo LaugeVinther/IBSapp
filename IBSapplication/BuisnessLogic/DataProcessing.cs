@@ -20,6 +20,7 @@ namespace BusinessLogic
         public DataProcessing()
         {
             _dataobject = new DataCollection();
+            _dataobjeckt = new DataBase
         }
 
         public void Start()
