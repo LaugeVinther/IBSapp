@@ -21,8 +21,7 @@ namespace BusinessLogic
 
         public DataProcessing()
         {
-            dataCollector = new DataCollection(dataQueue);
-            _dataobjeckt = new DataBase
+            //dataCollector = new DataCollection(dataQueue);
         }
 
         public void Start()
@@ -35,8 +34,8 @@ namespace BusinessLogic
 
         public void GetCalibration (int pressureValue) // ændrer navn 
         {
-            double oneDataPoint = dataCollector.GetOneDataPoint();
-            calibrate.AddVoltage(oneDataPoint, pressureValue);
+            //double oneDataPoint = dataCollector.GetOneDataPoint();
+            //calibrate.AddVoltage(oneDataPoint, pressureValue);
         }
 
         public void Safe()
