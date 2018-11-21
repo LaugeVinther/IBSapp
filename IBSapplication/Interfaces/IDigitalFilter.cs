@@ -8,6 +8,7 @@ namespace Interfaces
 {
     public interface IDigitalFilter
     {
-        void FilterBPSignal();
+        void FilterOn();
+        void FilterOff();
     }
 }

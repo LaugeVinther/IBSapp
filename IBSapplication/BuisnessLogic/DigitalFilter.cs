@@ -7,11 +7,19 @@ using Interfaces;
 
 namespace BusinessLogic
 {
-    class DigitalFilter : IDigitalFilter
+    public class DigitalFilter : IDigitalFilter
     {
-        public void FilterBPSignal()
-        {
-            throw new NotImplementedException();
-        }
+
+       public void FilterOn()
+       {
+          //Do something to the signal
+          //Lav et lavpasfilter
+          //Find ud af om man kan lave lavpas-filter med alglib
+       }
+
+       public void FilterOff()
+       {
+          //Do nothing to the signal
+       }
     }
 }
