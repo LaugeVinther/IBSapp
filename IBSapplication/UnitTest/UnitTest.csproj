@@ -51,6 +51,7 @@
     <Compile Include="DataCollectionUnitTest.cs" />
     <Compile Include="PulseUnitTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UnitTestDigitalFilter.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BuisnessLogic\BusinessLogic.csproj">

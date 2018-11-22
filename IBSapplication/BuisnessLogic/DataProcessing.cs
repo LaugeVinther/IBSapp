@@ -17,6 +17,9 @@ namespace BusinessLogic
         private IDatabaseSaver _databaseSaver;
         private DTO_SaveData _saveDataDTO;
         private List<double> ProcessedDataList;
+        private DataCollection dataCollector;
+        private BlockingCollection<DTO_mV> dataQueue;
+        private Calibrate calibrate;
 
 
         private bool isRunning;
@@ -28,6 +31,7 @@ namespace BusinessLogic
 
         public DataProcessing()
         {
+            dataCollector = new DataCollection(dataQueue);
             _dataobject = new DataCollection();
             _processedDataCollector = new ProcessedDataCollector();
             _databaseSaver = new DatabaseSaver();
@@ -41,9 +45,10 @@ namespace BusinessLogic
             }
         }
 
-        public void GetCalibration ()
+        public void GetCalibration (int pressureValue) // ændrer navn 
         {
-            _dataobject.GetOneDataPoint();
+            double oneDataPoint = dataCollector.GetOneDataPoint();
+            calibrate.AddVoltage(oneDataPoint, pressureValue);
         }
 
         public void Safe(DTO_SaveData savedataDTO)

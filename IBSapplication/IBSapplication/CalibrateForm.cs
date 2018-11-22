@@ -16,6 +16,7 @@ namespace PresentationLogic
         private CalibrateLoginForm _calibrateLoginForm;
         private CalibrateLogin calibrateLoginLogic;
         private Calibrate calibrate;
+        private DataProcessing dataProcessing;
 
         public bool LoginOK_ { get; set; }
 
@@ -45,12 +46,28 @@ namespace PresentationLogic
             this.Close();
         }
 
-        private void CalibrationBT_Click_1(object sender, EventArgs e)
+        private void Measure10mmHgBT_Click(object sender, EventArgs e)
         {
-
+            dataProcessing = new DataProcessing();
+            dataProcessing.GetCalibration(10);
+            Measure10mmHgBT.Enabled = false;
         }
 
-        private void Measure10mmHgBT_Click(object sender, EventArgs e)
+        private void Measure50mmHgBT_Click(object sender, EventArgs e)
+        {
+            dataProcessing = new DataProcessing();
+            dataProcessing.GetCalibration(50);
+            Measure50mmHgBT.Enabled = false;
+        }
+
+        private void Measure100mmHgBT_Click(object sender, EventArgs e)
+        {
+            dataProcessing = new DataProcessing();
+            dataProcessing.GetCalibration(100);
+            Measure100mmHgBT.Enabled = false;
+        }
+
+        private void CalibrateBT_Click(object sender, EventArgs e)
         {
 
         }
