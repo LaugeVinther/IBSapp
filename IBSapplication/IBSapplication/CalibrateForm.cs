@@ -48,22 +48,22 @@ namespace PresentationLogic
 
         private void Measure10mmHgBT_Click(object sender, EventArgs e)
         {
-            dataProcessing = new DataProcessing();
-            dataProcessing.GetCalibration(10);
+            dataProcessing = new DataProcessing(); // skal kobling ske til PrimaryForm istedet?
+            dataProcessing.GetVoltageData(10);
             Measure10mmHgBT.Enabled = false;
         }
 
         private void Measure50mmHgBT_Click(object sender, EventArgs e)
         {
             dataProcessing = new DataProcessing();
-            dataProcessing.GetCalibration(50);
+            dataProcessing.GetVoltageData(50);
             Measure50mmHgBT.Enabled = false;
         }
 
         private void Measure100mmHgBT_Click(object sender, EventArgs e)
         {
             dataProcessing = new DataProcessing();
-            dataProcessing.GetCalibration(100);
+            dataProcessing.GetVoltageData(100);
             Measure100mmHgBT.Enabled = false;
         }
 

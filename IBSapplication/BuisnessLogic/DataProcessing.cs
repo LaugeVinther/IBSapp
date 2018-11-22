@@ -33,10 +33,15 @@ namespace BusinessLogic
             }
         }
 
-        public void GetCalibration (int pressureValue) // ændrer navn 
+        public void GetVoltageData (int pressureValue) // ændrer navn 
         {
             double oneDataPoint = dataCollector.GetOneDataPoint();
             calibrate.AddVoltage(oneDataPoint, pressureValue);
+        }
+
+        public void GeCalibration ()
+        {
+            calibrate.Calibration();
         }
 
         public void Safe()

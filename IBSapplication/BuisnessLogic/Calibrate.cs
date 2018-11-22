@@ -17,14 +17,10 @@ namespace BusinessLogic
         private double[] pressureArray = new double[3];
         private int counter = 0;
 
-        //private DTO_mmHg _DTOmmHg; // skal gemmes i denne DTO
-
         public Calibrate()
         {
-            // _DTOmmHg = new DTO_mmHg();
-        }
 
-        // Klassen skal snakke med DataProcessing 
+        }
 
         public void AddVoltage(double voltage, int pressure)
         {
@@ -39,7 +35,6 @@ namespace BusinessLogic
                 voltageArray[i] = voltage;
                 pressureArray[i] = pressure;
             }
-           
         }
 
         public double Calibration()
@@ -47,7 +42,6 @@ namespace BusinessLogic
             // regression 
             double[] Volt = new double[] { voltageArray[0], voltageArray[1], voltageArray[2] };
             double[] calibrateMmHg = new double[] { pressureArray[0], pressureArray[1], pressureArray[2] };
-
 
             //double hældningskoefficient_a;
             //hældningskoefficient_a = (100 - voltageArray[2]) / (10 - voltageArray[0]); // y2 - y1 / x2 - x1 
@@ -58,7 +52,7 @@ namespace BusinessLogic
             for (int i = 0; i < Volt.Length; i++)
             {
                 sumxy += Volt[i] * calibrateMmHg[i];
-                sumx += calibrateMmHg[i];
+                sumx += Volt[i];
                 sumy += calibrateMmHg[i];
                 sumx2 += Volt[i] * Volt[i];
             }
@@ -67,7 +61,6 @@ namespace BusinessLogic
 
             return slope;
         }
-
 
     }
     }
