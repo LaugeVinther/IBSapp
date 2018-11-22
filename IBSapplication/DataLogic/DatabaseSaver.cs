@@ -10,7 +10,7 @@ using System.Data.SqlClient;
 
 namespace DataLogic
 {
-    class DatabaseSaver : IDatabaseSaver
+    public class DatabaseSaver : IDatabaseSaver
     {
         private SqlCommand command;
         private SqlConnection connection;

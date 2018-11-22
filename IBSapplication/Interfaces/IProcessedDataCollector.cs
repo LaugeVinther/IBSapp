@@ -10,6 +10,7 @@ namespace Interfaces
     public interface IProcessedDataCollector
     {
         void collectData(DTO_mmHg mmHgDTO);
-        List<double> GetAllProcessedData();
+        List<double> getProcessedDataList();
+
     }
 }
