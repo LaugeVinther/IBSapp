@@ -31,6 +31,7 @@ namespace PresentationLogic
             myDTOsaveData.date = DateTime.Now;
 
             _dataProcessing.Safe(myDTOsaveData);
+            
         }
     }
 }

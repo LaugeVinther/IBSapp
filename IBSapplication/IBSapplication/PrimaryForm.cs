@@ -19,14 +19,14 @@ namespace PresentationLogic
         private CalibrateForm _calibrateForm;
         private SaveDataForm _saveDataForm;
         private ZeroPointAdjustmentForm _zeroPointAdjustmentForm;
-        private DataProcessing dataProcessing;
+        private DataProcessing _dataProcessing;
 
         
         public PrimaryForm(BuisnessLogicIF buisnessLogic)
         {
             currentBuisnessLogic = buisnessLogic;
-            _calibrateForm = new CalibrateForm();
-             dataProcessing = new DataProcessing();
+            _calibrateForm = new CalibrateForm(_dataProcessing);
+             _dataProcessing = new DataProcessing();
             InitializeComponent();
 
         }
@@ -62,13 +62,13 @@ namespace PresentationLogic
 
         private void CalibrationBT_Click(object sender, EventArgs e)
         {
-            _calibrateForm = new CalibrateForm();
+            _calibrateForm = new CalibrateForm(_dataProcessing);
             _calibrateForm.ShowDialog();
         }
 
         private void SaveBT_Click(object sender, EventArgs e)
         {
-            _saveDataForm = new SaveDataForm(dataProcessing);
+            _saveDataForm = new SaveDataForm(_dataProcessing);
             _saveDataForm.ShowDialog();
         }
 
