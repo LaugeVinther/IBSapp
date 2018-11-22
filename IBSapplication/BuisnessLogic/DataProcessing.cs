@@ -13,16 +13,28 @@ namespace BusinessLogic
     public class DataProcessing
     {
         private DataLogicIF _dataobject;
+        private IProcessedDataCollector _processedDataCollector;
+        private IDatabaseSaver _databaseSaver;
+        private DTO_SaveData _saveDataDTO;
+        private List<double> ProcessedDataList;
         private DataCollection dataCollector;
         private BlockingCollection<DTO_mV> dataQueue;
         private Calibrate calibrate;
 
+
         private bool isRunning;
-        ProcessedDataCollector processedDataCollector_ = new ProcessedDataCollector();
+       
+
+
+
+        //  List<double> ProcessedData = new List<double>();
 
         public DataProcessing()
         {
             dataCollector = new DataCollection(dataQueue);
+            _dataobject = new DataCollection();
+            _processedDataCollector = new ProcessedDataCollector();
+            _databaseSaver = new DatabaseSaver();
         }
 
         public void Start()
@@ -45,8 +57,10 @@ namespace BusinessLogic
         }
 
         public void Safe()
+        public void Safe(DTO_SaveData savedataDTO)
         {
-            
+            _saveDataDTO = savedataDTO;
+            _databaseSaver.SaveToDatabase(_saveDataDTO, ProcessedDataList);
         }
     }
 }

@@ -10,7 +10,7 @@ namespace BusinessLogic
 {
     class ProcessedDataCollector : IProcessedDataCollector
     {
-      List<double> ProcessedData = new List<double>();
+      private List<double> processedDataList = new List<double>();
 
         public ProcessedDataCollector()
         {
@@ -21,14 +21,13 @@ namespace BusinessLogic
         {
             foreach (var sample in mmHgDTO.modifiedSamples)
             {
-                ProcessedData.Add(sample);
+                processedDataList.Add(sample);
             }
-            
         }
 
-        public List<double> GetAllProcessedData()
+        public List<double> getProcessedDataList()
         {
-            return ProcessedData;
+            return processedDataList;
         }
     }
 }
