@@ -16,13 +16,14 @@ namespace PresentationLogic
         private CalibrateLoginForm _calibrateLoginForm;
         private CalibrateLogin calibrateLoginLogic;
         private Calibrate calibrate;
-        private DataProcessing dataProcessing;
+        private DataProcessing _dataProcessing;
 
         public bool LoginOK_ { get; set; }
 
-        public CalibrateForm()
+        public CalibrateForm(DataProcessing dataProcessing)
         {
             InitializeComponent();
+            _dataProcessing = dataProcessing;
 
             calibrate = new Calibrate();
             calibrateLoginLogic = new CalibrateLogin(); 
@@ -48,23 +49,25 @@ namespace PresentationLogic
 
         private void Measure10mmHgBT_Click(object sender, EventArgs e)
         {
-            dataProcessing = new DataProcessing();
-            dataProcessing.GetCalibration(10);
+            _dataProcessing.GetVoltageData(10);
             Measure10mmHgBT.Enabled = false;
         }
 
         private void Measure50mmHgBT_Click(object sender, EventArgs e)
         {
-            dataProcessing = new DataProcessing();
-            dataProcessing.GetCalibration(50);
+            _dataProcessing.GetVoltageData(50);
             Measure50mmHgBT.Enabled = false;
         }
 
         private void Measure100mmHgBT_Click(object sender, EventArgs e)
         {
-            dataProcessing = new DataProcessing();
-            dataProcessing.GetCalibration(100);
+            _dataProcessing.GetVoltageData(100);
             Measure100mmHgBT.Enabled = false;
+        }
+
+        private void CalibrateBT_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

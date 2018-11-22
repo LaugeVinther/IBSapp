@@ -37,5 +37,10 @@ namespace PresentationLogic
                 calibrateForm_.Visible = false;
             }
         }
+
+        private void UsernameTB_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 using Interfaces;
+using BusinessLogic;
 
 namespace PresentationLogic
 {
@@ -18,12 +19,14 @@ namespace PresentationLogic
         private CalibrateForm _calibrateForm;
         private SaveDataForm _saveDataForm;
         private ZeroPointAdjustmentForm _zeroPointAdjustmentForm;
+        private DataProcessing _dataProcessing;
 
         
         public PrimaryForm(BuisnessLogicIF buisnessLogic)
         {
             currentBuisnessLogic = buisnessLogic;
-            _calibrateForm = new CalibrateForm();
+            _calibrateForm = new CalibrateForm(_dataProcessing);
+             _dataProcessing = new DataProcessing();
             InitializeComponent();
 
         }
@@ -59,13 +62,13 @@ namespace PresentationLogic
 
         private void CalibrationBT_Click(object sender, EventArgs e)
         {
-            _calibrateForm = new CalibrateForm();
+            _calibrateForm = new CalibrateForm(_dataProcessing);
             _calibrateForm.ShowDialog();
         }
 
         private void SaveBT_Click(object sender, EventArgs e)
         {
-            _saveDataForm = new SaveDataForm();
+            _saveDataForm = new SaveDataForm(_dataProcessing);
             _saveDataForm.ShowDialog();
         }
 
@@ -75,12 +78,14 @@ namespace PresentationLogic
             _zeroPointAdjustmentForm.ShowDialog();
         }
 
-        private void button5_Click(object sender, EventArgs e)
+
+
+        private void chart1_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void chart1_Click(object sender, EventArgs e)
+        private void StartStopBT_Click(object sender, EventArgs e)
         {
 
         }

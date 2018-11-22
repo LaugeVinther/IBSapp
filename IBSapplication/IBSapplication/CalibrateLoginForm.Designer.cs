@@ -79,6 +79,7 @@
             this.UsernameTB.Name = "UsernameTB";
             this.UsernameTB.Size = new System.Drawing.Size(222, 32);
             this.UsernameTB.TabIndex = 13;
+            this.UsernameTB.TextChanged += new System.EventHandler(this.UsernameTB_TextChanged);
             // 
             // LoginBT
             // 

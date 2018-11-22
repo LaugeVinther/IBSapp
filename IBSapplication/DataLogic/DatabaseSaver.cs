@@ -10,7 +10,7 @@ using System.Data.SqlClient;
 
 namespace DataLogic
 {
-    class DatabaseSaver : IDatabaseSaver
+    public class DatabaseSaver : IDatabaseSaver
     {
         private SqlCommand command;
         private SqlConnection connection;
@@ -32,8 +32,6 @@ namespace DataLogic
             command.Parameters.AddWithValue("@Date", basicData.date);
             command.Parameters.AddWithValue("@StaffID", basicData.staffID);
             command.Parameters.AddWithValue("@BloodPressureData", processedDataList); //måske skal den gemme i en seperat tabel
-          
-
         }
     }
 }
