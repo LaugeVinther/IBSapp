@@ -102,6 +102,7 @@
             this.CalibrateBT.TabIndex = 5;
             this.CalibrateBT.Text = "Calibrate";
             this.CalibrateBT.UseVisualStyleBackColor = false;
+            this.CalibrateBT.Click += new System.EventHandler(this.CalibrateBT_Click);
             // 
             // CalibrateForm
             // 

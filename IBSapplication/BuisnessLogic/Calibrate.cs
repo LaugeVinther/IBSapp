@@ -13,10 +13,9 @@ namespace BusinessLogic
 {
     public class Calibrate : ICalibrate
     {
-        private double[] voltageArray = new double[2];
-        private double[] pressureArray = new double[2];
+        private double[] voltageArray = new double[3];
+        private double[] pressureArray = new double[3];
         private int counter = 0;
-        private DataProcessing _dataProcessing;
 
         //private DTO_mmHg _DTOmmHg; // skal gemmes i denne DTO
 
@@ -29,35 +28,49 @@ namespace BusinessLogic
 
         public void AddVoltage(double voltage, int pressure)
         {
-            _dataProcessing = new DataProcessing();
 
             for (int i = 0; i <= voltageArray.Length; i++)
             {
-                if (counter <= 3)
-                {
-                    voltageArray[i] = voltage;
-                    pressureArray[i] = pressure;
-
-                }
-                else if (counter > 3)
+                if (counter == 3)
                 {
                     counter = 0;
+
                 }
+                voltageArray[i] = voltage;
+                pressureArray[i] = pressure;
             }
+           
         }
 
-        public double Calibration() 
+        public double Calibration()
         {
             // regression 
             double[] Volt = new double[] { voltageArray[0], voltageArray[1], voltageArray[2] };
-            double[] calibrateMmHg = new double[] { 10, 50, 100 };
+            double[] calibrateMmHg = new double[] { pressureArray[0], pressureArray[1], pressureArray[2] };
 
-            double hældningskoefficient_a;
 
-            hældningskoefficient_a = (100 - voltageArray[2]) / (10 - voltageArray[0]); // y2 - y1 / x2 - x1 
+            //double hældningskoefficient_a;
+            //hældningskoefficient_a = (100 - voltageArray[2]) / (10 - voltageArray[0]); // y2 - y1 / x2 - x1 
+            //return hældningskoefficient_a;
 
-            return hældningskoefficient_a;
+            double n = Volt.Length;
+            double sumxy = 0, sumx = 0, sumy = 0, sumx2 =0;
+            for (int i = 0; i < Volt.Length; i++)
+            {
+                sumxy += Volt[i] * calibrateMmHg[i];
+                sumx += calibrateMmHg[i];
+                sumy += calibrateMmHg[i];
+                sumx2 += Volt[i] * Volt[i];
+            }
 
+            double slope = ((sumxy - sumx * sumy / n) / (sumx2 - sumx * sumx / n));
+
+            return slope;
         }
+
+
     }
+    }
+
+
 }

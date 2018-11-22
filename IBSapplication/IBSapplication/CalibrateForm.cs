@@ -66,6 +66,11 @@ namespace PresentationLogic
             dataProcessing.GetCalibration(100);
             Measure100mmHgBT.Enabled = false;
         }
+
+        private void CalibrateBT_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
 
