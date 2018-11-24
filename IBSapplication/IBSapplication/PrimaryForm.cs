@@ -87,7 +87,14 @@ namespace PresentationLogic
 
         private void StartStopBT_Click(object sender, EventArgs e)
         {
+            StartStopBT.BackColor = Color.Red;
+            StartStopBT.Text = "STOP";
 
+            _dataProcessing.Start();
+        }
+
+        private void textBox8_TextChanged(object sender, EventArgs e)
+        {
         }
     }
 }

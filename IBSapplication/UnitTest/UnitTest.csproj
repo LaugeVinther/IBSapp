@@ -48,6 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BloodPressureUnitTest.cs" />
+    <Compile Include="CalibrateUnitTest.cs" />
     <Compile Include="DataCollectionUnitTest.cs" />
     <Compile Include="PulseUnitTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

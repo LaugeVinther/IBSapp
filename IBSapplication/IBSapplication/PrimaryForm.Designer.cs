@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.trackBar1 = new System.Windows.Forms.TrackBar();
             this.label9 = new System.Windows.Forms.Label();
             this.textBox7 = new System.Windows.Forms.TextBox();
@@ -47,10 +47,10 @@
             this.StartStopBT = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
+            this.mmHgTB = new System.Windows.Forms.Label();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox8 = new System.Windows.Forms.TextBox();
+            this.SysDiaTB = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
@@ -231,16 +231,16 @@
             this.label2.TabIndex = 28;
             this.label2.Text = "mmHg";
             // 
-            // label1
+            // mmHgTB
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.Lime;
-            this.label1.Location = new System.Drawing.Point(1005, 50);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(69, 25);
-            this.label1.TabIndex = 27;
-            this.label1.Text = "mmHg";
+            this.mmHgTB.AutoSize = true;
+            this.mmHgTB.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.mmHgTB.ForeColor = System.Drawing.Color.Lime;
+            this.mmHgTB.Location = new System.Drawing.Point(1005, 50);
+            this.mmHgTB.Name = "mmHgTB";
+            this.mmHgTB.Size = new System.Drawing.Size(69, 25);
+            this.mmHgTB.TabIndex = 27;
+            this.mmHgTB.Text = "mmHg";
             // 
             // textBox3
             // 
@@ -272,20 +272,21 @@
             this.textBox2.Text = "100 ";
             this.textBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // textBox8
+            // SysDiaTB
             // 
-            this.textBox8.BackColor = System.Drawing.Color.Black;
-            this.textBox8.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox8.Font = new System.Drawing.Font("Microsoft Sans Serif", 32F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox8.ForeColor = System.Drawing.Color.Lime;
-            this.textBox8.Location = new System.Drawing.Point(813, 23);
-            this.textBox8.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.textBox8.Multiline = true;
-            this.textBox8.Name = "textBox8";
-            this.textBox8.Size = new System.Drawing.Size(187, 71);
-            this.textBox8.TabIndex = 24;
-            this.textBox8.Text = "120/80";
-            this.textBox8.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.SysDiaTB.BackColor = System.Drawing.Color.Black;
+            this.SysDiaTB.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.SysDiaTB.Font = new System.Drawing.Font("Microsoft Sans Serif", 32F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SysDiaTB.ForeColor = System.Drawing.Color.Lime;
+            this.SysDiaTB.Location = new System.Drawing.Point(813, 23);
+            this.SysDiaTB.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.SysDiaTB.Multiline = true;
+            this.SysDiaTB.Name = "SysDiaTB";
+            this.SysDiaTB.Size = new System.Drawing.Size(187, 71);
+            this.SysDiaTB.TabIndex = 24;
+            this.SysDiaTB.Text = "120/80";
+            this.SysDiaTB.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.SysDiaTB.TextChanged += new System.EventHandler(this.textBox8_TextChanged);
             // 
             // label4
             // 
@@ -310,29 +311,29 @@
             // chart1
             // 
             this.chart1.BackColor = System.Drawing.Color.Black;
-            chartArea2.AxisX.Title = "Time (ms)";
-            chartArea2.AxisX.TitleForeColor = System.Drawing.Color.Lime;
-            chartArea2.AxisY.Title = "Pressure (mmHg)";
-            chartArea2.AxisY.TitleForeColor = System.Drawing.Color.Lime;
-            chartArea2.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea2);
-            legend2.Enabled = false;
-            legend2.Name = "Legend1";
-            this.chart1.Legends.Add(legend2);
+            chartArea1.AxisX.Title = "Time (ms)";
+            chartArea1.AxisX.TitleForeColor = System.Drawing.Color.Lime;
+            chartArea1.AxisY.Title = "Pressure (mmHg)";
+            chartArea1.AxisY.TitleForeColor = System.Drawing.Color.Lime;
+            chartArea1.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea1);
+            legend1.Enabled = false;
+            legend1.Name = "Legend1";
+            this.chart1.Legends.Add(legend1);
             this.chart1.Location = new System.Drawing.Point(11, 10);
             this.chart1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.chart1.Name = "chart1";
-            series2.BorderColor = System.Drawing.Color.Black;
-            series2.BorderWidth = 3;
-            series2.ChartArea = "ChartArea1";
-            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series2.Color = System.Drawing.Color.Lime;
-            series2.LabelBackColor = System.Drawing.Color.Black;
-            series2.LabelBorderColor = System.Drawing.Color.Black;
-            series2.LabelForeColor = System.Drawing.Color.Lime;
-            series2.Legend = "Legend1";
-            series2.Name = "Blood Pressure";
-            this.chart1.Series.Add(series2);
+            series1.BorderColor = System.Drawing.Color.Black;
+            series1.BorderWidth = 3;
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series1.Color = System.Drawing.Color.Lime;
+            series1.LabelBackColor = System.Drawing.Color.Black;
+            series1.LabelBorderColor = System.Drawing.Color.Black;
+            series1.LabelForeColor = System.Drawing.Color.Lime;
+            series1.Legend = "Legend1";
+            series1.Name = "Blood Pressure";
+            this.chart1.Series.Add(series1);
             this.chart1.Size = new System.Drawing.Size(803, 299);
             this.chart1.TabIndex = 46;
             this.chart1.Text = "Blood pressure";
@@ -363,10 +364,10 @@
             this.Controls.Add(this.StartStopBT);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.mmHgTB);
             this.Controls.Add(this.textBox3);
             this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox8);
+            this.Controls.Add(this.SysDiaTB);
             this.Name = "PrimaryForm";
             this.Text = "Invasiv Blodtrykssystem (IBS)";
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
@@ -394,10 +395,10 @@
         private System.Windows.Forms.Button StartStopBT;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label mmHgTB;
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox8;
+        private System.Windows.Forms.TextBox SysDiaTB;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
