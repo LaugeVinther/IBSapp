@@ -12,11 +12,10 @@ namespace BusinessLogic
 {
     public class DataProcessing
     {
-        private DataLogicIF _dataobject;
         private IProcessedDataCollector _processedDataCollector;
         private IDatabaseSaver _databaseSaver;
         private DTO_SaveData _saveDataDTO;
-        private List<double> ProcessedDataList;
+        private List<double> _processedDataList;
         private DataCollection dataCollector;
         private BlockingCollection<DTO_mV> dataQueue;
         private Calibrate calibrate;
@@ -32,7 +31,6 @@ namespace BusinessLogic
         public DataProcessing()
         {
             dataCollector = new DataCollection(dataQueue);
-            _dataobject = new DataCollection();
             _processedDataCollector = new ProcessedDataCollector();
             _databaseSaver = new DatabaseSaver();
         }
@@ -41,7 +39,7 @@ namespace BusinessLogic
         {
             while (isRunning = true)
             {
-
+                _processedDataList = _processedDataCollector.getProcessedDataList();
             }
         }
 
@@ -56,7 +54,7 @@ namespace BusinessLogic
             calibrate.Calibration();
         }
 
-        public void Safe()
+     
         public void Safe(DTO_SaveData savedataDTO)
         {
             _saveDataDTO = savedataDTO;
