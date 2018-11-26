@@ -20,7 +20,7 @@ namespace BusinessLogic
        }
        public void FilterOn(DTO_mmHg dtoMmHg)
        {
-         //Gør som i som i SmootingFilter men med 25 på hver side 
+         //Kør først downsampling derefter gør nedenfor på de downsamplede data
           int length = dtoMmHg.modifiedSamples.Count();
           List<double> samples = dtoMmHg.modifiedSamples;
 
