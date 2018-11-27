@@ -3,12 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DTOLogic;
 
 namespace Interfaces
 {
-    public interface IDatabaseSaver
+    public interface IBinFormatter
     {
-        void SaveToDatabase(DTO_SaveData basicData, byte[] byteArray);
+        byte[] ConvertToByteArray(List<double> processedDataList);
     }
 }
