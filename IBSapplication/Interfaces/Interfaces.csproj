@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IBinFormatter.cs" />
     <Compile Include="IBloodPressure.cs" />
     <Compile Include="IBS_Interfaces.cs" />
     <Compile Include="ICalibrateLogin.cs" />

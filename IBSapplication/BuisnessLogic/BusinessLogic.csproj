@@ -51,6 +51,7 @@
   <ItemGroup>
     <Compile Include="Alarm.cs" />
     <Compile Include="AlarmSettings.cs" />
+    <Compile Include="BinFormatter.cs" />
     <Compile Include="BloodPressure.cs" />
     <Compile Include="Calibrate.cs" />
     <Compile Include="CalibrateLogin.cs" />

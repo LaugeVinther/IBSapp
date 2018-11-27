@@ -20,21 +20,22 @@ namespace BusinessLogic
        }
        public void FilterOn(DTO_mmHg dtoMmHg)
        {
-         //Gør som i som i SmootingFilter men med 25 på hver side 
-          int length = dtoMmHg.modifiedSamples.Count();
-          List<double> samples = dtoMmHg.modifiedSamples;
+         //Kør først downsampling 
+          Downsampling(dtoMmHg);
+
+         //Herefter lav midlingsfilter på de nedsamlede data
+          int length = downSampledSamples.Count();
+          List<double> samples = downSampledSamples;
 
           for (int i = 5; i < length - 5; i ++)
           {
              double sum = 0;
-             double weight = 0;
              for (int j = -5; j < 5; j++)
              {
-                weight = 1/5;
-                sum += weight * samples[i + j];
+                sum += samples[i + j];
              }
 
-             smoothedSamples.Add(sum / (25 + 1 + 25));
+             smoothedSamples.Add(sum / 5);
           }
       }
 
@@ -47,13 +48,11 @@ namespace BusinessLogic
        {
           int length = dtoMmHg.modifiedSamples.Count();
           List<double> samples = dtoMmHg.modifiedSamples;
-         for (int i = 9; i < length - 9; i += 18)
+         for (int i = 9; i < length - 9; i += 19)
           {
              double sum = 0;
-             double weight = 0;
              for (int j = -9; j < 9; j++)
              {
-                weight = (9 - Math.Abs(j) + 1);
                 sum += samples[i + j];
              }
 
