@@ -20,9 +20,12 @@ namespace BusinessLogic
        }
        public void FilterOn(DTO_mmHg dtoMmHg)
        {
-         //Kør først downsampling derefter gør nedenfor på de downsamplede data
-          int length = dtoMmHg.modifiedSamples.Count();
-          List<double> samples = dtoMmHg.modifiedSamples;
+         //Kør først downsampling 
+          Downsampling(dtoMmHg);
+
+         //Herefter lav midlingsfilter på de nedsamlede data
+          int length = downSampledSamples.Count();
+          List<double> samples = downSampledSamples;
 
           for (int i = 5; i < length - 5; i ++)
           {
