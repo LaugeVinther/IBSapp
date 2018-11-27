@@ -18,13 +18,10 @@ namespace BusinessLogic
         private List<double> _processedDataList;
         private DataCollection dataCollector;
         private BlockingCollection<DTO_mV> dataQueue;
-        private Calibrate calibrate;
+        private Calibrate _calibrate;
 
 
         private bool isRunning;
-       
-
-
 
         //  List<double> ProcessedData = new List<double>();
 
@@ -33,6 +30,7 @@ namespace BusinessLogic
             dataCollector = new DataCollection(dataQueue);
             _processedDataCollector = new ProcessedDataCollector();
             _databaseSaver = new DatabaseSaver();
+            _calibrate = new Calibrate();
         }
 
         public void Start()
@@ -43,22 +41,23 @@ namespace BusinessLogic
             }
         }
 
-        public void GetVoltageData (int pressureValue) // ændrer navn 
+        public void GetVoltageData(int pressureValue)
         {
             double oneDataPoint = dataCollector.GetOneDataPoint();
-            calibrate.AddVoltage(oneDataPoint, pressureValue);
+            _calibrate.AddVoltage(oneDataPoint, pressureValue);
         }
 
-        public void GetCalibration ()
+        public void GetSlope(double slope)
         {
-            calibrate.Calibration();
+            _calibrate.Calibration(slope);
         }
 
-     
+
         public void Safe(DTO_SaveData savedataDTO)
         {
             _saveDataDTO = savedataDTO;
             _databaseSaver.SaveToDatabase(_saveDataDTO, ProcessedDataList);
-  
+
+        }
     }
 }

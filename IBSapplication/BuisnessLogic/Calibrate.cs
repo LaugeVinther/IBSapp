@@ -13,31 +13,30 @@ namespace BusinessLogic
 {
     public class Calibrate : ICalibrate
     {
-        private double[] voltageArray = new double[3];
-        private double[] pressureArray = new double[3];
+        private double[] voltageArray;
+        private double[] pressureArray;
         private int counter = 0;
 
         public Calibrate()
         {
-
+            voltageArray = new double[3];
+            pressureArray = new double[3];
         }
 
         public void AddVoltage(double voltage, int pressure)
         {
-
             for (int i = 0; i <= voltageArray.Length; i++)
             {
                 if (counter == 3)
                 {
                     counter = 0;
-
                 }
                 voltageArray[i] = voltage;
                 pressureArray[i] = pressure;
             }
         }
 
-        public double Calibration()
+        public double Calibration(double slope)
         {
             // regression 
             double[] Volt = new double[] { voltageArray[0], voltageArray[1], voltageArray[2] };
@@ -48,7 +47,7 @@ namespace BusinessLogic
             //return hældningskoefficient_a;
 
             double n = Volt.Length;
-            double sumxy = 0, sumx = 0, sumy = 0, sumx2 =0;
+            double sumxy = 0, sumx = 0, sumy = 0, sumx2 = 0;
             for (int i = 0; i < Volt.Length; i++)
             {
                 sumxy += Volt[i] * calibrateMmHg[i];
@@ -57,13 +56,13 @@ namespace BusinessLogic
                 sumx2 += Volt[i] * Volt[i];
             }
 
-            double slope = ((sumxy - sumx * sumy / n) / (sumx2 - sumx * sumx / n));
+             slope = ((sumxy - sumx * sumy / n) / (sumx2 - sumx * sumx / n));
 
             return slope;
         }
 
     }
-    
+}
 
 
 
