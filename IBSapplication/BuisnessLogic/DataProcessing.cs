@@ -14,11 +14,12 @@ namespace BusinessLogic
     {
         private IProcessedDataCollector _processedDataCollector;
         private IDatabaseSaver _databaseSaver;
+        private IBinFormatter _binFormatter;
         private DTO_SaveData _saveDataDTO;
         private List<double> _processedDataList;
         private DataCollection dataCollector;
         private BlockingCollection<DTO_mV> dataQueue;
-        private Calibrate calibrate;
+        private Calibrate _calibrate;
 
 
         private bool isRunning;
@@ -33,6 +34,8 @@ namespace BusinessLogic
             dataCollector = new DataCollection(dataQueue);
             _processedDataCollector = new ProcessedDataCollector();
             _databaseSaver = new DatabaseSaver();
+            _calibrate = new Calibrate();
+            _binFormatter = new BinFormatter();
         }
 
         public void Start()
@@ -43,22 +46,30 @@ namespace BusinessLogic
             }
         }
 
-        public void GetVoltageData (int pressureValue) // ændrer navn 
+        public void GetVoltageData(int pressureValue)
         {
             double oneDataPoint = dataCollector.GetOneDataPoint();
-            calibrate.AddVoltage(oneDataPoint, pressureValue);
+            _calibrate.AddVoltage(oneDataPoint, pressureValue);
         }
 
-        public void GetCalibration ()
+        public void GetCalibration()
         {
             calibrate.Calibration();
         }
 
-     
+
         public void Safe(DTO_SaveData savedataDTO)
         {
+            byte[] binArray = _binFormatter.ConvertToByteArray(_processedDataList);
+
+            _databaseSaver.SaveToDatabase(savedataDTO, binArray);
+
+        }
+    }
+}
             _saveDataDTO = savedataDTO;
             _databaseSaver.SaveToDatabase(_saveDataDTO, ProcessedDataList);
-  
+
+        }
     }
 }
