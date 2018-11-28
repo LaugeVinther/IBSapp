@@ -67,9 +67,9 @@ namespace BusinessLogic
         }
     }
 }
-            _saveDataDTO = savedataDTO;
-            _databaseSaver.SaveToDatabase(_saveDataDTO, ProcessedDataList);
+//            _saveDataDTO = savedataDTO;
+//            _databaseSaver.SaveToDatabase(_saveDataDTO, ProcessedDataList);
 
-        }
-    }
-}
+//        }
+//    }
+//}
