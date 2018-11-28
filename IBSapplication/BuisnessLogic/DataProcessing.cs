@@ -54,7 +54,7 @@ namespace BusinessLogic
 
         public void GetCalibration()
         {
-            calibrate.Calibration();
+            _calibrate.Calibration();
         }
 
 
