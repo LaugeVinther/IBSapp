@@ -62,6 +62,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Pulse.cs" />
+    <Compile Include="UnitConverter.cs" />
     <Compile Include="ZeroPointAdjustment .cs" />
   </ItemGroup>
   <ItemGroup>

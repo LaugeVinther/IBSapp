@@ -10,7 +10,7 @@ namespace BusinessLogic
 {
     public class BloodPressure : IBloodPressure
     {
-       public DTO_Bloodpressure _dtoBloodpressure;
+       public DTO_Bloodpressure _dtoBloodpressure { get; private set; }
 
        public BloodPressure()
        {

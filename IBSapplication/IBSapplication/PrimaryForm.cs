@@ -31,6 +31,14 @@ namespace PresentationLogic
 
         }
 
+       //Denne metode skal hele tiden opdatere tal og grafer
+       public void DoWork()
+       {
+          SysDiaTB.Text = (+_dataProcessing.CalculatedSystolicValue + "/" + _dataProcessing.CalculatedDiastolicValue);
+          AverageBP_TB.Text = _dataProcessing.CalculatedAverageBPValue.ToString();
+          PulseTB.Text = _dataProcessing.CalculatedPulseValue.ToString();
+       }
+
         private void graphSetting() // OBS! tallene skal laves om efter standarden!
         {
             //Major grid 
@@ -93,8 +101,5 @@ namespace PresentationLogic
             _dataProcessing.Start();
         }
 
-        private void textBox8_TextChanged(object sender, EventArgs e)
-        {
-        }
     }
 }
