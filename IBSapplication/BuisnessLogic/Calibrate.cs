@@ -16,15 +16,13 @@ namespace BusinessLogic
         private double[] voltageArray;
         private double[] pressureArray;
         private int counter = 0;
-        private DTO_mV dto_convert { get; set; }
-        private List<double> calibratedSampleList = new List<double>();
         private double slope = 0;
 
         public Calibrate()
         {
             voltageArray = new double[3];
             pressureArray = new double[3];
-            dto_convert = new DTO_mV();
+
         }
 
         public void AddVoltage(double voltage, int pressure)
@@ -40,7 +38,7 @@ namespace BusinessLogic
             }
         }
 
-        public void Calibration()
+        public double Calibration()
         {
             // regression 
             double[] Volt = new double[] { voltageArray[0], voltageArray[1], voltageArray[2] };
@@ -61,20 +59,8 @@ namespace BusinessLogic
             }
 
             slope = ((sumxy - sumx * sumy / n) / (sumx2 - sumx * sumx / n));
+            return slope;
             
-        }
-
-        public void convertData()
-        {
-            foreach (var convertDataPoint in dto_convert.rawSamples)
-            {
-                calibratedSampleList.Add(convertDataPoint * slope);
-            }
-        }
-
-        public List<double> GetCalibratedSampleList()
-        {
-            return calibratedSampleList;
         }
 
     }
