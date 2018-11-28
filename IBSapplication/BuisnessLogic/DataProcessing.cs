@@ -52,9 +52,10 @@ namespace BusinessLogic
             _calibrate.AddVoltage(oneDataPoint, pressureValue);
         }
 
-        public void GetCalibration()
+        public double GetCalibration()
         {
-            _calibrate.Calibration();
+
+            return _calibrate.Calibration();
         }
 
 
