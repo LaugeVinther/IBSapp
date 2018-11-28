@@ -15,20 +15,14 @@ namespace BusinessLogic
         private IProcessedDataCollector _processedDataCollector;
         private IDatabaseSaver _databaseSaver;
         private IBinFormatter _binFormatter;
-        private DTO_SaveData _saveDataDTO;
         private List<double> _processedDataList;
         private DataCollection dataCollector;
         private BlockingCollection<DTO_mV> dataQueue;
         private Calibrate _calibrate;
 
-
         private bool isRunning;
        
-
-
-
-        //  List<double> ProcessedData = new List<double>();
-
+        
         public DataProcessing()
         {
             dataCollector = new DataCollection(dataQueue);
@@ -40,7 +34,7 @@ namespace BusinessLogic
 
         public void Start()
         {
-            while (isRunning = true)
+            while (isRunning == true)
             {
                 _processedDataList = _processedDataCollector.getProcessedDataList();
             }

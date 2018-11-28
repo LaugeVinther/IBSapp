@@ -15,6 +15,7 @@ namespace PresentationLogic
     {
         private DTO_SaveData myDTOsaveData;
         private DataProcessing _dataProcessing;
+
         public SaveDataForm(DataProcessing dataProcessing)
         {
             InitializeComponent();
@@ -25,13 +26,31 @@ namespace PresentationLogic
 
         private void SaveDataBT_Click(object sender, EventArgs e)
         {
-            myDTOsaveData.fullName = fullNameTB.Text;
-            myDTOsaveData.CPRnumber = cprTB.Text;
-            myDTOsaveData.staffID = staffIDTB.Text;
-            myDTOsaveData.date = DateTime.Now;
+            if (fullNameTB.Text == "" || cprTB.Text == "" || staffIDTB.Text == "")
+            {
+                MessageBox.Show("Please fill out all required fields", "Error", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
+            else
+            {
+                myDTOsaveData.fullName = fullNameTB.Text;
+                myDTOsaveData.CPRnumber = cprTB.Text;
+                myDTOsaveData.staffID = staffIDTB.Text;
+                myDTOsaveData.date = DateTime.Now;
 
-            _dataProcessing.Safe(myDTOsaveData);
-            
+                _dataProcessing.Safe(myDTOsaveData);
+
+                DialogResult result = MessageBox.Show("Your data has been saved", "Success", MessageBoxButtons.OK, MessageBoxIcon.None);
+                if (result == DialogResult.OK)
+                {
+                    this.Close();
+                }
+            }
+            }
+
+        private void CancelBT_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
