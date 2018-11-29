@@ -12,12 +12,12 @@ namespace BusinessLogic
        public int SystolicMinThreshold { get; set; }
        public int DiastolicMaxThreshold { get; set; }
        public int DiastolicMinThreshold { get; set; }
-      public void getThresholds(int sysMax, int sysMin, int diaMax, int diaMin)
-      {
+       public void getThresholds(int sysMax, int sysMin, int diaMax, int diaMin)
+       {
          SystolicMaxThreshold = sysMax;
          SystolicMinThreshold = sysMin;
          DiastolicMaxThreshold = diaMax;
          DiastolicMinThreshold = diaMin;
-      }
+       }
     }
 }
