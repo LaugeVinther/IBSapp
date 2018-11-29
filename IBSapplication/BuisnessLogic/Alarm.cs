@@ -14,6 +14,7 @@ namespace BusinessLogic
         private int _thresholdUpperSys;
         private int _thresholdLowerSys;
         public bool IsAlarmActivated = false;
+        private bool[] _alarmArray; 
       
 
 
@@ -23,7 +24,7 @@ namespace BusinessLogic
             _thresholdLowerDia = 60;
             _thresholdUpperSys = 90;
             _thresholdLowerSys = 180;
-
+            _alarmArray = new bool[2];
 
         }
 
@@ -31,13 +32,27 @@ namespace BusinessLogic
         {
             if (dtoBloodpressure.Systolic > _thresholdUpperSys || dtoBloodpressure.Systolic < _thresholdLowerSys || dtoBloodpressure.Diastolic > _thresholdUpperDia || dtoBloodpressure.Diastolic < _thresholdLowerDia)
             {
-                IsAlarmActivated = true;
+
+                _alarmArray[2] = _alarmArray[1];
+                _alarmArray[1] = _alarmArray[0];
+                _alarmArray[0] = true;
+               
               
             }
-            else if (dtoBloodpressure.Systolic < _thresholdUpperSys && dtoBloodpressure.Systolic > _thresholdLowerSys && dtoBloodpressure.Diastolic < _thresholdUpperDia && dtoBloodpressure.Diastolic > _thresholdLowerDia)
+            else 
             {
-                IsAlarmActivated = false;
+                _alarmArray[2] = _alarmArray[1];
+                _alarmArray[1] = _alarmArray[0];
+                _alarmArray[0] = false;
             }
+           
+      
+            if (_alarmArray[0] == true && _alarmArray[1] == true && _alarmArray[2] == true)
+            {
+                IsAlarmActivated = true;
+
+            }
+
 
             return IsAlarmActivated;
         }
