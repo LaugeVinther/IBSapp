@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using DataLogic;
 using NUnit.Framework;
 using DTOLogic;
+using BusinessLogic;
 
 
 namespace UnitTest

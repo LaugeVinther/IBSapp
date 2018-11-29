@@ -20,12 +20,12 @@ namespace UnitTest
         }
 
         [Test]
-        public void Calibrate_GetSlopeWithThreeDataPoints_SlopeEqualsA()
+        public void Calibrate_GetSlopeWithThreeDataPoints_SlopeEquals1()
         {
             // test calibration metoden
 
-            double[] Volt = new double[3];
-            double[] calibrateMmHg = new double[3];
+            double[] Volt = {1, 2, 3 };
+            double[] calibrateMmHg = {1, 2, 3};
 
             double n = Volt.Length;
             double sumxy = 0, sumx = 0, sumy = 0, sumx2 = 0;
@@ -39,7 +39,7 @@ namespace UnitTest
 
             double A = ((sumxy - sumx * sumy / n) / (sumx2 - sumx * sumx / n));
 
-            Assert.That(uut.Calibration(), Is.EqualTo(A));
+            Assert.That(uut.Calibration(), Is.EqualTo(1));
         }
 
     }
