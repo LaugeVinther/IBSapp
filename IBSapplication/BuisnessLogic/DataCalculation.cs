@@ -19,6 +19,8 @@ namespace BusinessLogic
        private IDatabaseSaver _databaseSaver;
        private IBinFormatter _binFormatter;
        private List<double> _processedDataList;
+        private List<bool> _alarmList;
+
 
         //Events
         public event Action<List<double>> NewDataAvailableEvent;
@@ -48,6 +50,7 @@ namespace BusinessLogic
            _databaseSaver = new DatabaseSaver();
            _binFormatter = new BinFormatter();
             _alarm = new Alarm();
+            _alarmList = new List<bool>(2);
             
           
 
@@ -73,18 +76,19 @@ namespace BusinessLogic
            CalculatedAverageBPValue = _bloodPressure._dtoBloodpressure.AverageBP;
 
 
-            _alarmActivated =_alarm.CheckAlarming(_bloodPressure._dtoBloodpressure);
-            if (_alarmActivated == true)
+            _alarmActivated = _alarm.CheckAlarming(_bloodPressure._dtoBloodpressure);
+
+            if (_alarmActivated  == true)
             {
                 AlarmActivatedEvent?.Invoke(_alarmActivated);
             }
 
 
-
+            NewDataAvailableEvent?.Invoke(_processedDataList);
         }
 
 
-            NewDataAvailableEvent?.Invoke(_processedDataList);
+            
 
 
       }

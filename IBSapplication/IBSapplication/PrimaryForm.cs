@@ -32,6 +32,8 @@ namespace PresentationLogic
 
             _dataCalculation.NewDataAvailableEvent += NewDataAvailableEventMethod;
 
+            _dataCalculation.AlarmActivatedEvent += AlarmActivatedEventMethod;
+
             InitializeComponent();
 
         }
@@ -39,6 +41,11 @@ namespace PresentationLogic
         public void NewDataAvailableEventMethod(List<double> list)
         {
             //Opdater graf-kode
+        }
+
+        public void AlarmActivatedEventMethod(bool alarmActivated)
+        {
+            //Alarm skal igangsættes med lyd og lys
         }
 
        //Denne metode skal hele tiden opdatere tal og grafer
