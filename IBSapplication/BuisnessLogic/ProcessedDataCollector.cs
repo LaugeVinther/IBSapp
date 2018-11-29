@@ -12,9 +12,9 @@ namespace BusinessLogic
     {
       private List<double> processedDataList = new List<double>();
         
-        public List<double> getProcessedDataList(DTO_mmHg mmHgDTO)
+        public List<double> getProcessedDataList(List<double> listFromDigitalFilter)
         {
-            foreach (var sample in mmHgDTO.modifiedSamples)
+            foreach (var sample in listFromDigitalFilter)
             {
                 processedDataList.Add(sample);
             }

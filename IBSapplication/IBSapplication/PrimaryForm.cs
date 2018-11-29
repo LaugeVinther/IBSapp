@@ -20,6 +20,7 @@ namespace PresentationLogic
         private SaveDataForm _saveDataForm;
         private ZeroPointAdjustmentForm _zeroPointAdjustmentForm;
         private DataProcessing _dataProcessing;
+        private DataCalculation _dataCalculation;
 
         
         public PrimaryForm(BuisnessLogicIF buisnessLogic)
@@ -27,6 +28,7 @@ namespace PresentationLogic
             currentBuisnessLogic = buisnessLogic;
             _calibrateForm = new CalibrateForm(_dataProcessing);
              _dataProcessing = new DataProcessing();
+            _dataCalculation = new DataCalculation(_dataProcessing);
             InitializeComponent();
 
         }
@@ -91,7 +93,7 @@ namespace PresentationLogic
             StartStopBT.BackColor = Color.Red;
             StartStopBT.Text = "STOP";
 
-            _dataProcessing.Start();
+            
         }
 
       private void SystolicMaxTB_TextChanged(object sender, EventArgs e)
