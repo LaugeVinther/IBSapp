@@ -61,6 +61,7 @@
     <Compile Include="Calibrate.cs" />
     <Compile Include="CalibrateLogin.cs" />
     <Compile Include="CtrlBuisnessLogic.cs" />
+    <Compile Include="DataCalculation.cs" />
     <Compile Include="DataProcessing.cs" />
     <Compile Include="DigitalFilter.cs" />
     <Compile Include="ProcessedDataCollector.cs" />

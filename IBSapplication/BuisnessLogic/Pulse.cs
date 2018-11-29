@@ -11,11 +11,11 @@ namespace BusinessLogic
 {
     public class Pulse : IPulse
     {
-       public DTO_Pulse _dtoPulse { get; private set; }
+       public int Pulse { get; private set; }
 
       public Pulse()
        {
-          _dtoPulse = new DTO_Pulse();
+          Pulse = 0;
        }
 
        public void CalculatePulse(double[] measurements, double f_sample)
@@ -73,11 +73,7 @@ namespace BusinessLogic
           //double f_analysis = f_resolution * index;
 
           //Frekvensen er i Hz (svingninger pr sekund) det omregnes til puls
-          int _pulse = (int)(f_req * 60);
-
-          //Find 
-          _dtoPulse.Pulse = _pulse;
-
+          Pulse = (int)(f_req * 60);
 
 
           //Arrayet vi får ud har på hver plads et komplekst tal. Amplituden er længden af det komplekse tal.

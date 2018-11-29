@@ -9,7 +9,7 @@ namespace Interfaces
 {
    public interface IPulse
    {
-      DTO_Pulse _dtoPulse { get; }
+      int  Pulse { get; }
       void CalculatePulse(double[] measurements, double f_sample);
    }
 }
