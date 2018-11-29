@@ -4,14 +4,26 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Interfaces;
+using DTOLogic;
 
 namespace BusinessLogic
 {
     class ZeroPointAdjustment : IZeroPointAdjustment
     {
-        public void Adjust()
+        public DTO_mmHg zeroPoint { get; set; }
+
+        public void Adjust(List<DTO_mmHg> zeroPointMeasurement)
         {
-            throw new NotImplementedException();
+            double localZeroPoint = 0;
+
+            foreach (DTO_mmHg measurement in zeroPointMeasurement)
+            {
+               
+            }
+
+
+
+            
         }
     }
 }

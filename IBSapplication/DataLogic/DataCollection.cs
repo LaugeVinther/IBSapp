@@ -13,10 +13,10 @@ namespace DataLogic
 {
     public class DataCollection : IDataCollection
     {
-        private readonly BlockingCollection<DTO_mV> _dataQueue;
+        private readonly BlockingCollection<List<double>> _dataQueue;
         private bool keepLoading = false;
 
-        public DataCollection(BlockingCollection<DTO_mV> dataQueue)
+        public DataCollection(BlockingCollection<List<double>> dataQueue)
         {
             _dataQueue = dataQueue;
         }
@@ -31,12 +31,14 @@ namespace DataLogic
 
             while (keepLoading == true)
             {
-                DTO_mV currentDTO = new DTO_mV();
+                List<double> currentmV;
+                //DTO_mV currentDTO = new DTO_mV();
                 daq.getVoltageSeqBlocking();
 
-                currentDTO.rawSamples = daq.currentVoltageSeq;
+                currentmV = daq.currentVoltageSeq;
+                //currentDTO.rawSamples = daq.currentVoltageSeq;
 
-                _dataQueue.Add(currentDTO);
+                _dataQueue.Add(currentmV);
             }
 
             //Måske vi skal ahve noget kode, der giver hver sample en tid.
@@ -50,10 +52,10 @@ namespace DataLogic
             _dataQueue.CompleteAdding();
         }
 
-        public double GetOneDataPoint()
+        public List<double> GetSomeDataPoints()
         {
             //Oprettelse af lokal double til at gemme det enkelte datapunkt
-            double oneDataPoint = 0;
+            List<double> fiveDataPoint;
 
             //Oprettelse af DAQ:
             NI_DAQ daq = new NI_DAQ();
@@ -62,17 +64,14 @@ namespace DataLogic
             daq.deviceName = "Dev2/ai0";
 
             //Angivelse af samples der skal måles.
-            daq.samplesPerChannel = 1;
-
-
+            daq.samplesPerChannel = 5;
+            
             //Foretager målingen
-
             daq.getVoltageSeqBlocking();
 
-            oneDataPoint = daq.currentVoltageSeq[0];
-
-
-            return oneDataPoint;
+            fiveDataPoint = daq.currentVoltageSeq;
+            
+            return fiveDataPoint;
         }
     }
 }
