@@ -9,7 +9,7 @@ namespace Interfaces
 {
     public interface IProcessedDataCollector
     {
-        List<double> getProcessedDataList(DTO_mmHg mmHgDTO);
+        List<double> getProcessedDataList(List<double> listFromDigitalFilter);
 
     }
 }

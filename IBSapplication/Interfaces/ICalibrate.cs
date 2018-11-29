@@ -8,5 +8,6 @@ namespace Interfaces
 {
     public interface ICalibrate
     {
+        void AddVoltage(double oneDataPoint, int pressureValue);
     }
 }

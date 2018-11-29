@@ -6,10 +6,12 @@ using System.Threading.Tasks;
 
 namespace Interfaces
 {
-    class Program
+    public interface IAlarm
     {
-        static void Main(string[] args)
-        {
-        }
+        void GetTresholds();
+        void ActivateAlarm();
+        void DeactivateAlarm();
+
+
     }
 }
