@@ -19,7 +19,7 @@ namespace BusinessLogic
         private List<double> _processedDataList;
         private DataCollection dataCollector;
         private BlockingCollection<DTO_mV> dataQueue;
-        private Calibrate _calibrate;
+        private ICalibrate _calibrate;
         private IPulse _pulse;
         private IBloodPressure _bloodPressure;
         private Alarm alarm;

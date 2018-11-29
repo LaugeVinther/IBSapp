@@ -99,5 +99,13 @@ namespace PresentationLogic
          //Skal den ikke lige valideres her eller skal det ske et andet sted
          _dataProcessing.SystolicMaxThreshold = Convert.ToInt32(SystolicMaxTB.Text);
       }
-   }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            SystolicMaxTB.Enabled = true;
+            SystolicMinTB.Enabled = true;
+            DiastolicMaxTB.Enabled = true;
+            DiastolicMinTB.Enabled = true;
+        }
+    }
 }
