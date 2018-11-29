@@ -16,7 +16,6 @@ namespace BusinessLogic
         private IProcessedDataCollector _processedDataCollector;
         private IDatabaseSaver _databaseSaver;
         private IBinFormatter _binFormatter;
-        private DTO_SaveData _saveDataDTO;
         private List<double> _processedDataList;
         private DataCollection dataCollector;
         private BlockingCollection<DTO_mV> dataQueue;
@@ -36,11 +35,7 @@ namespace BusinessLogic
 
         private bool isRunning;
        
-
-
-
-        //  List<double> ProcessedData = new List<double>();
-
+        
         public DataProcessing()
         {
            //create relations 

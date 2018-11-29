@@ -11,23 +11,15 @@ namespace BusinessLogic
     class ProcessedDataCollector : IProcessedDataCollector
     {
       private List<double> processedDataList = new List<double>();
-
-        public ProcessedDataCollector()
-        {
-           
-        }
-
-        public void collectData(DTO_mmHg mmHgDTO)
+        
+        public List<double> getProcessedDataList(DTO_mmHg mmHgDTO)
         {
             foreach (var sample in mmHgDTO.modifiedSamples)
             {
                 processedDataList.Add(sample);
             }
-        }
 
-        public List<double> getProcessedDataList()
-        {
-            return processedDataList;
+           return processedDataList;
         }
     }
 }
