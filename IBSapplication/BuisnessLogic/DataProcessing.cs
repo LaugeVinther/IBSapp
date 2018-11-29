@@ -22,18 +22,22 @@ namespace BusinessLogic
         private Calibrate _calibrate;
         private IPulse _pulse;
         private IBloodPressure _bloodPressure;
-        private int f_sample;
+        private Alarm alarm;
 
        //Define variables
        public int CalculatedPulseValue { get; private set; }
        public int CalculatedSystolicValue { get; private set; }
        public int CalculatedDiastolicValue { get; private set; }
        public int CalculatedAverageBPValue { get; private set; }
+       public int SystolicMaxThreshold { get; set; }
+       public  int SystolicMinThreshold { get; set; }
+       public int DiastolicMaxThreshold { get; set; }
+       public int DiastolicMinThreshold { get; set; }
+       private int f_sample;
 
-       
 
 
-        private bool isRunning;
+      private bool isRunning;
        
         
         public DataProcessing()
@@ -54,6 +58,7 @@ namespace BusinessLogic
            CalculatedDiastolicValue = 0;
            CalculatedAverageBPValue = 0;
 
+           //Set thresholds til default grænseværdier
 
         }
 
@@ -93,6 +98,11 @@ namespace BusinessLogic
             _databaseSaver.SaveToDatabase(savedataDTO, binArray);
 
         }
-    }
+
+      public void SetThresholds()
+      {
+         alarm.getThresholds(SystolicMaxThreshold,SystolicMinThreshold,DiastolicMaxThreshold,DiastolicMinThreshold);
+      }
+   }
 }
 

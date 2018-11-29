@@ -306,6 +306,7 @@
          this.SystolicMaxTB.Name = "SystolicMaxTB";
          this.SystolicMaxTB.Size = new System.Drawing.Size(54, 33);
          this.SystolicMaxTB.TabIndex = 45;
+         this.SystolicMaxTB.TextChanged += new System.EventHandler(this.SystolicMaxTB_TextChanged);
          // 
          // chart1
          // 
@@ -337,7 +338,6 @@
          this.chart1.Size = new System.Drawing.Size(903, 374);
          this.chart1.TabIndex = 46;
          this.chart1.Text = "Blood pressure";
-         this.chart1.Click += new System.EventHandler(this.chart1_Click);
          // 
          // PrimaryForm
          // 

@@ -86,13 +86,6 @@ namespace PresentationLogic
             _zeroPointAdjustmentForm.ShowDialog();
         }
 
-
-
-        private void chart1_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void StartStopBT_Click(object sender, EventArgs e)
         {
             StartStopBT.BackColor = Color.Red;
@@ -101,5 +94,10 @@ namespace PresentationLogic
             _dataProcessing.Start();
         }
 
-    }
+      private void SystolicMaxTB_TextChanged(object sender, EventArgs e)
+      {
+         //Skal den ikke lige valideres her eller skal det ske et andet sted
+         _dataProcessing.SystolicMaxThreshold = Convert.ToInt32(SystolicMaxTB.Text);
+      }
+   }
 }
