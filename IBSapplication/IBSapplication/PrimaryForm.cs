@@ -29,6 +29,9 @@ namespace PresentationLogic
             _calibrateForm = new CalibrateForm(_dataProcessing);
              _dataProcessing = new DataProcessing();
             _dataCalculation = new DataCalculation(_dataProcessing);
+
+            _dataCalculation.
+
             InitializeComponent();
 
         }

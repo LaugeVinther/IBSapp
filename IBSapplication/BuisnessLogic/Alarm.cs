@@ -14,11 +14,7 @@ namespace BusinessLogic
         private int _thresholdUpperSys;
         private int _thresholdLowerSys;
         public bool IsAlarmActivated = false;
-
-
-        //private List<double> processedDataList;
-        //private DataProcessing dataProcessing;
-        //private IProcessedDataCollector _processedDataCollector;
+      
 
 
         public Alarm()
@@ -28,6 +24,22 @@ namespace BusinessLogic
             _thresholdUpperSys = 90;
             _thresholdLowerSys = 180;
 
+
+        }
+
+        public bool CheckAlarming(DTO_Bloodpressure dtoBloodpressure)
+        {
+            if (dtoBloodpressure.Systolic > _thresholdUpperSys || dtoBloodpressure.Systolic < _thresholdLowerSys || dtoBloodpressure.Diastolic > _thresholdUpperDia || dtoBloodpressure.Diastolic < _thresholdLowerDia)
+            {
+                IsAlarmActivated = true;
+              
+            }
+            else if (dtoBloodpressure.Systolic < _thresholdUpperSys && dtoBloodpressure.Systolic > _thresholdLowerSys && dtoBloodpressure.Diastolic < _thresholdUpperDia && dtoBloodpressure.Diastolic > _thresholdLowerDia)
+            {
+                IsAlarmActivated = false;
+            }
+
+            return IsAlarmActivated;
         }
         public void GetTresholds(int thresholdupperdia, int thresholdlowerdia, int thresholduppersys, int thresholdlowersys)
         {
@@ -35,23 +47,6 @@ namespace BusinessLogic
             _thresholdLowerDia = thresholdlowerdia;
             _thresholdUpperSys = thresholduppersys;
             _thresholdLowerSys = thresholdlowersys;
-        }
-
-        public void ActivateAlarm(DTO_Bloodpressure dtoBloodpressure)
-        {
-            if (dtoBloodpressure.Systolic > _thresholdUpperSys || dtoBloodpressure.Systolic < _thresholdLowerSys || dtoBloodpressure.Diastolic > _thresholdUpperDia || dtoBloodpressure.Diastolic < _thresholdLowerDia)
-            {
-                IsAlarmActivated = true;
-            }              
-        }
-
-        public void DeactivateAlarm(DTO_Bloodpressure dtoBloodpressure)
-        {
-            if (dtoBloodpressure.Systolic < _thresholdUpperSys && dtoBloodpressure.Systolic > _thresholdLowerSys && dtoBloodpressure.Diastolic < _thresholdUpperDia && dtoBloodpressure.Diastolic > _thresholdLowerDia)
-            {
-                IsAlarmActivated = false;
-            }
-
         }
 
     }
