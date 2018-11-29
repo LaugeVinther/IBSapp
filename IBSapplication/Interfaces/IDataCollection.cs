@@ -9,6 +9,6 @@ namespace Interfaces
     public interface IDataCollection
     {
         void LoadData();
-        double GetOneDataPoint();
+        List<double> GetSomeDataPoints();
     }
 }

@@ -179,5 +179,13 @@ namespace PresentationLogic
             MessageBox.Show("Den indtastede værdi er ugyldig");
          }
       }
-   }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            SystolicMaxTB.Enabled = true;
+            SystolicMinTB.Enabled = true;
+            DiastolicMaxTB.Enabled = true;
+            DiastolicMinTB.Enabled = true;
+        }
+    }
 }
