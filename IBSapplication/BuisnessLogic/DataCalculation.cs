@@ -20,6 +20,9 @@ namespace BusinessLogic
        private IBinFormatter _binFormatter;
        private List<double> _processedDataList;
 
+        //Events
+        public event Action<List<double>> NewDataAvailableEvent;
+
       //Define variables
       public int CalculatedPulseValue { get; private set; }
        public int CalculatedSystolicValue { get; private set; }
@@ -59,6 +62,11 @@ namespace BusinessLogic
            CalculatedDiastolicValue = _bloodPressure._dtoBloodpressure.Diastolic;
            CalculatedAverageBPValue = _bloodPressure._dtoBloodpressure.AverageBP;
 
+
+
+            NewDataAvailableEvent?.Invoke(_processedDataList);
+
+
       }
        public void Safe(DTO_SaveData savedataDTO)
        {
@@ -71,5 +79,7 @@ namespace BusinessLogic
        {
           alarm.GetTresholds(SystolicMaxThreshold, SystolicMinThreshold, DiastolicMaxThreshold, DiastolicMinThreshold);
        }
+
+ 
    }
 }

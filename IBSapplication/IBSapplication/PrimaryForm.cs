@@ -29,8 +29,16 @@ namespace PresentationLogic
             _calibrateForm = new CalibrateForm(_dataProcessing);
              _dataProcessing = new DataProcessing();
             _dataCalculation = new DataCalculation(_dataProcessing);
+
+            _dataCalculation.NewDataAvailableEvent += NewDataAvailableEventMethod;
+
             InitializeComponent();
 
+        }
+
+        public void NewDataAvailableEventMethod(List<double> list)
+        {
+            //Opdater graf-kode
         }
 
        //Denne metode skal hele tiden opdatere tal og grafer
