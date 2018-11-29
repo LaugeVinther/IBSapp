@@ -9,7 +9,7 @@ namespace Interfaces
 {
     public interface IDigitalFilter
     {
-        void FilterOn(DTO_mmHg dtoMmHg);
-        void FilterOff(DTO_mmHg dtoMmHg);
+        void FilterOn(List<double> calibratedSampleList);
+        void FilterOff(List<double> calibratedSampleList);
     }
 }
