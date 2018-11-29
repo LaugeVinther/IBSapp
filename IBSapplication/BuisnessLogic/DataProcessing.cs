@@ -42,7 +42,7 @@ namespace BusinessLogic
 
         public void GetVoltageData(int pressureValue)
         {
-            double oneDataPoint = dataCollector.GetOneDataPoint();
+            List<double> oneDataPoint = dataCollector.GetSomeDataPoints();
             _calibrate.AddVoltage(oneDataPoint, pressureValue);
         }
 
@@ -52,6 +52,11 @@ namespace BusinessLogic
             return _calibrate.Calibration();
         }
 
+        public void GetZeroPointAdjustment()
+        {
+            List<double> zeroPointMeasurement = dataCollector.GetSomeDataPoints();
+
+        }
 
    }
 }
