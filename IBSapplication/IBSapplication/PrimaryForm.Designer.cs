@@ -314,6 +314,7 @@
          chartArea1.AxisX.TitleForeColor = System.Drawing.Color.Lime;
          chartArea1.AxisY.Title = "Pressure (mmHg)";
          chartArea1.AxisY.TitleForeColor = System.Drawing.Color.Lime;
+         chartArea1.BackColor = System.Drawing.Color.Black;
          chartArea1.Name = "ChartArea1";
          this.chart1.ChartAreas.Add(chartArea1);
          legend1.Enabled = false;
