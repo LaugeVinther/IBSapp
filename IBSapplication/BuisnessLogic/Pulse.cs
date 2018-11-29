@@ -11,12 +11,13 @@ namespace BusinessLogic
 {
     public class Pulse : IPulse
     {
-       public DTO_Pulse _dtoPulse {  get; private set; }
+       public DTO_Pulse _dtoPulse { get; private set; }
 
-       public Pulse()
+      public Pulse()
        {
           _dtoPulse = new DTO_Pulse();
        }
+
        public void CalculatePulse(double[] measurements, double f_sample)
        {
           double [] _measurements = new double[10000];

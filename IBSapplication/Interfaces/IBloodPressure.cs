@@ -9,6 +9,7 @@ namespace Interfaces
 {
     public interface IBloodPressure
     {
-        void CalculateBP(double[] measurements, double f_sample, int Pulse);
+       DTO_Bloodpressure _dtoBloodpressure { get; }
+      void CalculateBP(double[] measurements, double f_sample, int Pulse);
     }
 }

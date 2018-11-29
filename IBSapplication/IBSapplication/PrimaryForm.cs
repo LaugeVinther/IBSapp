@@ -31,6 +31,14 @@ namespace PresentationLogic
 
         }
 
+       //Denne metode skal hele tiden opdatere tal og grafer
+       public void DoWork()
+       {
+          SysDiaTB.Text = (+_dataProcessing.CalculatedSystolicValue + "/" + _dataProcessing.CalculatedDiastolicValue);
+          AverageBP_TB.Text = _dataProcessing.CalculatedAverageBPValue.ToString();
+          PulseTB.Text = _dataProcessing.CalculatedPulseValue.ToString();
+       }
+
         private void graphSetting() // OBS! tallene skal laves om efter standarden!
         {
             //Major grid 
@@ -78,13 +86,6 @@ namespace PresentationLogic
             _zeroPointAdjustmentForm.ShowDialog();
         }
 
-
-
-        private void chart1_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void StartStopBT_Click(object sender, EventArgs e)
         {
             StartStopBT.BackColor = Color.Red;
@@ -93,8 +94,10 @@ namespace PresentationLogic
             _dataProcessing.Start();
         }
 
-        private void textBox8_TextChanged(object sender, EventArgs e)
-        {
-        }
-    }
+      private void SystolicMaxTB_TextChanged(object sender, EventArgs e)
+      {
+         //Skal den ikke lige valideres her eller skal det ske et andet sted
+         _dataProcessing.SystolicMaxThreshold = Convert.ToInt32(SystolicMaxTB.Text);
+      }
+   }
 }
