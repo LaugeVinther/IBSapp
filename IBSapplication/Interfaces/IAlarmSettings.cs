@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Interfaces;
 
-namespace DataLogic
+namespace Interfaces
 {
-    public class CtrlDataLogic : DataLogicIF
+    public interface IAlarmSettings
     {
+        void LightAndSoundAlarm();
+
     }
 }

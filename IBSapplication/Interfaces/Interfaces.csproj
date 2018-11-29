@@ -52,6 +52,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IAlarm.cs" />
+    <Compile Include="IAlarmSettings.cs" />
     <Compile Include="IBinFormatter.cs" />
     <Compile Include="IBloodPressure.cs" />
     <Compile Include="IBS_Interfaces.cs" />

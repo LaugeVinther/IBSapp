@@ -20,6 +20,7 @@ namespace PresentationLogic
         private SaveDataForm _saveDataForm;
         private ZeroPointAdjustmentForm _zeroPointAdjustmentForm;
         private DataProcessing _dataProcessing;
+        private DataCalculation _dataCalculation;
 
         
         public PrimaryForm(BuisnessLogicIF buisnessLogic)
@@ -27,6 +28,7 @@ namespace PresentationLogic
             currentBuisnessLogic = buisnessLogic;
             _calibrateForm = new CalibrateForm(_dataProcessing);
              _dataProcessing = new DataProcessing();
+            _dataCalculation = new DataCalculation(_dataProcessing);
             InitializeComponent();
 
         }
@@ -91,13 +93,91 @@ namespace PresentationLogic
             StartStopBT.BackColor = Color.Red;
             StartStopBT.Text = "STOP";
 
-            _dataProcessing.Start();
+            
         }
 
       private void SystolicMaxTB_TextChanged(object sender, EventArgs e)
       {
-         //Skal den ikke lige valideres her eller skal det ske et andet sted
-         _dataProcessing.SystolicMaxThreshold = Convert.ToInt32(SystolicMaxTB.Text);
+         int sysMax;
+         try
+         {
+             sysMax=Convert.ToInt32(SystolicMaxTB.Text);
+            if (sysMax > 0)
+            {
+               _dataProcessing.SystolicMaxThreshold = sysMax;
+            }
+            else
+            {
+               MessageBox.Show("Den indtastede værdi er ugyldig");
+            }
+         }
+         catch (FormatException err)
+         {
+            MessageBox.Show("Den indtastede værdi er ugyldig");
+         }
+      }
+
+      private void SystolicMinTB_TextChanged(object sender, EventArgs e)
+      {
+         int sysMin;
+         try
+         {
+            sysMin = Convert.ToInt32(SystolicMinTB.Text);
+            if (sysMin > 0)
+            {
+               _dataProcessing.SystolicMinThreshold = sysMin;
+            }
+            else
+            {
+               MessageBox.Show("Den indtastede værdi er ugyldig");
+            }
+         }
+         catch (FormatException err)
+         {
+            MessageBox.Show("Den indtastede værdi er ugyldig");
+         }
+      }
+
+      private void DiastolicMaxTB_TextChanged(object sender, EventArgs e)
+      {
+         int diaMax;
+         try
+         {
+            diaMax = Convert.ToInt32(DiastolicMaxTB.Text);
+            if (diaMax > 0)
+            {
+               _dataProcessing.DiastolicMaxThreshold = diaMax;
+            }
+            else
+            {
+               MessageBox.Show("Den indtastede værdi er ugyldig");
+            }
+         }
+         catch (FormatException err)
+         {
+            MessageBox.Show("Den indtastede værdi er ugyldig");
+         }
+      }
+
+      private void DiastolicMinTB_TextChanged(object sender, EventArgs e)
+      {
+         int diaMin;
+         try
+         {
+            diaMin = Convert.ToInt32(DiastolicMinTB.Text);
+            if (diaMin > 0)
+            {
+               _dataProcessing.DiastolicMinThreshold = diaMin;
+            }
+            else
+            {
+               MessageBox.Show("Den indtastede værdi er ugyldig");
+            }
+         }
+         catch (FormatException err)
+         {
+            MessageBox.Show("Den indtastede værdi er ugyldig");
+         }
       }
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
