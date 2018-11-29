@@ -10,20 +10,21 @@ namespace BusinessLogic
 {
     class ZeroPointAdjustment : IZeroPointAdjustment
     {
-        public DTO_mmHg zeroPoint { get; set; }
+        public double zeroPoint { get; set; }
 
-        public void Adjust(List<DTO_mmHg> zeroPointMeasurement)
+        public void Adjust(List<double> zeroPointMeasurement)
         {
             double localZeroPoint = 0;
 
-            foreach (DTO_mmHg measurement in zeroPointMeasurement)
+            foreach (double measurement in zeroPointMeasurement)
             {
-               
+                localZeroPoint = +measurement;
             }
 
+            localZeroPoint = localZeroPoint / zeroPointMeasurement.Count;
 
+            zeroPoint = localZeroPoint;
 
-            
         }
     }
 }
