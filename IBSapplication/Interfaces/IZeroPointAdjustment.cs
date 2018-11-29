@@ -9,6 +9,6 @@ namespace Interfaces
 {
     public interface IZeroPointAdjustment
     {
-        void Adjust(List<DTO_mmHg> zeroPointMeasurement);
+        void Adjust(List<double> zeroPointMeasurement);
     }
 }
