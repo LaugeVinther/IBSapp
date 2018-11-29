@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-         System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-         System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-         System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+         System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+         System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+         System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
          this.trackBar1 = new System.Windows.Forms.TrackBar();
          this.label9 = new System.Windows.Forms.Label();
          this.DiastolicMinTB = new System.Windows.Forms.TextBox();
@@ -85,6 +85,7 @@
          this.DiastolicMinTB.Name = "DiastolicMinTB";
          this.DiastolicMinTB.Size = new System.Drawing.Size(54, 33);
          this.DiastolicMinTB.TabIndex = 41;
+         this.DiastolicMinTB.TextChanged += new System.EventHandler(this.DiastolicMinTB_TextChanged);
          // 
          // DiastolicMaxTB
          // 
@@ -94,6 +95,7 @@
          this.DiastolicMaxTB.Name = "DiastolicMaxTB";
          this.DiastolicMaxTB.Size = new System.Drawing.Size(54, 33);
          this.DiastolicMaxTB.TabIndex = 40;
+         this.DiastolicMaxTB.TextChanged += new System.EventHandler(this.DiastolicMaxTB_TextChanged);
          // 
          // SystolicMinTB
          // 
@@ -103,6 +105,7 @@
          this.SystolicMinTB.Name = "SystolicMinTB";
          this.SystolicMinTB.Size = new System.Drawing.Size(54, 33);
          this.SystolicMinTB.TabIndex = 39;
+         this.SystolicMinTB.TextChanged += new System.EventHandler(this.SystolicMinTB_TextChanged);
          // 
          // textBox4
          // 
@@ -311,30 +314,30 @@
          // chart1
          // 
          this.chart1.BackColor = System.Drawing.Color.Black;
-         chartArea1.AxisX.Title = "Time (ms)";
-         chartArea1.AxisX.TitleForeColor = System.Drawing.Color.Lime;
-         chartArea1.AxisY.Title = "Pressure (mmHg)";
-         chartArea1.AxisY.TitleForeColor = System.Drawing.Color.Lime;
-         chartArea1.BackColor = System.Drawing.Color.Black;
-         chartArea1.Name = "ChartArea1";
-         this.chart1.ChartAreas.Add(chartArea1);
-         legend1.Enabled = false;
-         legend1.Name = "Legend1";
-         this.chart1.Legends.Add(legend1);
+         chartArea4.AxisX.Title = "Time (ms)";
+         chartArea4.AxisX.TitleForeColor = System.Drawing.Color.Lime;
+         chartArea4.AxisY.Title = "Pressure (mmHg)";
+         chartArea4.AxisY.TitleForeColor = System.Drawing.Color.Lime;
+         chartArea4.BackColor = System.Drawing.Color.Black;
+         chartArea4.Name = "ChartArea1";
+         this.chart1.ChartAreas.Add(chartArea4);
+         legend4.Enabled = false;
+         legend4.Name = "Legend1";
+         this.chart1.Legends.Add(legend4);
          this.chart1.Location = new System.Drawing.Point(12, 12);
          this.chart1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
          this.chart1.Name = "chart1";
-         series1.BorderColor = System.Drawing.Color.Black;
-         series1.BorderWidth = 3;
-         series1.ChartArea = "ChartArea1";
-         series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-         series1.Color = System.Drawing.Color.Lime;
-         series1.LabelBackColor = System.Drawing.Color.Black;
-         series1.LabelBorderColor = System.Drawing.Color.Black;
-         series1.LabelForeColor = System.Drawing.Color.Lime;
-         series1.Legend = "Legend1";
-         series1.Name = "Blood Pressure";
-         this.chart1.Series.Add(series1);
+         series4.BorderColor = System.Drawing.Color.Black;
+         series4.BorderWidth = 3;
+         series4.ChartArea = "ChartArea1";
+         series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+         series4.Color = System.Drawing.Color.Lime;
+         series4.LabelBackColor = System.Drawing.Color.Black;
+         series4.LabelBorderColor = System.Drawing.Color.Black;
+         series4.LabelForeColor = System.Drawing.Color.Lime;
+         series4.Legend = "Legend1";
+         series4.Name = "Blood Pressure";
+         this.chart1.Series.Add(series4);
          this.chart1.Size = new System.Drawing.Size(903, 374);
          this.chart1.TabIndex = 46;
          this.chart1.Text = "Blood pressure";

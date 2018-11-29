@@ -18,7 +18,7 @@ namespace BusinessLogic
        {
           smoothedSamples=new List<double>();
        }
-       public void FilterOn(DTO_mmHg dtoMmHg)
+       public void FilterOn(DTO_mmHg dtoMmHg) //EVT ændring
        {
          //Kør først downsampling 
           Downsampling(dtoMmHg);
@@ -39,12 +39,12 @@ namespace BusinessLogic
           }
       }
 
-       public void FilterOff(DTO_mmHg dtoMmHg)
+       public void FilterOff(DTO_mmHg dtoMmHg) //EVT ændring
        {
           Downsampling(dtoMmHg);
        }
 
-       public void Downsampling(DTO_mmHg dtoMmHg)
+       public void Downsampling(DTO_mmHg dtoMmHg) //EVT ændring
        {
           int length = dtoMmHg.modifiedSamples.Count();
           List<double> samples = dtoMmHg.modifiedSamples;
