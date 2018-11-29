@@ -15,7 +15,7 @@ namespace UnitTest
     [TestFixture]
     public class DataCollectionUnitTest
     {
-        private readonly BlockingCollection<DTO_mV> _dataQueue;
+        private readonly BlockingCollection<List<double>> _dataQueue;
         private DataCollection _uut;
 
         [SetUp]
@@ -25,12 +25,25 @@ namespace UnitTest
         }
 
         [Test]
-        public void GetOneDataPoint_WavegenDC1V_OndDataPointEqual1plusminus0point05()
+        public void GetSomeDataPoint_WavegenDC1V_SomeDataPointEqualsAround1()
         {
-        //    double _oneDataPoint = 0;
+            double meanValue = 0;
+            List<double> values = _uut.GetSomeDataPoints();
+            foreach (double value in values)
+            {
+                meanValue += value;
+            }
 
-        //    _oneDataPoint = _uut.GetOneDataPoint();
-            Assert.That(_uut.GetOneDataPoint(), Is.EqualTo(1));
+            meanValue = meanValue / values.Count;
+
+            Assert.That(Math.Round(meanValue), Is.EqualTo(1));
+        }
+        [Test]
+        public void GetSomeDataPoint_Gets5DataPoint()
+        {
+            int number =_uut.GetSomeDataPoints().Count;
+
+            Assert.That(number, Is.EqualTo(5));
         }
     }
 }
