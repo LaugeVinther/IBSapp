@@ -99,5 +99,10 @@ namespace PresentationLogic
          //Skal den ikke lige valideres her eller skal det ske et andet sted
          _dataProcessing.SystolicMaxThreshold = Convert.ToInt32(SystolicMaxTB.Text);
       }
-   }
+
+        private void SysDiaTB_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+    }
 }
