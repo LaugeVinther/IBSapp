@@ -43,9 +43,9 @@
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(67, 113);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(558, 25);
+            this.label1.Size = new System.Drawing.Size(569, 25);
             this.label1.TabIndex = 2;
-            this.label1.Text = "Please log in with username and password in the following fiels:";
+            this.label1.Text = "Please log in with username and password in the following fields:";
             // 
             // label2
             // 

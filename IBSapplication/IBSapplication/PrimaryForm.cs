@@ -92,8 +92,11 @@ namespace PresentationLogic
         {
             StartStopBT.BackColor = Color.Red;
             StartStopBT.Text = "STOP";
-
             
+            SystolicMaxTB.Enabled = true;
+            SystolicMinTB.Enabled = true;
+            DiastolicMaxTB.Enabled = true;
+            DiastolicMinTB.Enabled = true; 
         }
 
       private void SystolicMaxTB_TextChanged(object sender, EventArgs e)
@@ -187,5 +190,12 @@ namespace PresentationLogic
             DiastolicMaxTB.Enabled = true;
             DiastolicMinTB.Enabled = true;
         }
+
+        private void chart1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+
     }
 }

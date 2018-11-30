@@ -20,7 +20,7 @@ namespace BusinessLogic
 
         public void convertData()
         {
-            foreach (var convertDataPoint in dataProcessing.rawSamples)
+            foreach (var convertDataPoint in dataProcessing.)
             {
                 calibratedSampleList.Add(convertDataPoint * dataProcessing.GetCalibration());
             }

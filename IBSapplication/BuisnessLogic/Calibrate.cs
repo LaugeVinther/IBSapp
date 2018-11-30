@@ -22,7 +22,6 @@ namespace BusinessLogic
         {
             voltageArray = new double[3];
             pressureArray = new double[3];
-
         }
 
         public void AddVoltage(double voltage, int pressure)
@@ -60,7 +59,6 @@ namespace BusinessLogic
 
             slope = ((sumxy - sumx * sumy / n) / (sumx2 - sumx * sumx / n));
             return slope;
-            
         }
 
     }

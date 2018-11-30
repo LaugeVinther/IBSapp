@@ -15,10 +15,7 @@ namespace BusinessLogic
        //Define relations
         private DataCollection dataCollector;
         private BlockingCollection<DTO_mV> dataQueue;
-        private Calibrate _calibrate;
-
-
-
+        private ICalibrate _calibrate;
 
       private bool isRunning;
        
@@ -42,13 +39,24 @@ namespace BusinessLogic
 
         public void GetVoltageData(int pressureValue)
         {
-            double oneDataPoint = dataCollector.GetOneDataPoint();
-            _calibrate.AddVoltage(oneDataPoint, pressureValue);
+            List<double> dataPointList = new List<double>();
+            dataPointList = dataCollector.GetSomeDataPoints();
+       
+            double sumOfDataPoints = 0;
+            double averageOfDataPoints;
+
+            for (int i = 0; i < dataPointList.Count; i++)
+            {
+                sumOfDataPoints += dataPointList[i];
+            }
+
+            averageOfDataPoints = sumOfDataPoints / dataPointList.Count;
+
+            _calibrate.AddVoltage(averageOfDataPoints, pressureValue);
         }
 
         public double GetCalibration()
         {
-
             return _calibrate.Calibration();
         }
 
