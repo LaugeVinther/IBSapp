@@ -60,6 +60,11 @@ namespace BusinessLogic
             return _calibrate.Calibration();
         }
 
+        public void GetZeroPointAdjustment()
+        {
+            List<double> zeroPointMeasurement = dataCollector.GetSomeDataPoints();
+
+        }
 
    }
 }

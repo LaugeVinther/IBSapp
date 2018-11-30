@@ -29,8 +29,23 @@ namespace PresentationLogic
             _calibrateForm = new CalibrateForm(_dataProcessing);
              _dataProcessing = new DataProcessing();
             _dataCalculation = new DataCalculation(_dataProcessing);
+
+            _dataCalculation.NewDataAvailableEvent += NewDataAvailableEventMethod;
+
+            _dataCalculation.AlarmActivatedEvent += AlarmActivatedEventMethod;
+
             InitializeComponent();
 
+        }
+
+        public void NewDataAvailableEventMethod(List<double> list)
+        {
+            //Opdater graf-kode
+        }
+
+        public void AlarmActivatedEventMethod(bool alarmActivated)
+        {
+            //Alarm skal igangsættes med lyd og lys
         }
 
        //Denne metode skal hele tiden opdatere tal og grafer
