@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.trackBar1 = new System.Windows.Forms.TrackBar();
             this.label9 = new System.Windows.Forms.Label();
             this.DiastolicMinTB = new System.Windows.Forms.TextBox();
@@ -54,13 +54,14 @@
             this.label4 = new System.Windows.Forms.Label();
             this.SystolicMaxTB = new System.Windows.Forms.TextBox();
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.AdaptThresholdsBT = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             this.SuspendLayout();
             // 
             // trackBar1
             // 
-            this.trackBar1.Location = new System.Drawing.Point(438, 354);
+            this.trackBar1.Location = new System.Drawing.Point(467, 350);
             this.trackBar1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.trackBar1.Name = "trackBar1";
             this.trackBar1.Size = new System.Drawing.Size(92, 56);
@@ -71,7 +72,7 @@
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.ForeColor = System.Drawing.Color.White;
-            this.label9.Location = new System.Drawing.Point(330, 354);
+            this.label9.Location = new System.Drawing.Point(350, 350);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(54, 25);
             this.label9.TabIndex = 42;
@@ -80,31 +81,31 @@
             // DiastolicMinTB
             // 
             this.DiastolicMinTB.Enabled = false;
-            this.DiastolicMinTB.Location = new System.Drawing.Point(229, 430);
+            this.DiastolicMinTB.Location = new System.Drawing.Point(246, 388);
             this.DiastolicMinTB.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.DiastolicMinTB.Multiline = true;
             this.DiastolicMinTB.Name = "DiastolicMinTB";
-            this.DiastolicMinTB.Size = new System.Drawing.Size(48, 27);
+            this.DiastolicMinTB.Size = new System.Drawing.Size(66, 27);
             this.DiastolicMinTB.TabIndex = 41;
             // 
             // DiastolicMaxTB
             // 
             this.DiastolicMaxTB.Enabled = false;
-            this.DiastolicMaxTB.Location = new System.Drawing.Point(169, 430);
+            this.DiastolicMaxTB.Location = new System.Drawing.Point(170, 388);
             this.DiastolicMaxTB.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.DiastolicMaxTB.Multiline = true;
             this.DiastolicMaxTB.Name = "DiastolicMaxTB";
-            this.DiastolicMaxTB.Size = new System.Drawing.Size(48, 27);
+            this.DiastolicMaxTB.Size = new System.Drawing.Size(70, 27);
             this.DiastolicMaxTB.TabIndex = 40;
             // 
             // SystolicMinTB
             // 
             this.SystolicMinTB.Enabled = false;
-            this.SystolicMinTB.Location = new System.Drawing.Point(97, 430);
+            this.SystolicMinTB.Location = new System.Drawing.Point(98, 388);
             this.SystolicMinTB.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.SystolicMinTB.Multiline = true;
             this.SystolicMinTB.Name = "SystolicMinTB";
-            this.SystolicMinTB.Size = new System.Drawing.Size(48, 27);
+            this.SystolicMinTB.Size = new System.Drawing.Size(66, 27);
             this.SystolicMinTB.TabIndex = 39;
             // 
             // textBox4
@@ -119,11 +120,11 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.ForeColor = System.Drawing.Color.White;
-            this.label8.Location = new System.Drawing.Point(164, 402);
+            this.label8.Location = new System.Drawing.Point(165, 360);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(75, 20);
+            this.label8.Size = new System.Drawing.Size(85, 25);
             this.label8.TabIndex = 37;
             this.label8.Text = "Diastolic";
             // 
@@ -140,23 +141,26 @@
             // 
             // ThresholdCheckpoint
             // 
-            this.ThresholdCheckpoint.Location = new System.Drawing.Point(244, 347);
+            this.ThresholdCheckpoint.AllowDrop = true;
+            this.ThresholdCheckpoint.FlatAppearance.CheckedBackColor = System.Drawing.Color.White;
+            this.ThresholdCheckpoint.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ThresholdCheckpoint.Location = new System.Drawing.Point(230, 325);
             this.ThresholdCheckpoint.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.ThresholdCheckpoint.Name = "ThresholdCheckpoint";
-            this.ThresholdCheckpoint.Size = new System.Drawing.Size(33, 46);
+            this.ThresholdCheckpoint.Size = new System.Drawing.Size(20, 32);
             this.ThresholdCheckpoint.TabIndex = 35;
             this.ThresholdCheckpoint.Text = "ThresholdCheckpoint";
             this.ThresholdCheckpoint.UseVisualStyleBackColor = true;
-            this.ThresholdCheckpoint.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            this.ThresholdCheckpoint.CheckedChanged += new System.EventHandler(this.ThresholdCheckpoint_CheckedChanged);
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.White;
-            this.label5.Location = new System.Drawing.Point(33, 354);
+            this.label5.Location = new System.Drawing.Point(22, 325);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(170, 25);
+            this.label5.Size = new System.Drawing.Size(187, 25);
             this.label5.TabIndex = 34;
             this.label5.Text = "Adjust Thresholds";
             // 
@@ -294,56 +298,68 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.White;
-            this.label4.Location = new System.Drawing.Point(21, 402);
+            this.label4.Location = new System.Drawing.Point(22, 360);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(68, 20);
+            this.label4.Size = new System.Drawing.Size(80, 25);
             this.label4.TabIndex = 44;
             this.label4.Text = "Systolic";
             // 
             // SystolicMaxTB
             // 
             this.SystolicMaxTB.Enabled = false;
-            this.SystolicMaxTB.Location = new System.Drawing.Point(26, 430);
+            this.SystolicMaxTB.Location = new System.Drawing.Point(27, 388);
             this.SystolicMaxTB.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.SystolicMaxTB.Multiline = true;
             this.SystolicMaxTB.Name = "SystolicMaxTB";
-            this.SystolicMaxTB.Size = new System.Drawing.Size(48, 27);
+            this.SystolicMaxTB.Size = new System.Drawing.Size(65, 27);
             this.SystolicMaxTB.TabIndex = 45;
             this.SystolicMaxTB.TextChanged += new System.EventHandler(this.SystolicMaxTB_TextChanged);
             // 
             // chart1
             // 
             this.chart1.BackColor = System.Drawing.Color.Black;
-            chartArea1.AxisX.Title = "Time (ms)";
-            chartArea1.AxisX.TitleForeColor = System.Drawing.Color.Lime;
-            chartArea1.AxisY.Title = "Pressure (mmHg)";
-            chartArea1.AxisY.TitleForeColor = System.Drawing.Color.Lime;
-            chartArea1.BackColor = System.Drawing.Color.Black;
-            chartArea1.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea1);
-            legend1.Enabled = false;
-            legend1.Name = "Legend1";
-            this.chart1.Legends.Add(legend1);
+            chartArea3.AxisX.Title = "Time (ms)";
+            chartArea3.AxisX.TitleForeColor = System.Drawing.Color.Lime;
+            chartArea3.AxisY.Title = "Pressure (mmHg)";
+            chartArea3.AxisY.TitleForeColor = System.Drawing.Color.Lime;
+            chartArea3.BackColor = System.Drawing.Color.Black;
+            chartArea3.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea3);
+            legend3.Enabled = false;
+            legend3.Name = "Legend1";
+            this.chart1.Legends.Add(legend3);
             this.chart1.Location = new System.Drawing.Point(11, 10);
             this.chart1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.chart1.Name = "chart1";
-            series1.BorderColor = System.Drawing.Color.Black;
-            series1.BorderWidth = 3;
-            series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series1.Color = System.Drawing.Color.Lime;
-            series1.LabelBackColor = System.Drawing.Color.Black;
-            series1.LabelBorderColor = System.Drawing.Color.Black;
-            series1.LabelForeColor = System.Drawing.Color.Lime;
-            series1.Legend = "Legend1";
-            series1.Name = "Blood Pressure";
-            this.chart1.Series.Add(series1);
+            series3.BorderColor = System.Drawing.Color.Black;
+            series3.BorderWidth = 3;
+            series3.ChartArea = "ChartArea1";
+            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series3.Color = System.Drawing.Color.Lime;
+            series3.LabelBackColor = System.Drawing.Color.Black;
+            series3.LabelBorderColor = System.Drawing.Color.Black;
+            series3.LabelForeColor = System.Drawing.Color.Lime;
+            series3.Legend = "Legend1";
+            series3.Name = "Blood Pressure";
+            this.chart1.Series.Add(series3);
             this.chart1.Size = new System.Drawing.Size(803, 299);
             this.chart1.TabIndex = 46;
             this.chart1.Text = "Blood pressure";
-            this.chart1.Click += new System.EventHandler(this.chart1_Click);
+            // 
+            // AdaptThresholdsBT
+            // 
+            this.AdaptThresholdsBT.BackColor = System.Drawing.Color.DimGray;
+            this.AdaptThresholdsBT.Enabled = false;
+            this.AdaptThresholdsBT.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AdaptThresholdsBT.Location = new System.Drawing.Point(27, 434);
+            this.AdaptThresholdsBT.Name = "AdaptThresholdsBT";
+            this.AdaptThresholdsBT.Size = new System.Drawing.Size(285, 42);
+            this.AdaptThresholdsBT.TabIndex = 47;
+            this.AdaptThresholdsBT.Text = "Adapt thresholds";
+            this.AdaptThresholdsBT.UseVisualStyleBackColor = false;
+            this.AdaptThresholdsBT.Click += new System.EventHandler(this.AdaptThresholdsBT_Click);
             // 
             // PrimaryForm
             // 
@@ -351,6 +367,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.ClientSize = new System.Drawing.Size(1120, 508);
+            this.Controls.Add(this.AdaptThresholdsBT);
             this.Controls.Add(this.chart1);
             this.Controls.Add(this.SystolicMaxTB);
             this.Controls.Add(this.label4);
@@ -408,6 +425,7 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox SystolicMaxTB;
         private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
+        private System.Windows.Forms.Button AdaptThresholdsBT;
     }
 }
 

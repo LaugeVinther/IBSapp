@@ -16,7 +16,7 @@ namespace BusinessLogic
         private double[] voltageArray;
         private double[] pressureArray;
         private int counter = 0;
-        private double slope = 0;
+        public double Slope { get; private set; }
 
         public Calibrate()
         {
@@ -57,8 +57,8 @@ namespace BusinessLogic
                 sumx2 += Volt[i] * Volt[i];
             }
 
-            slope = ((sumxy - sumx * sumy / n) / (sumx2 - sumx * sumx / n));
-            return slope;
+            Slope = ((sumxy - sumx * sumy / n) / (sumx2 - sumx * sumx / n));
+            return Slope;
         }
 
     }

@@ -14,16 +14,17 @@ namespace BusinessLogic
     {
        //Define relations
         private DataCollection dataCollector;
-        private BlockingCollection<DTO_mV> dataQueue;
+        private readonly BlockingCollection<List<double>> _dataQueue;
         private ICalibrate _calibrate;
+        private List<double> rawDataList;
 
       private bool isRunning;
        
         
         public DataProcessing()
         {
-           //create relations 
-            dataCollector = new DataCollection(dataQueue);
+            //create relations 
+            dataCollector = new DataCollection(_dataQueue);
             _calibrate = new Calibrate();
         }
 
@@ -37,15 +38,30 @@ namespace BusinessLogic
             }
         }
 
-        public void GetVoltageData(int pressureValue)
+        public List<double> GetRawData ()
         {
-            List<double> dataPointList = new List<double>();
-            dataPointList = dataCollector.GetSomeDataPoints();
+            while (!_dataQueue.IsCompleted)
+            {
+                try
+                {
+                    rawDataList = _dataQueue.Take();
+                }
+                catch
+                {
+
+                }
+            }
+            return rawDataList;
+        }
+
+        public void GetVoltageData(int pressureValue) // sørger for at hente det rigtige punkt for knappen, der trykkes på GUI'en
+        {
+            List<double> dataPointList = dataCollector.GetSomeDataPoints();
        
             double sumOfDataPoints = 0;
             double averageOfDataPoints;
 
-            for (int i = 0; i < dataPointList.Count; i++)
+            for (int i = 0; i < dataPointList.Count; i++) // summen af alle datapunkterne i listen beregnes
             {
                 sumOfDataPoints += dataPointList[i];
             }
@@ -55,9 +71,9 @@ namespace BusinessLogic
             _calibrate.AddVoltage(averageOfDataPoints, pressureValue);
         }
 
-        public double GetCalibration()
+        public double GetCalibration() // UnitConverter henter hældningskoeffienten 
         {
-            return _calibrate.Calibration();
+             return _calibrate.Calibration();
         }
 
         public void GetZeroPointAdjustment()
