@@ -17,6 +17,8 @@ namespace BusinessLogic
         private double[] pressureArray;
         private int counter = 0;
         public double Slope { get; private set; }
+        public double[] Volt { get; private set; }
+        public double[] calibrateMmHg { get; private set; }
 
         public Calibrate()
         {
@@ -37,11 +39,11 @@ namespace BusinessLogic
             }
         }
 
-        public double Calibration()
+        public void Calibration()
         {
             // regression 
-            double[] Volt = new double[] { voltageArray[0], voltageArray[1], voltageArray[2] };
-            double[] calibrateMmHg = new double[] { pressureArray[0], pressureArray[1], pressureArray[2] };
+            Volt = new double[] { voltageArray[0], voltageArray[1], voltageArray[2] };
+            calibrateMmHg = new double[] { pressureArray[0], pressureArray[1], pressureArray[2] };
 
             //double hældningskoefficient_a;
             //hældningskoefficient_a = (100 - voltageArray[2]) / (10 - voltageArray[0]); // y2 - y1 / x2 - x1 
@@ -58,7 +60,7 @@ namespace BusinessLogic
             }
 
             Slope = ((sumxy - sumx * sumy / n) / (sumx2 - sumx * sumx / n));
-            return Slope;
+
         }
 
     }

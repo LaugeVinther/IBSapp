@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using DataLogic;
 using Interfaces;
 using DTOLogic;
+using System.Threading;
 
 namespace BusinessLogic
 {
@@ -17,6 +18,8 @@ namespace BusinessLogic
         private readonly BlockingCollection<List<double>> _dataQueue;
         private ICalibrate _calibrate;
         private List<double> rawDataList;
+        private UnitConverter _unitConverter;
+        Thread dataProcessingThread;
 
       private bool isRunning;
        
@@ -26,6 +29,8 @@ namespace BusinessLogic
             //create relations 
             dataCollector = new DataCollection(_dataQueue);
             _calibrate = new Calibrate();
+            _unitConverter = new UnitConverter();
+            dataProcessingThread = new Thread(Start);
         }
 
         public void Start()
@@ -71,9 +76,14 @@ namespace BusinessLogic
             _calibrate.AddVoltage(averageOfDataPoints, pressureValue);
         }
 
-        public double GetCalibration() // UnitConverter henter hældningskoeffienten 
+        public double GetSlope() // UnitConverter henter hældningskoeffienten 
         {
-             return _calibrate.Calibration();
+             return _calibrate.Slope;
+        }
+
+        public void GetCalibration ()
+        {
+            List<double> calibratedSampleList = _unitConverter.GetCalibratedSampleList();
         }
 
         public void GetZeroPointAdjustment()

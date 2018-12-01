@@ -18,16 +18,12 @@ namespace BusinessLogic
             dataProcessing = new DataProcessing();
         }
 
-        public void convertData()
+        public List<double> GetCalibratedSampleList()
         {
             foreach (var convertDataPoint in dataProcessing.GetRawData())
             {
-                calibratedSampleList.Add(convertDataPoint * dataProcessing.GetCalibration());
+                calibratedSampleList.Add(convertDataPoint * dataProcessing.GetSlope());
             }
-        }
-
-        public List<double> GetCalibratedSampleList()
-        {
             return calibratedSampleList;
         }
     }
