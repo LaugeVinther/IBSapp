@@ -17,30 +17,57 @@ namespace BusinessLogic
         private DataCollection dataCollector;
         private readonly BlockingCollection<List<double>> _dataQueue;
         private ICalibrate _calibrate;
-        private List<double> rawDataList;
         private UnitConverter _unitConverter;
         Thread dataProcessingThread;
+      private readonly BlockingCollection<List<double>> _dataQueueToProcessing;
 
+       private IDigitalFilter _digitalFilter;
+
+      //Define variables
       private bool isRunning;
-       
-        
-        public DataProcessing()
+       private List<double> rawDataList;
+       private List<double> processedDataList;
+       private bool filterSwitchedOn;
+
+
+
+      public DataProcessing(BlockingCollection<List<double>> dataQueue)
         {
             //create relations 
             dataCollector = new DataCollection(_dataQueue);
             _calibrate = new Calibrate();
             _unitConverter = new UnitConverter();
             dataProcessingThread = new Thread(Start);
+           _digitalFilter = new DigitalFilter();
+
+         //create variables
+           _dataQueueToProcessing = dataQueue;
+           processedDataList = new List<double>();
+           
+           //Ved ikke lige hvordan denne skal kommer herned fra præsentationslaget, men det finder vi lige ud af
+           filterSwitchedOn = true;
         }
 
         public void Start()
         {
-           //Er der nogle ting der skal nulstilles inden nedenfor? 
-           //Så vi ikke bare skriver oveni?
+           //Skal denne løkke være her? Skal alt være inde i denne? FHJ
             while (isRunning = true)
             {
-                
+               
             }
+
+           //Kør først unitconverteren
+           //gem resultatet i processedDataList
+           if (filterSwitchedOn==true)
+           {
+              processedDataList=_digitalFilter.FilterOn(processedDataList);
+           }
+           else
+           {
+              processedDataList=_digitalFilter.FilterOff(processedDataList);
+           }
+           _dataQueueToProcessing.Add(processedDataList);
+
         }
 
         public List<double> GetRawData ()

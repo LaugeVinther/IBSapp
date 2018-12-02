@@ -9,7 +9,9 @@ namespace Interfaces
 {
     public interface IDigitalFilter
     {
-        void FilterOn(List<double> calibratedSampleList);
-        void FilterOff(List<double> calibratedSampleList);
+        List<double> FilterOn(List<double> calibratedSampleList);
+        List<double> FilterOff(List<double> calibratedSampleList);
+
+       void DownSampling(List<double> calibratedSampleList);
     }
 }
