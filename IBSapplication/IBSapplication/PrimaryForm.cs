@@ -43,9 +43,20 @@ namespace PresentationLogic
             //Opdater graf-kode
         }
 
-        public void AlarmActivatedEventMethod(bool alarmActivated)
+        public async void AlarmActivatedEventMethod(bool alarmActivated)//Brugt async for at bruge await - på denne måde kan label blinke
         {
             //Alarm skal igangsættes med lyd og lys
+            //Afspil lyd
+            System.Media.SoundPlayer player = new System.Media.SoundPlayer(@"stinavn"); //korrekt stinavn skal indsættes
+            player.Play();
+
+            //igangsæt lys
+            while (true)
+            {
+                await Task.Delay(500);
+                SysDiaTB.ForeColor = SysDiaTB.ForeColor == Color.Red ? Color.Lime : Color.Red;
+            }
+
         }
 
        //Denne metode skal hele tiden opdatere tal og grafer
