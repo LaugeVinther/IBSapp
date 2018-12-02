@@ -19,7 +19,7 @@ namespace BusinessLogic
         private ICalibrate _calibrate;
         private UnitConverter _unitConverter;
         Thread dataProcessingThread;
-      private readonly BlockingCollection<List<double>> _dataQueueToProcessing;
+      private readonly BlockingCollection<List<double>> _dataQueueToCalculation;
 
        private IDigitalFilter _digitalFilter;
 
@@ -41,7 +41,7 @@ namespace BusinessLogic
            _digitalFilter = new DigitalFilter();
 
          //create variables
-           _dataQueueToProcessing = dataQueue;
+           _dataQueueToCalculation = dataQueue;
            processedDataList = new List<double>();
            
            //Ved ikke lige hvordan denne skal kommer herned fra præsentationslaget, men det finder vi lige ud af
@@ -66,7 +66,7 @@ namespace BusinessLogic
            {
               processedDataList=_digitalFilter.FilterOff(processedDataList);
            }
-           _dataQueueToProcessing.Add(processedDataList);
+           _dataQueueToCalculation.Add(processedDataList);
 
         }
 
@@ -118,6 +118,11 @@ namespace BusinessLogic
             List<double> zeroPointMeasurement = dataCollector.GetSomeDataPoints();
 
         }
+
+       public BlockingCollection<List<double>> GetDataQueueToCalculation()
+       {
+          return _dataQueueToCalculation;
+       }
 
    }
 }

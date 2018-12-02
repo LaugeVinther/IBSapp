@@ -45,14 +45,10 @@ namespace BusinessLogic
       public event Action<bool> AlarmActivatedEvent;
 
 
-      public DataCalculation(/*DataProcessing dataProcessing*/)
+      public DataCalculation(DataProcessing dataProcessing)
         {
-         //Sådan her stod der før:
-         //_dataProcessing = dataProcessing;
-         //Men for at jeg kan lave blockingCollection tror jeg at jeg er nødt til at lave det om. 
-
-         _dataProcessing = new DataProcessing(_dataQueue);
-           _pulse = new Pulse();
+         _dataProcessing = dataProcessing;
+        _pulse = new Pulse();
            _bloodPressure = new BloodPressure();
            _processedDataCollector = new ProcessedDataCollector();
            _databaseSaver = new DatabaseSaver();
@@ -68,7 +64,8 @@ namespace BusinessLogic
            CalculatedSystolicValue = 0;
            CalculatedDiastolicValue = 0;
            CalculatedAverageBPValue = 0;
-      }
+           _dataQueue = _dataProcessing.GetDataQueueToCalculation();
+        }
 
         public void doDataCalculation()
         {
