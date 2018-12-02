@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,7 +19,7 @@ namespace BusinessLogic
        private IProcessedDataCollector _processedDataCollector;
        private IDatabaseSaver _databaseSaver;
        private IBinFormatter _binFormatter;
-       private List<double> _processedDataList;
+       
         private List<bool> _alarmList;
 
 
@@ -36,15 +37,18 @@ namespace BusinessLogic
        public int DiastolicMinThreshold { get; set; }
        private int f_sample;
         private bool _alarmActivated;
-        
-        //create event
-        public event Action<bool> AlarmActivatedEvent;
+       private List<double> _processedDataList;
+       private List<double> _incomingDataList;
+       private readonly BlockingCollection<List<double>> _dataQueue;
+
+      //create event
+      public event Action<bool> AlarmActivatedEvent;
 
 
       public DataCalculation(DataProcessing dataProcessing)
         {
-            _dataProcessing = dataProcessing;
-           _pulse = new Pulse();
+         _dataProcessing = dataProcessing;
+        _pulse = new Pulse();
            _bloodPressure = new BloodPressure();
            _processedDataCollector = new ProcessedDataCollector();
            _databaseSaver = new DatabaseSaver();
@@ -60,12 +64,12 @@ namespace BusinessLogic
            CalculatedSystolicValue = 0;
            CalculatedDiastolicValue = 0;
            CalculatedAverageBPValue = 0;
-      }
+           _dataQueue = _dataProcessing.GetDataQueueToCalculation();
+        }
 
         public void doDataCalculation()
         {
-           //liste i næste linje er den liste som opsamles med blockingcollection
-           _processedDataList = _processedDataCollector.getProcessedDataList(liste);
+           _processedDataList = _processedDataCollector.getProcessedDataList(_incomingDataList);
 
            _pulse.CalculatePulse(_processedDataList.ToArray(), f_sample);
            CalculatedPulseValue = _pulse.Pulse;
@@ -86,12 +90,21 @@ namespace BusinessLogic
 
             NewDataAvailableEvent?.Invoke(_processedDataList);
         }
-
-
-            
-
-
-      }
+       public void GetProcessedData()
+       {
+          //Tænker om ikke det her skal op i i doDataCalculation og så skal alt ske inde i try?
+          while (!_dataQueue.IsCompleted)
+          {
+             try
+             {
+                _incomingDataList = _dataQueue.Take();
+             }
+             catch
+             {
+               //
+             }
+          }
+       }
        public void Safe(DTO_SaveData savedataDTO)
        {
           byte[] binArray = _binFormatter.ConvertToByteArray(_processedDataList);
@@ -104,6 +117,9 @@ namespace BusinessLogic
           _alarm.GetTresholds(SystolicMaxThreshold, SystolicMinThreshold, DiastolicMaxThreshold, DiastolicMinThreshold);
        }
 
+   }
+       
+
  
    }
-}
+

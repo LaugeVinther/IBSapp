@@ -8,6 +8,10 @@ namespace Interfaces
 {
     public interface ICalibrate
     {
+        double Slope { get; }
+        double[] Volt { get; }
+        double[] calibrateMmHg { get; }
         void AddVoltage(double oneDataPoint, int pressureValue);
+        void Calibration();
     }
 }

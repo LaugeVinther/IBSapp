@@ -116,10 +116,17 @@ namespace PresentationLogic
 
         private void StartStopBT_Click(object sender, EventArgs e)
         {
+            //når der trykkes på start-knappen skal den "aktivere" DataProcessing, som kan hente listen af Datapunkter fra DataCollection
+
+            _dataProcessing.Start();
+
             StartStopBT.BackColor = Color.Red;
             StartStopBT.Text = "STOP";
-
             
+            SystolicMaxTB.Enabled = true;
+            SystolicMinTB.Enabled = true;
+            DiastolicMaxTB.Enabled = true;
+            DiastolicMinTB.Enabled = true; 
         }
 
       private void SystolicMaxTB_TextChanged(object sender, EventArgs e)
@@ -206,12 +213,24 @@ namespace PresentationLogic
          }
       }
 
-        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        private void AdaptThresholdsBT_Click(object sender, EventArgs e)
+        {
+            if (ThresholdCheckpoint.Checked == true)
+            {
+                SystolicMaxTB.Enabled = false;
+                SystolicMinTB.Enabled = false;
+                DiastolicMaxTB.Enabled = false;
+                DiastolicMinTB.Enabled = false;
+            }     
+        }
+
+        private void ThresholdCheckpoint_CheckedChanged(object sender, EventArgs e)
         {
             SystolicMaxTB.Enabled = true;
             SystolicMinTB.Enabled = true;
             DiastolicMaxTB.Enabled = true;
             DiastolicMinTB.Enabled = true;
+            
         }
     }
 }

@@ -18,10 +18,10 @@ namespace BusinessLogic
        {
           smoothedSamples=new List<double>();
        }
-       public void FilterOn(List<double> calibratedSampleList) 
+       public List<double> FilterOn(List<double> calibratedSampleList) 
        {
          //Kør først downsampling 
-          Downsampling(calibratedSampleList);
+          DownSampling(calibratedSampleList);
 
          //Herefter lav midlingsfilter på de nedsamlede data
           int length = downSampledSamples.Count();
@@ -37,14 +37,17 @@ namespace BusinessLogic
 
              smoothedSamples.Add(sum / 5);
           }
-      }
 
-       public void FilterOff(List<double> calibratedSampleList) 
-       {
-          Downsampling(calibratedSampleList);
+          return smoothedSamples;
        }
 
-       public void Downsampling(List<double> calibratedSampleList)
+       public List<double> FilterOff(List<double> calibratedSampleList) 
+       {
+          DownSampling(calibratedSampleList);
+          return downSampledSamples;
+       }
+
+       public void DownSampling(List<double> calibratedSampleList)
        {
           int length = calibratedSampleList.Count();
           List<double> samples = calibratedSampleList;
