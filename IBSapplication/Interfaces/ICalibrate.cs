@@ -12,6 +12,6 @@ namespace Interfaces
         double[] Volt { get; }
         double[] calibrateMmHg { get; }
         void AddVoltage(double oneDataPoint, int pressureValue);
-        void Calibration();
+        double Calibration();
     }
 }

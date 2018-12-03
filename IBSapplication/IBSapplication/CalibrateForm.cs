@@ -63,6 +63,8 @@ namespace PresentationLogic
         {
             _dataProcessing.GetVoltageData(100);
             Measure100mmHgBT.Enabled = false;
+
+            CalibrateBT.Enabled = true;
         }
 
         private void CalibrateBT_Click(object sender, EventArgs e)
