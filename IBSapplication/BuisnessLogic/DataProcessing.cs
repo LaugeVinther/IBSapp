@@ -21,6 +21,7 @@ namespace BusinessLogic
         Thread dataProcessingThread;
         private readonly BlockingCollection<List<double>> _dataQueueToCalculation;
         private IDigitalFilter _digitalFilter;
+        private IZeroPointAdjustment _zeroPointAdjustment;
 
         //Define variables
         private bool isRunning;
@@ -109,6 +110,8 @@ namespace BusinessLogic
         public void GetZeroPointAdjustment()
         {
             List<double> zeroPointMeasurement = dataCollector.GetSomeDataPoints();
+
+            _zeroPointAdjustment.Adjust(zeroPointMeasurement);
 
         }
 
