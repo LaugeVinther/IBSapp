@@ -30,7 +30,7 @@ namespace BusinessLogic
         private bool filterSwitchedOn;
         private double slope;
 
-        public DataProcessing(BlockingCollection<List<double>> dataQueue)
+        public DataProcessing(/*BlockingCollection<List<double>> dataQueue*/)
         {
             //create relations 
             dataCollector = new DataCollection(_dataQueue);
@@ -40,7 +40,7 @@ namespace BusinessLogic
             _digitalFilter = new DigitalFilter();
 
             //create variables
-            _dataQueueToCalculation = dataQueue;
+           _dataQueueToCalculation = new BlockingCollection<List<double>>();
             processedDataList = new List<double>();
 
             //Ved ikke lige hvordan denne skal kommer herned fra præsentationslaget, men det finder vi lige ud af
