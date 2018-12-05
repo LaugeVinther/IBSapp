@@ -30,7 +30,7 @@ namespace BusinessLogic
         private bool filterSwitchedOn;
         private double slope;
 
-        public DataProcessing(/*BlockingCollection<List<double>> dataQueue*/)
+        public DataProcessing()
         {
             //create relations 
             dataCollector = new DataCollection(_dataQueue);
