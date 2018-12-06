@@ -37,7 +37,7 @@ namespace BusinessLogic
         public int DiastolicMinThreshold { get; set; }
         private int f_sample;
         private bool _alarmActivated;
-        private List<double> _processedDataList;
+        private List<double> _totalDataList;
         private List<double> _incomingDataList;
         private readonly BlockingCollection<List<double>> _dataQueue;
 
@@ -79,12 +79,12 @@ namespace BusinessLogic
                 {
                     //
                 }
-                _processedDataList = _processedDataCollector.getProcessedDataList(_incomingDataList);
+                _totalDataList = _processedDataCollector.getProcessedDataList(_incomingDataList);
 
-                _pulse.CalculatePulse(_processedDataList.ToArray(), f_sample);
+                _pulse.CalculatePulse(_totalDataList.ToArray(), f_sample);
                 CalculatedPulseValue = _pulse.Pulse;
 
-                _bloodPressure.CalculateBP(_processedDataList.ToArray(), f_sample, CalculatedPulseValue);
+                _bloodPressure.CalculateBP(_totalDataList.ToArray(), f_sample, CalculatedPulseValue);
                 CalculatedSystolicValue = _bloodPressure._dtoBloodpressure.Systolic;
                 CalculatedDiastolicValue = _bloodPressure._dtoBloodpressure.Diastolic;
                 CalculatedAverageBPValue = _bloodPressure._dtoBloodpressure.AverageBP;
@@ -98,7 +98,7 @@ namespace BusinessLogic
                 }
 
 
-                NewDataAvailableEvent?.Invoke(_processedDataList);
+                NewDataAvailableEvent?.Invoke(_totalDataList);
             }
 
         }
@@ -109,7 +109,7 @@ namespace BusinessLogic
         //}
         public void Safe(DTO_SaveData savedataDTO)
         {
-            byte[] binArray = _binFormatter.ConvertToByteArray(_processedDataList);
+            byte[] binArray = _binFormatter.ConvertToByteArray(_totalDataList);
 
             _databaseSaver.SaveToDatabase(savedataDTO, binArray);
 
