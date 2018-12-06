@@ -23,7 +23,7 @@ namespace PresentationLogic
         private DataCalculation _dataCalculation;
 
         
-        public PrimaryForm(BuisnessLogicIF buisnessLogic)
+        public PrimaryForm(/*BuisnessLogicIF buisnessLogic*/)
         {
             currentBuisnessLogic = buisnessLogic;
             _calibrateForm = new CalibrateForm(_dataProcessing);
@@ -210,6 +210,8 @@ namespace PresentationLogic
             if (diaMin > 0)
             {
                _dataProcessing.DiastolicMinThreshold = diaMin;
+                _dataProcessing.DiastolicMinThreshold
+                
             }
             else
             {
