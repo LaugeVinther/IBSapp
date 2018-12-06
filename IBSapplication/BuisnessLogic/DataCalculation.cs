@@ -13,115 +13,115 @@ namespace BusinessLogic
     public class DataCalculation
     {
         private DataProcessing _dataProcessing;
-       private IPulse _pulse;
-       private IBloodPressure _bloodPressure;
-       private IAlarm _alarm;
-       private IProcessedDataCollector _processedDataCollector;
-       private IDatabaseSaver _databaseSaver;
-       private IBinFormatter _binFormatter;
-       
+        private IPulse _pulse;
+        private IBloodPressure _bloodPressure;
+        private IAlarm _alarm;
+        private IProcessedDataCollector _processedDataCollector;
+        private IDatabaseSaver _databaseSaver;
+        private IBinFormatter _binFormatter;
+
         private List<bool> _alarmList;
 
 
         //Events
         public event Action<List<double>> NewDataAvailableEvent;
 
-      //Define variables
-      public int CalculatedPulseValue { get; private set; }
-       public int CalculatedSystolicValue { get; private set; }
-       public int CalculatedDiastolicValue { get; private set; }
-       public int CalculatedAverageBPValue { get; private set; }
-       public int SystolicMaxThreshold { get; set; }
-       public int SystolicMinThreshold { get; set; }
-       public int DiastolicMaxThreshold { get; set; }
-       public int DiastolicMinThreshold { get; set; }
-       private int f_sample;
+        //Define variables
+        public int CalculatedPulseValue { get; private set; }
+        public int CalculatedSystolicValue { get; private set; }
+        public int CalculatedDiastolicValue { get; private set; }
+        public int CalculatedAverageBPValue { get; private set; }
+        public int SystolicMaxThreshold { get; set; }
+        public int SystolicMinThreshold { get; set; }
+        public int DiastolicMaxThreshold { get; set; }
+        public int DiastolicMinThreshold { get; set; }
+        private int f_sample;
         private bool _alarmActivated;
-       private List<double> _processedDataList;
-       private List<double> _incomingDataList;
-       private readonly BlockingCollection<List<double>> _dataQueue;
+        private List<double> _processedDataList;
+        private List<double> _incomingDataList;
+        private readonly BlockingCollection<List<double>> _dataQueue;
 
-      //create event
-      public event Action<bool> AlarmActivatedEvent;
+        //create event
+        public event Action<bool> AlarmActivatedEvent;
 
 
-      public DataCalculation(DataProcessing dataProcessing)
+        public DataCalculation(DataProcessing dataProcessing)
         {
-         _dataProcessing = dataProcessing;
-        _pulse = new Pulse();
-           _bloodPressure = new BloodPressure();
-           _processedDataCollector = new ProcessedDataCollector();
-           _databaseSaver = new DatabaseSaver();
-           _binFormatter = new BinFormatter();
+            _dataProcessing = dataProcessing;
+            _pulse = new Pulse();
+            _bloodPressure = new BloodPressure();
+            _processedDataCollector = new ProcessedDataCollector();
+            _databaseSaver = new DatabaseSaver();
+            _binFormatter = new BinFormatter();
             _alarm = new Alarm();
             _alarmList = new List<bool>(2);
-            
-          
 
-         //create variables
-         f_sample = 1000;
-           CalculatedPulseValue = 0;
-           CalculatedSystolicValue = 0;
-           CalculatedDiastolicValue = 0;
-           CalculatedAverageBPValue = 0;
-           _dataQueue = _dataProcessing.GetDataQueueToCalculation();
+
+
+            //create variables
+            f_sample = 1000;
+            CalculatedPulseValue = 0;
+            CalculatedSystolicValue = 0;
+            CalculatedDiastolicValue = 0;
+            CalculatedAverageBPValue = 0;
+            _dataQueue = _dataProcessing.GetDataQueueToCalculation();
         }
 
         public void doDataCalculation()
         {
-           while (!_dataQueue.IsCompleted)
-           {
-              try
-              {
-                 _incomingDataList = _dataQueue.Take();
-              }
-              catch
-              {
-                 //
-              }
-              _processedDataList = _processedDataCollector.getProcessedDataList(_incomingDataList);
+            while (!_dataQueue.IsCompleted)
+            {
+                try
+                {
+                    _incomingDataList = _dataQueue.Take();
+                }
+                catch
+                {
+                    //
+                }
+                _processedDataList = _processedDataCollector.getProcessedDataList(_incomingDataList);
 
-              _pulse.CalculatePulse(_processedDataList.ToArray(), f_sample);
-              CalculatedPulseValue = _pulse.Pulse;
+                _pulse.CalculatePulse(_processedDataList.ToArray(), f_sample);
+                CalculatedPulseValue = _pulse.Pulse;
 
-              _bloodPressure.CalculateBP(_processedDataList.ToArray(), f_sample, CalculatedPulseValue);
-              CalculatedSystolicValue = _bloodPressure._dtoBloodpressure.Systolic;
-              CalculatedDiastolicValue = _bloodPressure._dtoBloodpressure.Diastolic;
-              CalculatedAverageBPValue = _bloodPressure._dtoBloodpressure.AverageBP;
-
-
-              _alarmActivated = _alarm.CheckAlarming(_bloodPressure._dtoBloodpressure);
-
-              if (_alarmActivated == true)
-              {
-                 AlarmActivatedEvent?.Invoke(_alarmActivated);
-              }
+                _bloodPressure.CalculateBP(_processedDataList.ToArray(), f_sample, CalculatedPulseValue);
+                CalculatedSystolicValue = _bloodPressure._dtoBloodpressure.Systolic;
+                CalculatedDiastolicValue = _bloodPressure._dtoBloodpressure.Diastolic;
+                CalculatedAverageBPValue = _bloodPressure._dtoBloodpressure.AverageBP;
 
 
-              NewDataAvailableEvent?.Invoke(_processedDataList);
-         }
+                _alarmActivated = _alarm.CheckAlarming(_bloodPressure._dtoBloodpressure);
+
+                if (_alarmActivated == true)
+                {
+                    AlarmActivatedEvent?.Invoke(_alarmActivated);
+                }
+
+
+                NewDataAvailableEvent?.Invoke(_processedDataList);
+            }
 
         }
-       //public void GetProcessedData()
-       //{
-       //   //Tænker om ikke det her skal op i i doDataCalculation og så skal alt ske inde i try?
-          
-       //}
-       public void Safe(DTO_SaveData savedataDTO)
-       {
-          byte[] binArray = _binFormatter.ConvertToByteArray(_processedDataList);
+        //public void GetProcessedData()
+        //{
+        //   //Tænker om ikke det her skal op i i doDataCalculation og så skal alt ske inde i try?
 
-          _databaseSaver.SaveToDatabase(savedataDTO, binArray);
+        //}
+        public void Safe(DTO_SaveData savedataDTO)
+        {
+            byte[] binArray = _binFormatter.ConvertToByteArray(_processedDataList);
 
-       }
-       public void SetThresholds()
-       {
-          _alarm.GetTresholds(SystolicMaxThreshold, SystolicMinThreshold, DiastolicMaxThreshold, DiastolicMinThreshold);
-       }
+            _databaseSaver.SaveToDatabase(savedataDTO, binArray);
 
-   }
-       
+        }
+        public void SetThresholds()
+        {
+            _alarm.GetTresholds(SystolicMaxThreshold, SystolicMinThreshold, DiastolicMaxThreshold, DiastolicMinThreshold);
+        }
 
- 
-   }
+    }
+
+
+
+}
 
