@@ -15,7 +15,7 @@ namespace PresentationLogic
 {
     public partial class PrimaryForm : Form
     {
-        private BuisnessLogicIF currentBuisnessLogic;
+        //private BuisnessLogicIF currentBuisnessLogic;
         private CalibrateForm _calibrateForm;
         private SaveDataForm _saveDataForm;
         private ZeroPointAdjustmentForm _zeroPointAdjustmentForm;
@@ -23,9 +23,9 @@ namespace PresentationLogic
         private DataCalculation _dataCalculation;
 
         
-        public PrimaryForm(BuisnessLogicIF buisnessLogic)
+        public PrimaryForm()//BuisnessLogicIF buisnessLogic)
         {
-            currentBuisnessLogic = buisnessLogic;
+            //currentBuisnessLogic = buisnessLogic;
             _dataProcessing = new DataProcessing();
             _dataCalculation = new DataCalculation(_dataProcessing);
 
@@ -37,7 +37,7 @@ namespace PresentationLogic
 
         }
 
-        public void NewDataAvailableEventMethod(List<double> list)
+        public void NewDataAvailableEventMethod(List<double> list, int Pulse, int sysBP, int diaBP, int avgBP)
         {
             if (InvokeRequired)
             {
@@ -47,7 +47,13 @@ namespace PresentationLogic
                     {
                         chart1.Series["Blood Pressure"].Points.AddY(number);
                     }
-                });
+
+                    PulseTB.Text = Pulse.ToString();
+                    SysDiaTB.Text = (sysBP + "/" + diaBP);
+                    AverageBP_TB.Text = avgBP.ToString();
+                }
+                    
+                    );
             }
         }
 
@@ -67,15 +73,7 @@ namespace PresentationLogic
 
         }
 
-       //Denne metode skal hele tiden opdatere tal og grafer
-       public void DoWork()
-       {
-          SysDiaTB.Text = (+_dataProcessing.CalculatedSystolicValue + "/" + _dataProcessing.CalculatedDiastolicValue);
-          AverageBP_TB.Text = _dataProcessing.CalculatedAverageBPValue.ToString();
-          PulseTB.Text = _dataProcessing.CalculatedPulseValue.ToString();
-       }
-
-        private void graphSetting() // OBS! tallene skal laves om efter standarden!
+           private void graphSetting() // OBS! tallene skal laves om efter standarden!
         {
             //Major grid 
             chart1.Series["Bloodpressure signal"].IsXValueIndexed = false;

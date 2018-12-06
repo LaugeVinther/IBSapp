@@ -24,7 +24,8 @@ namespace BusinessLogic
 
 
         //Events
-        public event Action<List<double>> NewDataAvailableEvent;
+        public event Action<List<double>, int, int, int, int> NewDataAvailableEvent;
+        public event Action<bool> AlarmActivatedEvent;
 
         //Define variables
         public int CalculatedPulseValue { get; private set; }
@@ -41,8 +42,8 @@ namespace BusinessLogic
         private List<double> _incomingDataList;
         private readonly BlockingCollection<List<double>> _dataQueue;
 
-        //create event
-        public event Action<bool> AlarmActivatedEvent;
+      
+       
 
 
         public DataCalculation(DataProcessing dataProcessing)
@@ -98,7 +99,7 @@ namespace BusinessLogic
                 }
 
 
-                NewDataAvailableEvent?.Invoke(_totalDataList);
+                NewDataAvailableEvent?.Invoke(_totalDataList, CalculatedPulseValue, CalculatedSystolicValue, CalculatedDiastolicValue, CalculatedAverageBPValue);
             }
 
         }
