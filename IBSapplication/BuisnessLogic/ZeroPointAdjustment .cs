@@ -11,6 +11,12 @@ namespace BusinessLogic
     class ZeroPointAdjustment : IZeroPointAdjustment
     {
         public double zeroPoint { get; set; }
+        public bool AbnormalValue { get; set; }
+
+        public ZeroPointAdjustment()
+        {
+            AbnormalValue = false;
+        }
 
         public void Adjust(List<double> zeroPointMeasurement)
         {
@@ -23,7 +29,16 @@ namespace BusinessLogic
 
             localZeroPoint = localZeroPoint / zeroPointMeasurement.Count;
 
-            zeroPoint = localZeroPoint;
+            if (localZeroPoint < 0.1)
+            {
+                zeroPoint = localZeroPoint;
+                AbnormalValue = false;
+            }
+            else
+            {
+                zeroPoint = 0;
+                AbnormalValue = true;
+            }
 
         }
     }

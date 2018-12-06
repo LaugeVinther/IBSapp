@@ -7,10 +7,8 @@ using DTOLogic;
 
 namespace Interfaces
 {
-    public interface IZeroPointAdjustment
+    public interface IUnitConverter
     {
-        double zeroPoint { get; }
-        bool AbnormalValue { get; }
-        void Adjust(List<double> zeroPointMeasurement);
+        List<double> GetCalibratedSampleList(List<double> List, double slope, double zeroPoint);
     }
 }

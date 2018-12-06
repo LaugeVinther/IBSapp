@@ -14,12 +14,9 @@ namespace BusinessLogic
     public class DataProcessing
     {
         //Define relations
-        private DataCollection dataCollector;
-        private readonly BlockingCollection<List<double>> _dataQueue;
+        private IDataCollection dataCollector;
         private ICalibrate _calibrate;
-        private UnitConverter _unitConverter;
-        Thread dataProcessingThread;
-        private readonly BlockingCollection<List<double>> _dataQueueToCalculation;
+        private IUnitConverter _unitConverter;
         private IDigitalFilter _digitalFilter;
         private IZeroPointAdjustment _zeroPointAdjustment;
 
@@ -27,10 +24,15 @@ namespace BusinessLogic
         private bool isRunning;
         private List<double> rawDataList;
         private List<double> processedDataList;
-        private bool filterSwitchedOn;
+        public bool filterSwitchedOn { get; set; }
         private double slope;
         private double[] volt;
         private double[] pressure;
+
+        //Tråde
+        private readonly BlockingCollection<List<double>> _dataQueue;
+        private readonly BlockingCollection<List<double>> _dataQueueToCalculation;
+        Thread dataProcessingThread;
 
         public DataProcessing()
         {
@@ -40,24 +42,17 @@ namespace BusinessLogic
             _unitConverter = new UnitConverter();
             dataProcessingThread = new Thread(Start);
             _digitalFilter = new DigitalFilter();
+            _zeroPointAdjustment = new ZeroPointAdjustment();
 
             //create variables
             _dataQueueToCalculation = new BlockingCollection<List<double>>();
             processedDataList = new List<double>();
 
-            //Ved ikke lige hvordan denne skal kommer herned fra præsentationslaget, men det finder vi lige ud af
-            filterSwitchedOn = true;
         }
 
         public void Start()
         {
             dataCollector.StartLoading();
-
-            //Skal denne løkke være her? Skal alt være inde i denne? FHJ
-            while (isRunning = true)
-            {
-
-            }
 
             while (!_dataQueue.IsCompleted)
             {
@@ -70,7 +65,7 @@ namespace BusinessLogic
 
                 }
                 //Kør unitconverteren
-                processedDataList = _unitConverter.GetCalibratedSampleList(rawDataList, slope);
+                processedDataList = _unitConverter.GetCalibratedSampleList(rawDataList, slope, _zeroPointAdjustment.zeroPoint);
                 // Digital filter
 
                 //gem resultatet i processedDataList
@@ -103,11 +98,13 @@ namespace BusinessLogic
             _calibrate.AddVoltage(averageOfDataPoints, pressureValue);
         }
 
-        public void GetZeroPointAdjustment()
+        public bool GetZeroPointAdjustment()
         {
             List<double> zeroPointMeasurement = dataCollector.GetSomeDataPoints();
 
             _zeroPointAdjustment.Adjust(zeroPointMeasurement);
+
+            return _zeroPointAdjustment.AbnormalValue;
 
         }
 

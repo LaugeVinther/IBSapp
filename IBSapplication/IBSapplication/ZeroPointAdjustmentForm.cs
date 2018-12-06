@@ -19,5 +19,15 @@ namespace PresentationLogic
             InitializeComponent();
             _dataProcessing = dataprocessing;
         }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void zeroPointAdjustmentBT_Click(object sender, EventArgs e)
+        {
+            
+        }
     }
 }

@@ -60,6 +60,7 @@
     <Compile Include="IDatabaseSaver.cs" />
     <Compile Include="IDataCollection.cs" />
     <Compile Include="IProcessedDataCollector.cs" />
+    <Compile Include="IUnitConverter.cs" />
     <Compile Include="IZeroPointAdjustment.cs" />
     <Compile Include="ICalibrate.cs" />
     <Compile Include="IDigitalFilter.cs" />

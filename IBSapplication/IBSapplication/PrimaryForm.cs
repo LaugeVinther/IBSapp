@@ -32,6 +32,7 @@ namespace PresentationLogic
             _dataCalculation.NewDataAvailableEvent += NewDataAvailableEventMethod;
 
             _dataCalculation.AlarmActivatedEvent += AlarmActivatedEventMethod;
+           _dataProcessing.filterSwitchedOn = true;
 
             InitializeComponent();
 
@@ -143,7 +144,7 @@ namespace PresentationLogic
              sysMax=Convert.ToInt32(SystolicMaxTB.Text);
             if (sysMax > 0)
             {
-               _dataProcessing.SystolicMaxThreshold = sysMax;
+               _dataCalculation.SystolicMaxThreshold = sysMax;
             }
             else
             {
@@ -164,7 +165,7 @@ namespace PresentationLogic
             sysMin = Convert.ToInt32(SystolicMinTB.Text);
             if (sysMin > 0)
             {
-               _dataProcessing.SystolicMinThreshold = sysMin;
+               _dataCalculation.SystolicMinThreshold = sysMin;
             }
             else
             {
@@ -185,7 +186,7 @@ namespace PresentationLogic
             diaMax = Convert.ToInt32(DiastolicMaxTB.Text);
             if (diaMax > 0)
             {
-               _dataProcessing.DiastolicMaxThreshold = diaMax;
+               _dataCalculation.DiastolicMaxThreshold = diaMax;
             }
             else
             {
@@ -206,7 +207,7 @@ namespace PresentationLogic
             diaMin = Convert.ToInt32(DiastolicMinTB.Text);
             if (diaMin > 0)
             {
-               _dataProcessing.DiastolicMinThreshold = diaMin;
+               _dataCalculation.DiastolicMinThreshold = diaMin;
             }
             else
             {
@@ -243,5 +244,24 @@ namespace PresentationLogic
         {
 
         }
-    }
+
+      private void FilterB_Click(object sender, EventArgs e)
+      {
+         if (FilterB.Text == "ON")
+         {
+            FilterB.BackColor = Color.Red; //symbolizes light turned on
+
+            FilterB.Text = "OFF";
+            _dataProcessing.filterSwitchedOn = false;
+         }
+
+         else if (FilterB.Text == "OFF")
+         {
+            FilterB.BackColor = Color.LawnGreen; //symbolizes light turned off
+
+            FilterB.Text = "ON";
+            _dataProcessing.filterSwitchedOn = true;
+         }
+      }
+   }
 }
