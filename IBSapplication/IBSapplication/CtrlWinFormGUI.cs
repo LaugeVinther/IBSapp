@@ -8,22 +8,22 @@ using Interfaces;
 
 namespace PresentationLogic
 {
-    public class CtrlWinFormGUI : PresentationLogicIF
+    public class CtrlWinFormGUI //: PresentationLogicIF
     {
-        private BuisnessLogicIF currentBuisnessLogic;
+        //private BuisnessLogicIF currentBuisnessLogic;
 
-        public CtrlWinFormGUI(BuisnessLogicIF buisnessLogic)
-        {
-            this.currentBuisnessLogic = buisnessLogic;
-        }
+        //public CtrlWinFormGUI(BuisnessLogicIF buisnessLogic)
+        //{
+        //    this.currentBuisnessLogic = buisnessLogic;
+        //}
 
-        [STAThread]  //Tilføjes 
-        public void startUpGUI()
-        {
-            Application.EnableVisualStyles(); //Tilføjes
-            Application.SetCompatibleTextRenderingDefault(false); //Tiføjes
-            Application.DoEvents();// Tilføjes
-            Application.Run(new PrimaryForm(currentBuisnessLogic)); //Tilføjes !!Dobbelt Dependency Injection!!
-        }
+        //[STAThread]  //Tilføjes 
+        //public void startUpGUI()
+        //{
+        //    Application.EnableVisualStyles(); //Tilføjes
+        //    Application.SetCompatibleTextRenderingDefault(false); //Tiføjes
+        //    Application.DoEvents();// Tilføjes
+        //    Application.Run(new PrimaryForm(currentBuisnessLogic)); //Tilføjes !!Dobbelt Dependency Injection!!
+        //}
     }
 }

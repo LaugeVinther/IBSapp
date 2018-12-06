@@ -28,6 +28,11 @@ namespace DataLogic
             dataLogicThread.Start();
         }
 
+       public void StopLoading()
+       {
+          dataLogicThread.Join();
+       }
+
         public void LoadData()
         {
             keepLoading = true;
