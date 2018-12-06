@@ -94,7 +94,7 @@ namespace BusinessLogic
                 _totalDataList = _processedDataCollector.getProcessedDataList(_incomingDataList);
 
                 _pulse.CalculatePulse(_totalDataList.ToArray(), f_sample);
-                CalculatedPulseValue = _pulse.Pulse;
+                CalculatedPulseValue = _pulse.pulse;
 
                 _bloodPressure.CalculateBP(_totalDataList.ToArray(), f_sample, CalculatedPulseValue);
                 CalculatedSystolicValue = _bloodPressure._dtoBloodpressure.Systolic;
