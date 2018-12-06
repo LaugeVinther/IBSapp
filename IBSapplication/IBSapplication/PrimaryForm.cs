@@ -129,7 +129,7 @@ namespace PresentationLogic
         {
             //når der trykkes på start-knappen skal den "aktivere" DataProcessing, som kan hente listen af Datapunkter fra DataCollection
 
-            _dataProcessing.Start();
+            _dataProcessing.StartDataProcessingThread();
 
             StartStopBT.BackColor = Color.Red;
             StartStopBT.Text = "STOP";
