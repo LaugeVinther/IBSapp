@@ -66,7 +66,7 @@ namespace PresentationLogic
         {
             //Alarm skal igangsættes med lyd og lys
             //Afspil lyd
-            System.Media.SoundPlayer player = new System.Media.SoundPlayer(@"stinavn"); //korrekt stinavn skal indsættes
+            System.Media.SoundPlayer player = new System.Media.SoundPlayer(@"alarm_high_priority_5overtoner"); //korrekt stinavn skal indsættes
             player.Play();
 
             //igangsæt lys
@@ -129,8 +129,9 @@ namespace PresentationLogic
         {
             //når der trykkes på start-knappen skal den "aktivere" DataProcessing, som kan hente listen af Datapunkter fra DataCollection
 
-            _dataProcessing.Start();
-
+            _dataProcessing.StartDataProcessingThread();
+            _dataCalculation.StartCalcThread();
+           
             StartStopBT.BackColor = Color.Red;
             StartStopBT.Text = "STOP";
             

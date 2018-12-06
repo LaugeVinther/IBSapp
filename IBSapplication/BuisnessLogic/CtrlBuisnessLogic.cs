@@ -7,13 +7,13 @@ using Interfaces;
 
 namespace BusinessLogic
 {
-     public class CtrlBuisnessLogic : BuisnessLogicIF
+     public class CtrlBuisnessLogic //BuisnessLogicIF
     {
-        private DataLogicIF currentDataLogic;
+        //private DataLogicIF currentDataLogic;
 
-        public CtrlBuisnessLogic (DataLogicIF dataLogic)
-        {
-            this.currentDataLogic = dataLogic;
-        }
+        //public CtrlBuisnessLogic (DataLogicIF dataLogic)
+        //{
+        //    this.currentDataLogic = dataLogic;
+        //}
     }
 }
