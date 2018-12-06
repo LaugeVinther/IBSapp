@@ -42,7 +42,7 @@ namespace BusinessLogic
             _digitalFilter = new DigitalFilter();
 
             //create variables
-           _dataQueueToCalculation = new BlockingCollection<List<double>>();
+            _dataQueueToCalculation = new BlockingCollection<List<double>>();
             processedDataList = new List<double>();
 
             //Ved ikke lige hvordan denne skal kommer herned fra præsentationslaget, men det finder vi lige ud af
@@ -57,27 +57,6 @@ namespace BusinessLogic
 
             }
 
-            //Hent rå data
-            GetRawData();
-            //Kør unitconverteren
-            processedDataList = _unitConverter.GetCalibratedSampleList(rawDataList, slope);
-            // Digital filter
-
-            //gem resultatet i processedDataList
-            if (filterSwitchedOn == true)
-            {
-                processedDataList = _digitalFilter.FilterOn(processedDataList);
-            }
-            else
-            {
-                processedDataList = _digitalFilter.FilterOff(processedDataList);
-            }
-            _dataQueueToCalculation.Add(processedDataList);
-
-        }
-
-        public void GetRawData() // consumer
-        {
             while (!_dataQueue.IsCompleted)
             {
                 try
@@ -88,8 +67,21 @@ namespace BusinessLogic
                 {
 
                 }
-            }
+                //Kør unitconverteren
+                processedDataList = _unitConverter.GetCalibratedSampleList(rawDataList, slope);
+                // Digital filter
 
+                //gem resultatet i processedDataList
+                if (filterSwitchedOn == true)
+                {
+                    processedDataList = _digitalFilter.FilterOn(processedDataList);
+                }
+                else
+                {
+                    processedDataList = _digitalFilter.FilterOff(processedDataList);
+                }
+                _dataQueueToCalculation.Add(processedDataList);
+            }
         }
 
         public void GetVoltageData(int pressureValue) // sørger for at hente det rigtige punkt for knappen, der trykkes på GUI'en
