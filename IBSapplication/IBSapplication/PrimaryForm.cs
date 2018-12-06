@@ -66,7 +66,7 @@ namespace PresentationLogic
         {
             //Alarm skal igangsættes med lyd og lys
             //Afspil lyd
-            System.Media.SoundPlayer player = new System.Media.SoundPlayer(@"stinavn"); //korrekt stinavn skal indsættes
+            System.Media.SoundPlayer player = new System.Media.SoundPlayer(@"alarm_high_priority_5overtoner"); //korrekt stinavn skal indsættes
             player.Play();
 
             //igangsæt lys
