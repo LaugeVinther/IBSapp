@@ -15,7 +15,7 @@ namespace PresentationLogic
 {
     public partial class PrimaryForm : Form
     {
-        private BuisnessLogicIF currentBuisnessLogic;
+        //private BuisnessLogicIF currentBuisnessLogic;
         private CalibrateForm _calibrateForm;
         private SaveDataForm _saveDataForm;
         private ZeroPointAdjustmentForm _zeroPointAdjustmentForm;
@@ -25,20 +25,24 @@ namespace PresentationLogic
         
         public PrimaryForm(/*BuisnessLogicIF buisnessLogic*/)
         {
-            currentBuisnessLogic = buisnessLogic;
-            _calibrateForm = new CalibrateForm(_dataProcessing);
-             _dataProcessing = new DataProcessing();
+            //currentBuisnessLogic = buisnessLogic;
+            graphSetting();
+            _dataProcessing = new DataProcessing();
             _dataCalculation = new DataCalculation(_dataProcessing);
+            _dataProcessing.filterSwitchedOn = true;
+            
 
             _dataCalculation.NewDataAvailableEvent += NewDataAvailableEventMethod;
 
             _dataCalculation.AlarmActivatedEvent += AlarmActivatedEventMethod;
+          
+
 
             InitializeComponent();
 
         }
 
-        public void NewDataAvailableEventMethod(List<double> list)
+        public void NewDataAvailableEventMethod(List<double> list, int Pulse, int sysBP, int diaBP, int avgBP)
         {
             if (InvokeRequired)
             {
@@ -48,7 +52,13 @@ namespace PresentationLogic
                     {
                         chart1.Series["Blood Pressure"].Points.AddY(number);
                     }
-                });
+
+                    PulseTB.Text = Pulse.ToString();
+                    SysDiaTB.Text = (sysBP + "/" + diaBP);
+                    AverageBP_TB.Text = avgBP.ToString();
+                }
+                    
+                    );
             }
         }
 
@@ -68,18 +78,10 @@ namespace PresentationLogic
 
         }
 
-       //Denne metode skal hele tiden opdatere tal og grafer
-       public void DoWork()
-       {
-          SysDiaTB.Text = (+_dataProcessing.CalculatedSystolicValue + "/" + _dataProcessing.CalculatedDiastolicValue);
-          AverageBP_TB.Text = _dataProcessing.CalculatedAverageBPValue.ToString();
-          PulseTB.Text = _dataProcessing.CalculatedPulseValue.ToString();
-       }
-
-        private void graphSetting() // OBS! tallene skal laves om efter standarden!
+           private void graphSetting() // OBS! tallene skal laves om efter standarden!
         {
             //Major grid 
-            chart1.Series["Bloodpressure signal"].IsXValueIndexed = false;
+            chart1.Series["Blood Pressure"].IsXValueIndexed = false;
             chart1.ChartAreas["ChartArea1"].AxisX.Minimum = 0;
             chart1.ChartAreas["ChartArea1"].AxisX.Maximum = 60; 
             chart1.ChartAreas["ChartArea1"].AxisX.Interval = 10;
@@ -113,13 +115,13 @@ namespace PresentationLogic
 
         private void SaveBT_Click(object sender, EventArgs e)
         {
-            _saveDataForm = new SaveDataForm(_dataProcessing);
+            _saveDataForm = new SaveDataForm(_dataCalculation);
             _saveDataForm.ShowDialog();
         }
 
         private void ZeroPointAdjustmentBT_Click(object sender, EventArgs e)
         {
-            _zeroPointAdjustmentForm = new ZeroPointAdjustmentForm();
+            _zeroPointAdjustmentForm = new ZeroPointAdjustmentForm(_dataProcessing);
             _zeroPointAdjustmentForm.ShowDialog();
         }
 
@@ -146,7 +148,7 @@ namespace PresentationLogic
              sysMax=Convert.ToInt32(SystolicMaxTB.Text);
             if (sysMax > 0)
             {
-               _dataProcessing.SystolicMaxThreshold = sysMax;
+               _dataCalculation.SystolicMaxThreshold = sysMax;
             }
             else
             {
@@ -167,7 +169,7 @@ namespace PresentationLogic
             sysMin = Convert.ToInt32(SystolicMinTB.Text);
             if (sysMin > 0)
             {
-               _dataProcessing.SystolicMinThreshold = sysMin;
+               _dataCalculation.SystolicMinThreshold = sysMin;
             }
             else
             {
@@ -188,7 +190,7 @@ namespace PresentationLogic
             diaMax = Convert.ToInt32(DiastolicMaxTB.Text);
             if (diaMax > 0)
             {
-               _dataProcessing.DiastolicMaxThreshold = diaMax;
+               _dataCalculation.DiastolicMaxThreshold = diaMax;
             }
             else
             {
@@ -209,9 +211,7 @@ namespace PresentationLogic
             diaMin = Convert.ToInt32(DiastolicMinTB.Text);
             if (diaMin > 0)
             {
-               _dataProcessing.DiastolicMinThreshold = diaMin;
-                _dataProcessing.DiastolicMinThreshold
-                
+               _dataCalculation.DiastolicMinThreshold = diaMin;
             }
             else
             {
@@ -248,5 +248,24 @@ namespace PresentationLogic
         {
 
         }
-    }
+
+      private void FilterB_Click(object sender, EventArgs e)
+      {
+         if (FilterB.Text == "ON")
+         {
+            FilterB.BackColor = Color.Red; //symbolizes light turned on
+
+            FilterB.Text = "OFF";
+            _dataProcessing.filterSwitchedOn = false;
+         }
+
+         else if (FilterB.Text == "OFF")
+         {
+            FilterB.BackColor = Color.LawnGreen; //symbolizes light turned off
+
+            FilterB.Text = "ON";
+            _dataProcessing.filterSwitchedOn = true;
+         }
+      }
+   }
 }

@@ -14,13 +14,13 @@ namespace PresentationLogic
     public partial class SaveDataForm : Form
     {
         private DTO_SaveData myDTOsaveData;
-        private DataProcessing _dataProcessing;
+        private DataCalculation _dataCalculation;
 
-        public SaveDataForm(DataProcessing dataProcessing)
+        public SaveDataForm(DataCalculation dataCalculation)
         {
             InitializeComponent();
             myDTOsaveData = new DTO_SaveData();
-            _dataProcessing = dataProcessing;
+            _dataCalculation = dataCalculation;
 
         }
 
@@ -38,7 +38,7 @@ namespace PresentationLogic
                 myDTOsaveData.staffID = staffIDTB.Text;
                 myDTOsaveData.date = DateTime.Now;
 
-                _dataProcessing.Safe(myDTOsaveData);
+                _dataCalculation.Safe(myDTOsaveData);
 
                 DialogResult result = MessageBox.Show("Your data has been saved", "Success", MessageBoxButtons.OK, MessageBoxIcon.None);
                 if (result == DialogResult.OK)

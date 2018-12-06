@@ -8,7 +8,7 @@ using Interfaces;
 
 namespace BusinessLogic
 {
-    public class UnitConverter
+    public class UnitConverter : IUnitConverter
     {
         private List<double> calibratedSampleList = new List<double>();
 
