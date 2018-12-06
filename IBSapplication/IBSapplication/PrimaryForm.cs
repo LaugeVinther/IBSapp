@@ -232,5 +232,10 @@ namespace PresentationLogic
             DiastolicMinTB.Enabled = true;
             
         }
+
+        private void chart1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
