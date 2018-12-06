@@ -40,7 +40,16 @@ namespace PresentationLogic
 
         public void NewDataAvailableEventMethod(List<double> list)
         {
-            //Opdater graf-kode
+            if (InvokeRequired)
+            {
+                BeginInvoke((Action) delegate
+                {
+                    foreach (var number in list)
+                    {
+                        chart1.Series["Blood Pressure"].Points.AddY(number);
+                    }
+                });
+            }
         }
 
         public async void AlarmActivatedEventMethod(bool alarmActivated)//Brugt async for at bruge await - på denne måde kan label blinke
@@ -54,7 +63,7 @@ namespace PresentationLogic
             while (true)
             {
                 await Task.Delay(500);
-                SysDiaTB.ForeColor = SysDiaTB.ForeColor == Color.Red ? Color.Lime : Color.Red;
+                SysDiaTB.ForeColor = SysDiaTB.ForeColor == Color.Red ? Color.Lime : Color.Red; 
             }
 
         }
