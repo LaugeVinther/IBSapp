@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.trackBar1 = new System.Windows.Forms.TrackBar();
             this.label9 = new System.Windows.Forms.Label();
             this.DiastolicMinTB = new System.Windows.Forms.TextBox();
@@ -320,33 +320,34 @@
             // chart1
             // 
             this.chart1.BackColor = System.Drawing.Color.Black;
-            chartArea3.AxisX.Title = "Time (ms)";
-            chartArea3.AxisX.TitleForeColor = System.Drawing.Color.Lime;
-            chartArea3.AxisY.Title = "Pressure (mmHg)";
-            chartArea3.AxisY.TitleForeColor = System.Drawing.Color.Lime;
-            chartArea3.BackColor = System.Drawing.Color.Black;
-            chartArea3.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea3);
-            legend3.Enabled = false;
-            legend3.Name = "Legend1";
-            this.chart1.Legends.Add(legend3);
+            chartArea1.AxisX.Title = "Time (ms)";
+            chartArea1.AxisX.TitleForeColor = System.Drawing.Color.Lime;
+            chartArea1.AxisY.Title = "Pressure (mmHg)";
+            chartArea1.AxisY.TitleForeColor = System.Drawing.Color.Lime;
+            chartArea1.BackColor = System.Drawing.Color.Black;
+            chartArea1.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea1);
+            legend1.Enabled = false;
+            legend1.Name = "Legend1";
+            this.chart1.Legends.Add(legend1);
             this.chart1.Location = new System.Drawing.Point(11, 10);
             this.chart1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.chart1.Name = "chart1";
-            series3.BorderColor = System.Drawing.Color.Black;
-            series3.BorderWidth = 3;
-            series3.ChartArea = "ChartArea1";
-            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series3.Color = System.Drawing.Color.Lime;
-            series3.LabelBackColor = System.Drawing.Color.Black;
-            series3.LabelBorderColor = System.Drawing.Color.Black;
-            series3.LabelForeColor = System.Drawing.Color.Lime;
-            series3.Legend = "Legend1";
-            series3.Name = "Blood Pressure";
-            this.chart1.Series.Add(series3);
+            series1.BorderColor = System.Drawing.Color.Black;
+            series1.BorderWidth = 3;
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series1.Color = System.Drawing.Color.Lime;
+            series1.LabelBackColor = System.Drawing.Color.Black;
+            series1.LabelBorderColor = System.Drawing.Color.Black;
+            series1.LabelForeColor = System.Drawing.Color.Lime;
+            series1.Legend = "Legend1";
+            series1.Name = "Blood Pressure";
+            this.chart1.Series.Add(series1);
             this.chart1.Size = new System.Drawing.Size(803, 299);
             this.chart1.TabIndex = 46;
             this.chart1.Text = "Blood pressure";
+            this.chart1.Click += new System.EventHandler(this.chart1_Click);
             // 
             // AdaptThresholdsBT
             // 
