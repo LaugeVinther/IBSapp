@@ -26,13 +26,17 @@ namespace PresentationLogic
         public PrimaryForm()//BuisnessLogicIF buisnessLogic)
         {
             //currentBuisnessLogic = buisnessLogic;
+            graphSetting();
             _dataProcessing = new DataProcessing();
             _dataCalculation = new DataCalculation(_dataProcessing);
+            _dataProcessing.filterSwitchedOn = true;
+            
 
             _dataCalculation.NewDataAvailableEvent += NewDataAvailableEventMethod;
 
             _dataCalculation.AlarmActivatedEvent += AlarmActivatedEventMethod;
-           _dataProcessing.filterSwitchedOn = true;
+          
+
 
             InitializeComponent();
 
@@ -77,7 +81,7 @@ namespace PresentationLogic
            private void graphSetting() // OBS! tallene skal laves om efter standarden!
         {
             //Major grid 
-            chart1.Series["Bloodpressure signal"].IsXValueIndexed = false;
+            chart1.Series["Blood Pressure"].IsXValueIndexed = false;
             chart1.ChartAreas["ChartArea1"].AxisX.Minimum = 0;
             chart1.ChartAreas["ChartArea1"].AxisX.Maximum = 60; 
             chart1.ChartAreas["ChartArea1"].AxisX.Interval = 10;
