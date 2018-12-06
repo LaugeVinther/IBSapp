@@ -40,42 +40,24 @@ namespace BusinessLogic
             _unitConverter = new UnitConverter();
             dataProcessingThread = new Thread(Start);
             _digitalFilter = new DigitalFilter();
+            _zeroPointAdjustment = new ZeroPointAdjustment();
 
             //create variables
-           _dataQueueToCalculation = new BlockingCollection<List<double>>();
+            _dataQueueToCalculation = new BlockingCollection<List<double>>();
             processedDataList = new List<double>();
 
         }
 
         public void Start()
         {
+            dataCollector.StartLoading();
+
             //Skal denne løkke være her? Skal alt være inde i denne? FHJ
             while (isRunning = true)
             {
 
             }
 
-            //Hent rå data
-            GetRawData();
-            //Kør unitconverteren
-            processedDataList = _unitConverter.GetCalibratedSampleList(rawDataList, slope);
-            // Digital filter
-
-            //gem resultatet i processedDataList
-            if (filterSwitchedOn == true)
-            {
-                processedDataList = _digitalFilter.FilterOn(processedDataList);
-            }
-            else
-            {
-                processedDataList = _digitalFilter.FilterOff(processedDataList);
-            }
-            _dataQueueToCalculation.Add(processedDataList);
-
-        }
-
-        public void GetRawData() // consumer
-        {
             while (!_dataQueue.IsCompleted)
             {
                 try
@@ -86,8 +68,21 @@ namespace BusinessLogic
                 {
 
                 }
-            }
+                //Kør unitconverteren
+                processedDataList = _unitConverter.GetCalibratedSampleList(rawDataList, slope, _zeroPointAdjustment.zeroPoint);
+                // Digital filter
 
+                //gem resultatet i processedDataList
+                if (filterSwitchedOn == true)
+                {
+                    processedDataList = _digitalFilter.FilterOn(processedDataList);
+                }
+                else
+                {
+                    processedDataList = _digitalFilter.FilterOff(processedDataList);
+                }
+                _dataQueueToCalculation.Add(processedDataList);
+            }
         }
 
         public void GetVoltageData(int pressureValue) // sørger for at hente det rigtige punkt for knappen, der trykkes på GUI'en

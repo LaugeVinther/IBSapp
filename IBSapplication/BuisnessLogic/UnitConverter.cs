@@ -16,11 +16,12 @@ namespace BusinessLogic
         {
         }
 
-        public List<double> GetCalibratedSampleList(List<double> rawDataList, double slope)
+        public List<double> GetCalibratedSampleList(List<double> rawDataList, double slope, double zeroPoint)
         {
             foreach (var convertDataPoint in rawDataList)
             {
-                calibratedSampleList.Add(convertDataPoint * slope);
+                calibratedSampleList.Add((convertDataPoint * slope)-zeroPoint);
+                
             }
             return calibratedSampleList;
         }
