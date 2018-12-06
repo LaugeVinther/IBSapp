@@ -24,7 +24,7 @@ namespace BusinessLogic
         private bool isRunning;
         private List<double> rawDataList;
         private List<double> processedDataList;
-        public bool filterSwitchedOn { get; set; }
+        private bool filterSwitchedOn;
         private double slope;
         private double[] volt;
         private double[] pressure;
@@ -48,11 +48,19 @@ namespace BusinessLogic
             _dataQueueToCalculation = new BlockingCollection<List<double>>();
             processedDataList = new List<double>();
 
+            //Ved ikke lige hvordan denne skal kommer herned fra præsentationslaget, men det finder vi lige ud af
+            filterSwitchedOn = true;
         }
 
         public void Start()
         {
             dataCollector.StartLoading();
+
+            //Skal denne løkke være her? Skal alt være inde i denne? FHJ
+            while (isRunning = true)
+            {
+
+            }
 
             while (!_dataQueue.IsCompleted)
             {
@@ -98,13 +106,11 @@ namespace BusinessLogic
             _calibrate.AddVoltage(averageOfDataPoints, pressureValue);
         }
 
-        public bool GetZeroPointAdjustment()
+        public void GetZeroPointAdjustment()
         {
             List<double> zeroPointMeasurement = dataCollector.GetSomeDataPoints();
 
             _zeroPointAdjustment.Adjust(zeroPointMeasurement);
-
-            return _zeroPointAdjustment.AbnormalValue;
 
         }
 
