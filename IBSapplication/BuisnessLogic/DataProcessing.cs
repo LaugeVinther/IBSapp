@@ -121,6 +121,12 @@ namespace BusinessLogic
         {
             dataProcessingThread.Start();
         }
+
+       public void JoinThreads()
+       {
+          dataCollector.StopLoading();
+          dataProcessingThread.Join();
+       }
     }
 }
 
