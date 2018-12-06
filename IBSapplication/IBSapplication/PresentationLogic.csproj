@@ -111,6 +111,9 @@
     <EmbeddedResource Include="SaveDataForm.resx">
       <DependentUpon>SaveDataForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ZeroPointAdjustmentForm.resx">
+      <DependentUpon>ZeroPointAdjustmentForm.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

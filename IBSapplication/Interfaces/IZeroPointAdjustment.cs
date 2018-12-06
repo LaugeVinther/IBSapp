@@ -10,6 +10,7 @@ namespace Interfaces
     public interface IZeroPointAdjustment
     {
         double zeroPoint { get; }
+        bool AbnormalValue { get; }
         void Adjust(List<double> zeroPointMeasurement);
     }
 }

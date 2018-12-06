@@ -15,7 +15,7 @@ namespace PresentationLogic
 {
     public partial class PrimaryForm : Form
     {
-        private BuisnessLogicIF currentBuisnessLogic;
+        //private BuisnessLogicIF currentBuisnessLogic;
         private CalibrateForm _calibrateForm;
         private SaveDataForm _saveDataForm;
         private ZeroPointAdjustmentForm _zeroPointAdjustmentForm;
@@ -23,23 +23,26 @@ namespace PresentationLogic
         private DataCalculation _dataCalculation;
 
         
-        public PrimaryForm(BuisnessLogicIF buisnessLogic)
+        public PrimaryForm()//BuisnessLogicIF buisnessLogic)
         {
-            currentBuisnessLogic = buisnessLogic;
-            _calibrateForm = new CalibrateForm(_dataProcessing);
-             _dataProcessing = new DataProcessing();
+            //currentBuisnessLogic = buisnessLogic;
+            graphSetting();
+            _dataProcessing = new DataProcessing();
             _dataCalculation = new DataCalculation(_dataProcessing);
+            _dataProcessing.filterSwitchedOn = true;
+            
 
             _dataCalculation.NewDataAvailableEvent += NewDataAvailableEventMethod;
 
             _dataCalculation.AlarmActivatedEvent += AlarmActivatedEventMethod;
-           _dataProcessing.filterSwitchedOn = true;
+          
+
 
             InitializeComponent();
 
         }
 
-        public void NewDataAvailableEventMethod(List<double> list)
+        public void NewDataAvailableEventMethod(List<double> list, int Pulse, int sysBP, int diaBP, int avgBP)
         {
             if (InvokeRequired)
             {
@@ -49,7 +52,13 @@ namespace PresentationLogic
                     {
                         chart1.Series["Blood Pressure"].Points.AddY(number);
                     }
-                });
+
+                    PulseTB.Text = Pulse.ToString();
+                    SysDiaTB.Text = (sysBP + "/" + diaBP);
+                    AverageBP_TB.Text = avgBP.ToString();
+                }
+                    
+                    );
             }
         }
 
@@ -69,18 +78,10 @@ namespace PresentationLogic
 
         }
 
-       //Denne metode skal hele tiden opdatere tal og grafer
-       public void DoWork()
-       {
-          SysDiaTB.Text = (+_dataCalculation.CalculatedSystolicValue + "/" + _dataCalculation.CalculatedDiastolicValue);
-          AverageBP_TB.Text = _dataCalculation.CalculatedAverageBPValue.ToString();
-          PulseTB.Text = _dataCalculation.CalculatedPulseValue.ToString();
-       }
-
-        private void graphSetting() // OBS! tallene skal laves om efter standarden!
+           private void graphSetting() // OBS! tallene skal laves om efter standarden!
         {
             //Major grid 
-            chart1.Series["Bloodpressure signal"].IsXValueIndexed = false;
+            chart1.Series["Blood Pressure"].IsXValueIndexed = false;
             chart1.ChartAreas["ChartArea1"].AxisX.Minimum = 0;
             chart1.ChartAreas["ChartArea1"].AxisX.Maximum = 60; 
             chart1.ChartAreas["ChartArea1"].AxisX.Interval = 10;
@@ -114,13 +115,13 @@ namespace PresentationLogic
 
         private void SaveBT_Click(object sender, EventArgs e)
         {
-            _saveDataForm = new SaveDataForm(_dataProcessing);
+            _saveDataForm = new SaveDataForm(_dataCalculation);
             _saveDataForm.ShowDialog();
         }
 
         private void ZeroPointAdjustmentBT_Click(object sender, EventArgs e)
         {
-            _zeroPointAdjustmentForm = new ZeroPointAdjustmentForm();
+            _zeroPointAdjustmentForm = new ZeroPointAdjustmentForm(_dataProcessing);
             _zeroPointAdjustmentForm.ShowDialog();
         }
 
