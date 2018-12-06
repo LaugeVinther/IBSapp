@@ -15,9 +15,9 @@ namespace MainApplication
         //private BusinessLogic.CtrlBuisnessLogic currentBL;
         //private DataLogic.CtrlDataLogic currentDL;
 
-        //static void Main(string[] args)
-        //{
-        //}
+        static void Main(string[] args)
+        {
+        }
 
         //public Program()
         //{

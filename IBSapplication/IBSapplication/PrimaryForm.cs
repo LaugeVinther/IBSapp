@@ -25,6 +25,7 @@ namespace PresentationLogic
         
         public PrimaryForm(/*BuisnessLogicIF buisnessLogic*/)
         {
+
             //currentBuisnessLogic = buisnessLogic;
             graphSetting();
             _dataProcessing = new DataProcessing();
