@@ -33,7 +33,7 @@ namespace UnitTest
             sinus[t] = 5 * Math.Sin(2 * Math.PI * (t * ((1 * frequency) / (1.0 * f_sample))));
 
          uut.CalculatePulse(sinus,f_sample);
-         Assert.That(uut._dtoPulse.Pulse, Is.EqualTo(60));
+         Assert.That(uut.pulse, Is.EqualTo(60));
       }
 
       [Test]
@@ -51,7 +51,7 @@ namespace UnitTest
             sinus[t] = 5 * Math.Sin(2 * Math.PI * (t * ((1 * frequency) / (1.0 * f_sample))));
 
          uut.CalculatePulse(sinus, f_sample);
-         Assert.That(uut._dtoPulse.Pulse, Is.EqualTo(120));
+         Assert.That(uut.pulse, Is.EqualTo(120));
       }
 
       [Test]
@@ -71,7 +71,7 @@ namespace UnitTest
          //Slut fra Lars
 
          uut.CalculatePulse(sinus, f_sample);
-         Assert.That(uut._dtoPulse.Pulse, Is.EqualTo(240));
+         Assert.That(uut.pulse, Is.EqualTo(240));
       }
 
       [Test]
@@ -87,7 +87,7 @@ namespace UnitTest
             sinus[t] = 5 * Math.Sin(2 * Math.PI * (t * ((1 * frequency) / (1.0 * f_sample))));
 
          uut.CalculatePulse(sinus, f_sample);
-         Assert.That(uut._dtoPulse.Pulse, Is.EqualTo(60));
+         Assert.That(uut.pulse, Is.EqualTo(60));
       }
    }
 }
