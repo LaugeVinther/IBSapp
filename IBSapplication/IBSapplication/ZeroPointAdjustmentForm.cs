@@ -20,14 +20,28 @@ namespace PresentationLogic
             _dataProcessing = dataprocessing;
         }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void zeroPointAdjustmentBT_Click(object sender, EventArgs e)
         {
-            
+            bool done = false;
+
+            while (done == false)
+            {
+                bool abnormalValue = _dataProcessing.GetZeroPointAdjustment();
+
+                if (abnormalValue == false)
+                {
+                    done = true;
+                    MessageBox.Show("System has been zeropoint adjusted");
+                }
+
+                if (abnormalValue == true)
+                {
+                    MessageBox.Show(
+                        "Error due to abnormal value.\n Check if the transducer is positioned correctly and try again.");
+                }
+            }
+            this.Close();
         }
     }
 }
