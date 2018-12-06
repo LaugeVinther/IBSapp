@@ -26,8 +26,7 @@ namespace PresentationLogic
         public PrimaryForm(BuisnessLogicIF buisnessLogic)
         {
             currentBuisnessLogic = buisnessLogic;
-            _calibrateForm = new CalibrateForm(_dataProcessing);
-             _dataProcessing = new DataProcessing();
+            _dataProcessing = new DataProcessing();
             _dataCalculation = new DataCalculation(_dataProcessing);
 
             _dataCalculation.NewDataAvailableEvent += NewDataAvailableEventMethod;
@@ -113,13 +112,13 @@ namespace PresentationLogic
 
         private void SaveBT_Click(object sender, EventArgs e)
         {
-            _saveDataForm = new SaveDataForm(_dataProcessing);
+            _saveDataForm = new SaveDataForm(_dataCalculation);
             _saveDataForm.ShowDialog();
         }
 
         private void ZeroPointAdjustmentBT_Click(object sender, EventArgs e)
         {
-            _zeroPointAdjustmentForm = new ZeroPointAdjustmentForm();
+            _zeroPointAdjustmentForm = new ZeroPointAdjustmentForm(_dataProcessing);
             _zeroPointAdjustmentForm.ShowDialog();
         }
 

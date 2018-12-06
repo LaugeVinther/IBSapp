@@ -7,14 +7,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using BusinessLogic;
 
 namespace PresentationLogic
 {
     public partial class ZeroPointAdjustmentForm : Form
     {
-        public ZeroPointAdjustmentForm()
+        private DataProcessing _dataProcessing;
+        public ZeroPointAdjustmentForm(DataProcessing dataprocessing)
         {
             InitializeComponent();
+            _dataProcessing = dataprocessing;
         }
     }
 }
