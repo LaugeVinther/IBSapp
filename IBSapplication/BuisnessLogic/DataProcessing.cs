@@ -104,11 +104,13 @@ namespace BusinessLogic
             _calibrate.AddVoltage(averageOfDataPoints, pressureValue);
         }
 
-        public void GetZeroPointAdjustment()
+        public bool GetZeroPointAdjustment()
         {
             List<double> zeroPointMeasurement = dataCollector.GetSomeDataPoints();
 
             _zeroPointAdjustment.Adjust(zeroPointMeasurement);
+
+            return _zeroPointAdjustment.AbnormalValue;
 
         }
 
