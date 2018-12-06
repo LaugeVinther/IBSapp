@@ -30,12 +30,13 @@
         {
             this.zeroPointAdjustmentBT = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // zeroPointAdjustmentBT
             // 
-            this.zeroPointAdjustmentBT.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.zeroPointAdjustmentBT.Location = new System.Drawing.Point(196, 162);
+            this.zeroPointAdjustmentBT.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.zeroPointAdjustmentBT.Location = new System.Drawing.Point(191, 148);
             this.zeroPointAdjustmentBT.Name = "zeroPointAdjustmentBT";
             this.zeroPointAdjustmentBT.Size = new System.Drawing.Size(137, 49);
             this.zeroPointAdjustmentBT.TabIndex = 0;
@@ -52,14 +53,23 @@
             this.label1.Size = new System.Drawing.Size(443, 46);
             this.label1.TabIndex = 1;
             this.label1.Text = "Zeroppoint Adjustment";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(58, 96);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(327, 34);
+            this.label2.TabIndex = 2;
+            this.label2.Text = "Position the transducer so it is open out to free air.\r\nPress ADJUST.";
             // 
             // ZeroPointAdjustmentForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.ClientSize = new System.Drawing.Size(546, 305);
+            this.ClientSize = new System.Drawing.Size(521, 226);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.zeroPointAdjustmentBT);
             this.Name = "ZeroPointAdjustmentForm";
@@ -73,5 +83,6 @@
 
         private System.Windows.Forms.Button zeroPointAdjustmentBT;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
     }
 }

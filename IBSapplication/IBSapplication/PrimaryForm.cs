@@ -142,6 +142,17 @@ namespace PresentationLogic
               DiastolicMaxTB.Enabled = true;
               DiastolicMinTB.Enabled = true;
            }
+            _dataProcessing.StartDataProcessingThread();
+            _dataCalculation.StartCalcThread();
+           
+            StartStopBT.BackColor = Color.Red;
+            StartStopBT.Text = "STOP";
+            
+            SystolicMaxTB.Enabled = true;
+            SystolicMinTB.Enabled = true;
+            DiastolicMaxTB.Enabled = true;
+            DiastolicMinTB.Enabled = true; 
+        }
 
            if (StartStopBT.Text =="STOP")
            {
