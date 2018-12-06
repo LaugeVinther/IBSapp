@@ -16,9 +16,7 @@ namespace BusinessLogic
         private double[] voltageArray;
         private double[] pressureArray;
         private int counter = 0;
-        private double Slope;
-        public double[] Volt { get; private set; }
-        public double[] calibrateMmHg { get; private set; }
+        private double slope;
 
         public Calibrate()
         {
@@ -39,28 +37,28 @@ namespace BusinessLogic
             }
         }
 
-        public double Calibration()
+        public double Calibration(double[] voltAxis, double[] pressureAxis)
         {
             // regression 
-            Volt = new double[] { voltageArray[0], voltageArray[1], voltageArray[2] };
-            calibrateMmHg = new double[] { pressureArray[0], pressureArray[1], pressureArray[2] };
+            voltageArray = voltAxis;
+            pressureArray = pressureAxis;
 
             //double hældningskoefficient_a;
             //hældningskoefficient_a = (100 - voltageArray[2]) / (10 - voltageArray[0]); // y2 - y1 / x2 - x1 
             //return hældningskoefficient_a;
 
-            double n = Volt.Length;
+            double n = voltageArray.Length;
             double sumxy = 0, sumx = 0, sumy = 0, sumx2 = 0;
-            for (int i = 0; i < Volt.Length; i++)
+            for (int i = 0; i < voltageArray.Length; i++)
             {
-                sumxy += Volt[i] * calibrateMmHg[i];
-                sumx += Volt[i];
-                sumy += calibrateMmHg[i];
-                sumx2 += Volt[i] * Volt[i];
+                sumxy += voltageArray[i] * pressureArray[i];
+                sumx += voltageArray[i];
+                sumy += pressureArray[i];
+                sumx2 += voltageArray[i] * voltageArray[i];
             }
 
-            Slope = ((sumxy - sumx * sumy / n) / (sumx2 - sumx * sumx / n));
-            return Slope;
+            slope = ((sumxy - sumx * sumy / n) / (sumx2 - sumx * sumx / n));
+            return slope;
 
         }
 
