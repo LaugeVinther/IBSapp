@@ -54,7 +54,7 @@ namespace PresentationLogic
             while (true)
             {
                 await Task.Delay(500);
-                SysDiaTB.ForeColor = SysDiaTB.ForeColor == Color.Red ? Color.Lime : Color.Red;
+                SysDiaTB.ForeColor = SysDiaTB.ForeColor == Color.Red ? Color.Lime : Color.Red; 
             }
 
         }
