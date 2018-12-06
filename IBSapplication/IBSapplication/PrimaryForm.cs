@@ -23,7 +23,7 @@ namespace PresentationLogic
         private DataCalculation _dataCalculation;
 
         
-        public PrimaryForm()//BuisnessLogicIF buisnessLogic)
+        public PrimaryForm(/*BuisnessLogicIF buisnessLogic*/)
         {
             //currentBuisnessLogic = buisnessLogic;
             graphSetting();
