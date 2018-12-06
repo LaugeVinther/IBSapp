@@ -9,5 +9,6 @@ namespace Interfaces
 {
     public interface IUnitConverter
     {
+        List<double> GetCalibratedSampleList(List<double> List, double slope, double zeroPoint);
     }
 }

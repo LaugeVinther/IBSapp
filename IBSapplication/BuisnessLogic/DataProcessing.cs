@@ -56,12 +56,6 @@ namespace BusinessLogic
         {
             dataCollector.StartLoading();
 
-            //Skal denne løkke være her? Skal alt være inde i denne? FHJ
-            while (isRunning = true)
-            {
-
-            }
-
             while (!_dataQueue.IsCompleted)
             {
                 try
