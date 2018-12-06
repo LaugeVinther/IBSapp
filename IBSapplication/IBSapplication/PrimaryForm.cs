@@ -149,6 +149,7 @@ namespace PresentationLogic
             StartStopBT.Text = "START";
 
             _dataCalculation.JoinCalcThread();
+            _dataProcessing.JoinThreads();
          }
 
       }

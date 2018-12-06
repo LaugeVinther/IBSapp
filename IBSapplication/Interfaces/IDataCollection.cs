@@ -10,6 +10,7 @@ namespace Interfaces
     {
         void StartLoading();
         void LoadData();
+       void StopLoading();
         List<double> GetSomeDataPoints();
     }
 }
