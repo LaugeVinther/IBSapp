@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Media;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -21,15 +22,23 @@ namespace PresentationLogic
         private ZeroPointAdjustmentForm _zeroPointAdjustmentForm;
         private DataProcessing _dataProcessing;
         private DataCalculation _dataCalculation;
+        private SoundPlayer _player;
 
         
-        public PrimaryForm(/*BuisnessLogicIF buisnessLogic*/)
+        public PrimaryForm(DataProcessing dataProcessing, DataCalculation dataCalculation)
         {
+            InitializeComponent();
+
 
             //currentBuisnessLogic = buisnessLogic;
             graphSetting();
-            _dataProcessing = new DataProcessing();
-            _dataCalculation = new DataCalculation(_dataProcessing);
+            //_dataProcessing = new DataProcessing();
+            //_dataCalculation = new DataCalculation(_dataProcessing);
+
+            _dataProcessing = dataProcessing;
+            _dataCalculation = dataCalculation;
+
+
             _dataProcessing.filterSwitchedOn = true;
             
 
@@ -37,9 +46,10 @@ namespace PresentationLogic
 
             _dataCalculation.AlarmActivatedEvent += AlarmActivatedEventMethod;
           
+            _player = new System.Media.SoundPlayer(@"C:\Users\Esma\Documents\Sundhedsteknologi\3. semester\Semesterprojekt 3 - Udvikling af et blodtrykmålesystem\SW\IBSapp\IBSapplication\IBSapplication\bin\Debug\alarm_high_priority_5overtoner.wav"); //korrekt stinavn skal indsættes
 
 
-            InitializeComponent();
+
 
         }
 
@@ -49,14 +59,16 @@ namespace PresentationLogic
             {
                 BeginInvoke((Action) delegate
                 {
+                    PulseTB.Text = Pulse.ToString();
+                    SysDiaTB.Text = (sysBP + "/" + diaBP);
+                    AverageBP_TB.Text = avgBP.ToString();
+
                     foreach (var number in list)
                     {
                         chart1.Series["Blood Pressure"].Points.AddY(number);
                     }
 
-                    PulseTB.Text = Pulse.ToString();
-                    SysDiaTB.Text = (sysBP + "/" + diaBP);
-                    AverageBP_TB.Text = avgBP.ToString();
+                  
                 }
                     
                     );
@@ -67,8 +79,7 @@ namespace PresentationLogic
         {
             //Alarm skal igangsættes med lyd og lys
             //Afspil lyd
-            System.Media.SoundPlayer player = new System.Media.SoundPlayer(@"alarm_high_priority_5overtoner"); //korrekt stinavn skal indsættes
-            player.Play();
+            _player.Play();
 
             //igangsæt lys
             while (true)

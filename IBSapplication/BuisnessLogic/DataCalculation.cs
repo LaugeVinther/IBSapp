@@ -46,16 +46,17 @@ namespace BusinessLogic
 
 
 
-        public DataCalculation(DataProcessing dataProcessing)
+        public DataCalculation(BlockingCollection<List<double>> dataQueueToCalculation, IDatabaseSaver databaseSaver)
         {
-            _dataProcessing = dataProcessing;
+            //_dataProcessing = dataProcessing;
             _pulse = new Pulse();
             _bloodPressure = new BloodPressure();
             _processedDataCollector = new ProcessedDataCollector();
-            _databaseSaver = new DatabaseSaver();
+            _databaseSaver = databaseSaver;
             _binFormatter = new BinFormatter();
             _alarm = new Alarm();
             _alarmList = new List<bool>(2);
+            _dataQueue = dataQueueToCalculation;
 
 
 
@@ -65,7 +66,10 @@ namespace BusinessLogic
             CalculatedSystolicValue = 0;
             CalculatedDiastolicValue = 0;
             CalculatedAverageBPValue = 0;
-            _dataQueue = _dataProcessing.GetDataQueueToCalculation();
+            
+            
+            //_dataQueue = _dataProcessing.GetDataQueueToCalculation();
+
            DataCalculationThread = new Thread(doDataCalculation);
         }
 
@@ -102,12 +106,12 @@ namespace BusinessLogic
                 CalculatedAverageBPValue = _bloodPressure._dtoBloodpressure.AverageBP;
 
 
-                _alarmActivated = _alarm.CheckAlarming(_bloodPressure._dtoBloodpressure);
+                //_alarmActivated = _alarm.CheckAlarming(_bloodPressure._dtoBloodpressure);
 
-                if (_alarmActivated == true)
-                {
-                    AlarmActivatedEvent?.Invoke(_alarmActivated);
-                }
+                //if (_alarmActivated == true)
+                //{
+                //    AlarmActivatedEvent?.Invoke(_alarmActivated);
+                //}
 
 
                 NewDataAvailableEvent?.Invoke(_totalDataList, CalculatedPulseValue, CalculatedSystolicValue, CalculatedDiastolicValue, CalculatedAverageBPValue);

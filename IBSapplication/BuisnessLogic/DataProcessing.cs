@@ -14,7 +14,7 @@ namespace BusinessLogic
     public class DataProcessing
     {
         //Define relations
-        private IDataCollection dataCollector;
+        private IDataCollection _dataCollector;
         private ICalibrate _calibrate;
         private IUnitConverter _unitConverter;
         private IDigitalFilter _digitalFilter;
@@ -25,32 +25,35 @@ namespace BusinessLogic
         private List<double> rawDataList;
         private List<double> processedDataList;
         public bool filterSwitchedOn { get; set; }
-        private double slope;
+        private double slope = 1;
 
         //Tråde
         private readonly BlockingCollection<List<double>> _dataQueue;
         private readonly BlockingCollection<List<double>> _dataQueueToCalculation;
         Thread dataProcessingThread;
 
-        public DataProcessing()
+        public DataProcessing(BlockingCollection<List<double>> dataQueue, BlockingCollection<List<double>> dataQueueToCalculation, DataCollection dataCollection)
         {
+            //create variables
+            _dataQueueToCalculation = dataQueueToCalculation;
+            _dataQueue = dataQueue;
+            processedDataList = new List<double>();
+
             //create relations 
-            dataCollector = new DataCollection(_dataQueue);
+            _dataCollector = dataCollection;
             _calibrate = new Calibrate();
             _unitConverter = new UnitConverter();
             dataProcessingThread = new Thread(Start);
             _digitalFilter = new DigitalFilter();
             _zeroPointAdjustment = new ZeroPointAdjustment();
 
-            //create variables
-            _dataQueueToCalculation = new BlockingCollection<List<double>>();
-            processedDataList = new List<double>();
+           
 
         }
 
         public void Start()
         {
-            dataCollector.StartLoading();
+            _dataCollector.StartLoading();
 
             while (!_dataQueue.IsCompleted)
             {
@@ -81,7 +84,7 @@ namespace BusinessLogic
 
         public void GetVoltageData(int pressureValue) // sørger for at hente det rigtige punkt for knappen, der trykkes på GUI'en
         {
-            List<double> dataPointList = dataCollector.GetSomeDataPoints();
+            List<double> dataPointList = _dataCollector.GetSomeDataPoints();
 
             double sumOfDataPoints = 0;
             double averageOfDataPoints;
@@ -98,17 +101,17 @@ namespace BusinessLogic
 
         public bool GetZeroPointAdjustment()
         {
-            List<double> zeroPointMeasurement = dataCollector.GetSomeDataPoints();
+            List<double> zeroPointMeasurement = _dataCollector.GetSomeDataPoints();
 
             _zeroPointAdjustment.Adjust(zeroPointMeasurement);
 
             return _zeroPointAdjustment.AbnormalValue;
         }
 
-        public BlockingCollection<List<double>> GetDataQueueToCalculation()
-        {
-            return _dataQueueToCalculation;
-        }
+        //public BlockingCollection<List<double>> GetDataQueueToCalculation()
+        //{
+        //    return _dataQueueToCalculation;
+        //}
 
         public void GetCalibration()
         {
@@ -122,7 +125,7 @@ namespace BusinessLogic
 
        public void JoinThreads()
        {
-          dataCollector.StopLoading();
+          _dataCollector.StopLoading();
           dataProcessingThread.Join();
        }
     }

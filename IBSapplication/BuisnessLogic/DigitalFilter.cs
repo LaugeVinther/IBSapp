@@ -16,6 +16,7 @@ namespace BusinessLogic
 
       public DigitalFilter()
        {
+           downSampledSamples = new List<double>();
           smoothedSamples=new List<double>();
        }
        public List<double> FilterOn(List<double> calibratedSampleList) 

@@ -16,7 +16,7 @@ namespace BusinessLogic
         private double[] voltageArray;
         private double[] pressureArray;
         private int counter = 0;
-        private double slope;
+        private double slope = 1;
 
         public Calibrate()
         {

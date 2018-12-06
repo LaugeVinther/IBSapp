@@ -24,7 +24,7 @@ namespace BusinessLogic
             _thresholdLowerDia = 60;
             _thresholdUpperSys = 90;
             _thresholdLowerSys = 180;
-            _alarmArray = new bool[2];
+            _alarmArray = new bool[3];
 
         }
 
