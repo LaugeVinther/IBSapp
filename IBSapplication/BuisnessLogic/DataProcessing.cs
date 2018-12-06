@@ -14,12 +14,9 @@ namespace BusinessLogic
     public class DataProcessing
     {
         //Define relations
-        private DataCollection dataCollector;
-        private readonly BlockingCollection<List<double>> _dataQueue;
+        private IDataCollection dataCollector;
         private ICalibrate _calibrate;
-        private UnitConverter _unitConverter;
-        Thread dataProcessingThread;
-        private readonly BlockingCollection<List<double>> _dataQueueToCalculation;
+        private IUnitConverter _unitConverter;
         private IDigitalFilter _digitalFilter;
         private IZeroPointAdjustment _zeroPointAdjustment;
 
@@ -31,6 +28,11 @@ namespace BusinessLogic
         private double slope;
         private double[] volt;
         private double[] pressure;
+
+        //Tråde
+        private readonly BlockingCollection<List<double>> _dataQueue;
+        private readonly BlockingCollection<List<double>> _dataQueueToCalculation;
+        Thread dataProcessingThread;
 
         public DataProcessing()
         {
@@ -51,12 +53,6 @@ namespace BusinessLogic
 
         public void Start()
         {
-            //Skal denne løkke være her? Skal alt være inde i denne? FHJ
-            while (isRunning = true)
-            {
-
-            }
-
             while (!_dataQueue.IsCompleted)
             {
                 try
