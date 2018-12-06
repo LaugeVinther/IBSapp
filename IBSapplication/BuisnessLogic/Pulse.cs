@@ -11,11 +11,11 @@ namespace BusinessLogic
 {
     public class Pulse : IPulse
     {
-       public int Pulse { get; private set; }
+       public int pulse { get; private set; }
 
       public Pulse()
        {
-          Pulse = 0;
+          pulse = 0;
        }
 
        public void CalculatePulse(double[] measurements, double f_sample)
@@ -73,7 +73,7 @@ namespace BusinessLogic
           //double f_analysis = f_resolution * index;
 
           //Frekvensen er i Hz (svingninger pr sekund) det omregnes til puls
-          Pulse = (int)(f_req * 60);
+          pulse = (int)(f_req * 60);
 
 
           //Arrayet vi får ud har på hver plads et komplekst tal. Amplituden er længden af det komplekse tal.
