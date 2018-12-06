@@ -27,7 +27,7 @@ namespace BusinessLogic
         private bool isRunning;
         private List<double> rawDataList;
         private List<double> processedDataList;
-        private bool filterSwitchedOn;
+        public bool filterSwitchedOn { get; set; }
         private double slope;
         private double[] volt;
         private double[] pressure;
@@ -45,8 +45,6 @@ namespace BusinessLogic
            _dataQueueToCalculation = new BlockingCollection<List<double>>();
             processedDataList = new List<double>();
 
-            //Ved ikke lige hvordan denne skal kommer herned fra præsentationslaget, men det finder vi lige ud af
-            filterSwitchedOn = true;
         }
 
         public void Start()

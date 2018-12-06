@@ -33,6 +33,7 @@ namespace PresentationLogic
             _dataCalculation.NewDataAvailableEvent += NewDataAvailableEventMethod;
 
             _dataCalculation.AlarmActivatedEvent += AlarmActivatedEventMethod;
+           _dataProcessing.filterSwitchedOn = true;
 
             InitializeComponent();
 
@@ -246,5 +247,24 @@ namespace PresentationLogic
         {
 
         }
-    }
+
+      private void FilterB_Click(object sender, EventArgs e)
+      {
+         if (FilterB.Text == "ON")
+         {
+            FilterB.BackColor = Color.Red; //symbolizes light turned on
+
+            FilterB.Text = "OFF";
+            _dataProcessing.filterSwitchedOn = false;
+         }
+
+         else if (FilterB.Text == "OFF")
+         {
+            FilterB.BackColor = Color.LawnGreen; //symbolizes light turned off
+
+            FilterB.Text = "ON";
+            _dataProcessing.filterSwitchedOn = true;
+         }
+      }
+   }
 }
