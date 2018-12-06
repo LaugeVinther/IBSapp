@@ -74,6 +74,11 @@ namespace BusinessLogic
           DataCalculationThread.Start();
        }
 
+       public void JoinCalcThread()
+       {
+          DataCalculationThread.Join();
+       }
+
         public void doDataCalculation()
         {
             while (!_dataQueue.IsCompleted)

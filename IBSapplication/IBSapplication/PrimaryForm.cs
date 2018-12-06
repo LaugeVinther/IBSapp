@@ -23,7 +23,7 @@ namespace PresentationLogic
         private DataCalculation _dataCalculation;
 
         
-        public PrimaryForm()//BuisnessLogicIF buisnessLogic)
+        public PrimaryForm(/*BuisnessLogicIF buisnessLogic*/)
         {
             //currentBuisnessLogic = buisnessLogic;
             graphSetting();
@@ -129,6 +129,19 @@ namespace PresentationLogic
         {
             //når der trykkes på start-knappen skal den "aktivere" DataProcessing, som kan hente listen af Datapunkter fra DataCollection
 
+           if (StartStopBT.Text == "START")
+           {
+              _dataProcessing.Start(); //Dette skal vel ikke længere ske? den skal vel kalde metoden
+              _dataCalculation.StartCalcThread();
+
+              StartStopBT.BackColor = Color.Red;
+              StartStopBT.Text = "STOP";
+
+              SystolicMaxTB.Enabled = true;
+              SystolicMinTB.Enabled = true;
+              DiastolicMaxTB.Enabled = true;
+              DiastolicMinTB.Enabled = true;
+           }
             _dataProcessing.StartDataProcessingThread();
             _dataCalculation.StartCalcThread();
            
@@ -139,6 +152,16 @@ namespace PresentationLogic
             SystolicMinTB.Enabled = true;
             DiastolicMaxTB.Enabled = true;
             DiastolicMinTB.Enabled = true; 
+        }
+
+           if (StartStopBT.Text =="STOP")
+           {
+            StartStopBT.BackColor = Color.LawnGreen;
+              StartStopBT.Text = "START";
+
+              _dataCalculation.JoinCalcThread();
+         }
+
         }
 
       private void SystolicMaxTB_TextChanged(object sender, EventArgs e)
