@@ -29,6 +29,8 @@ namespace BusinessLogic
         private List<double> processedDataList;
         private bool filterSwitchedOn;
         private double slope;
+        private double[] volt;
+        private double[] pressure;
 
         public DataProcessing()
         {
@@ -122,7 +124,7 @@ namespace BusinessLogic
 
         public void GetCalibration()
         {
-            slope = _calibrate.Calibration();
+            slope = _calibrate.Calibration(volt, pressure);
         }
     }
 }
