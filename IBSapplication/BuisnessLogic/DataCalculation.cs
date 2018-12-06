@@ -3,6 +3,7 @@ using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using DTOLogic;
 using DataLogic;
@@ -27,8 +28,8 @@ namespace BusinessLogic
         public event Action<List<double>, int, int, int, int> NewDataAvailableEvent;
         public event Action<bool> AlarmActivatedEvent;
 
-        //Define variables
-        public int CalculatedPulseValue { get; private set; }
+      //Define variables
+      public int CalculatedPulseValue { get; private set; }
         public int CalculatedSystolicValue { get; private set; }
         public int CalculatedDiastolicValue { get; private set; }
         public int CalculatedAverageBPValue { get; private set; }
@@ -41,9 +42,8 @@ namespace BusinessLogic
         private List<double> _totalDataList;
         private List<double> _incomingDataList;
         private readonly BlockingCollection<List<double>> _dataQueue;
+       public Thread DataCalculationThread;
 
-      
-       
 
 
         public DataCalculation(DataProcessing dataProcessing)
@@ -66,7 +66,13 @@ namespace BusinessLogic
             CalculatedDiastolicValue = 0;
             CalculatedAverageBPValue = 0;
             _dataQueue = _dataProcessing.GetDataQueueToCalculation();
+           DataCalculationThread = new Thread(doDataCalculation);
         }
+
+       public void StartCalcThread()
+       {
+          DataCalculationThread.Start();
+       }
 
         public void doDataCalculation()
         {
