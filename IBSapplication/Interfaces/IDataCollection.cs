@@ -8,6 +8,7 @@ namespace Interfaces
 {
     public interface IDataCollection
     {
+        void StartLoading();
         void LoadData();
         List<double> GetSomeDataPoints();
     }

@@ -20,7 +20,9 @@ namespace BusinessLogic
         {
             foreach (var convertDataPoint in rawDataList)
             {
-                calibratedSampleList.Add((convertDataPoint * slope)-zeroPoint);
+                double localConverDataPoint = convertDataPoint;
+                localConverDataPoint = convertDataPoint - zeroPoint; 
+                calibratedSampleList.Add(localConverDataPoint * slope);
                 
             }
             return calibratedSampleList;
