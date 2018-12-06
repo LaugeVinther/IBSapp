@@ -37,12 +37,8 @@ namespace BusinessLogic
             }
         }
 
-        public double Calibration(double[] voltAxis, double[] pressureAxis)
+        public double Calibration()
         {
-            // regression 
-            voltageArray = voltAxis;
-            pressureArray = pressureAxis;
-
             //double hældningskoefficient_a;
             //hældningskoefficient_a = (100 - voltageArray[2]) / (10 - voltageArray[0]); // y2 - y1 / x2 - x1 
             //return hældningskoefficient_a;
