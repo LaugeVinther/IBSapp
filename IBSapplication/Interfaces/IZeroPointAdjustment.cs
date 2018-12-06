@@ -9,6 +9,7 @@ namespace Interfaces
 {
     public interface IZeroPointAdjustment
     {
+        double zeroPoint { get; }
         void Adjust(List<double> zeroPointMeasurement);
     }
 }

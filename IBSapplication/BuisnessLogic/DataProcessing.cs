@@ -42,6 +42,7 @@ namespace BusinessLogic
             _unitConverter = new UnitConverter();
             dataProcessingThread = new Thread(Start);
             _digitalFilter = new DigitalFilter();
+            _zeroPointAdjustment = new ZeroPointAdjustment();
 
             //create variables
             _dataQueueToCalculation = new BlockingCollection<List<double>>();
@@ -53,6 +54,14 @@ namespace BusinessLogic
 
         public void Start()
         {
+            dataCollector.StartLoading();
+
+            //Skal denne løkke være her? Skal alt være inde i denne? FHJ
+            while (isRunning = true)
+            {
+
+            }
+
             while (!_dataQueue.IsCompleted)
             {
                 try
@@ -64,7 +73,7 @@ namespace BusinessLogic
 
                 }
                 //Kør unitconverteren
-                processedDataList = _unitConverter.GetCalibratedSampleList(rawDataList, slope);
+                processedDataList = _unitConverter.GetCalibratedSampleList(rawDataList, slope, _zeroPointAdjustment.zeroPoint);
                 // Digital filter
 
                 //gem resultatet i processedDataList
