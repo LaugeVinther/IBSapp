@@ -45,7 +45,7 @@
             this.Measure10mmHgBT.Name = "Measure10mmHgBT";
             this.Measure10mmHgBT.Size = new System.Drawing.Size(258, 49);
             this.Measure10mmHgBT.TabIndex = 0;
-            this.Measure10mmHgBT.Text = "Meassure 10 mmHg";
+            this.Measure10mmHgBT.Text = "Measure 10 mmHg";
             this.Measure10mmHgBT.UseVisualStyleBackColor = false;
             this.Measure10mmHgBT.Click += new System.EventHandler(this.Measure10mmHgBT_Click);
             // 
@@ -57,7 +57,7 @@
             this.Measure50mmHgBT.Name = "Measure50mmHgBT";
             this.Measure50mmHgBT.Size = new System.Drawing.Size(258, 53);
             this.Measure50mmHgBT.TabIndex = 1;
-            this.Measure50mmHgBT.Text = "Meassure 50 mmHg";
+            this.Measure50mmHgBT.Text = "Measure 50 mmHg";
             this.Measure50mmHgBT.UseVisualStyleBackColor = false;
             this.Measure50mmHgBT.Click += new System.EventHandler(this.Measure50mmHgBT_Click);
             // 
@@ -69,7 +69,7 @@
             this.Measure100mmHgBT.Name = "Measure100mmHgBT";
             this.Measure100mmHgBT.Size = new System.Drawing.Size(258, 53);
             this.Measure100mmHgBT.TabIndex = 2;
-            this.Measure100mmHgBT.Text = "Meassure 100 mmHg";
+            this.Measure100mmHgBT.Text = "Measure 100 mmHg";
             this.Measure100mmHgBT.UseVisualStyleBackColor = false;
             this.Measure100mmHgBT.Click += new System.EventHandler(this.Measure100mmHgBT_Click);
             // 
@@ -96,6 +96,7 @@
             // CalibrateBT
             // 
             this.CalibrateBT.BackColor = System.Drawing.Color.Lime;
+            this.CalibrateBT.Enabled = false;
             this.CalibrateBT.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CalibrateBT.Location = new System.Drawing.Point(136, 388);
             this.CalibrateBT.Name = "CalibrateBT";

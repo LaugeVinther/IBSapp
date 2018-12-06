@@ -69,42 +69,44 @@ namespace BusinessLogic
 
         public void doDataCalculation()
         {
-           _processedDataList = _processedDataCollector.getProcessedDataList(_incomingDataList);
+           while (!_dataQueue.IsCompleted)
+           {
+              try
+              {
+                 _incomingDataList = _dataQueue.Take();
+              }
+              catch
+              {
+                 //
+              }
+              _processedDataList = _processedDataCollector.getProcessedDataList(_incomingDataList);
 
-           _pulse.CalculatePulse(_processedDataList.ToArray(), f_sample);
-           CalculatedPulseValue = _pulse.Pulse;
+              _pulse.CalculatePulse(_processedDataList.ToArray(), f_sample);
+              CalculatedPulseValue = _pulse.Pulse;
 
-           _bloodPressure.CalculateBP(_processedDataList.ToArray(), f_sample, CalculatedPulseValue);
-           CalculatedSystolicValue = _bloodPressure._dtoBloodpressure.Systolic;
-           CalculatedDiastolicValue = _bloodPressure._dtoBloodpressure.Diastolic;
-           CalculatedAverageBPValue = _bloodPressure._dtoBloodpressure.AverageBP;
-
-
-            _alarmActivated = _alarm.CheckAlarming(_bloodPressure._dtoBloodpressure);
-
-            if (_alarmActivated  == true)
-            {
-                AlarmActivatedEvent?.Invoke(_alarmActivated);
-            }
+              _bloodPressure.CalculateBP(_processedDataList.ToArray(), f_sample, CalculatedPulseValue);
+              CalculatedSystolicValue = _bloodPressure._dtoBloodpressure.Systolic;
+              CalculatedDiastolicValue = _bloodPressure._dtoBloodpressure.Diastolic;
+              CalculatedAverageBPValue = _bloodPressure._dtoBloodpressure.AverageBP;
 
 
-            NewDataAvailableEvent?.Invoke(_processedDataList);
+              _alarmActivated = _alarm.CheckAlarming(_bloodPressure._dtoBloodpressure);
+
+              if (_alarmActivated == true)
+              {
+                 AlarmActivatedEvent?.Invoke(_alarmActivated);
+              }
+
+
+              NewDataAvailableEvent?.Invoke(_processedDataList);
+         }
+
         }
-       public void GetProcessedData()
-       {
-          //Tænker om ikke det her skal op i i doDataCalculation og så skal alt ske inde i try?
-          while (!_dataQueue.IsCompleted)
-          {
-             try
-             {
-                _incomingDataList = _dataQueue.Take();
-             }
-             catch
-             {
-               //
-             }
-          }
-       }
+       //public void GetProcessedData()
+       //{
+       //   //Tænker om ikke det her skal op i i doDataCalculation og så skal alt ske inde i try?
+          
+       //}
        public void Safe(DTO_SaveData savedataDTO)
        {
           byte[] binArray = _binFormatter.ConvertToByteArray(_processedDataList);

@@ -15,14 +15,23 @@ namespace DataLogic
     {
         private readonly BlockingCollection<List<double>> _dataQueue;
         private bool keepLoading = false;
+        public Thread dataLogicThread;
 
         public DataCollection(BlockingCollection<List<double>> dataQueue)
         {
             _dataQueue = dataQueue;
+            dataLogicThread = new Thread(LoadData);
+        }
+
+        public void StartLoading()
+        {
+            dataLogicThread.Start();
         }
 
         public void LoadData()
         {
+            keepLoading = true;
+
             //Oprettelse af DAQ:
             NI_DAQ daq = new NI_DAQ();
 

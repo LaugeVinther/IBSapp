@@ -11,18 +11,16 @@ namespace BusinessLogic
     public class UnitConverter
     {
         private List<double> calibratedSampleList = new List<double>();
-        private DataProcessing dataProcessing;
 
         public UnitConverter ()
         {
-            dataProcessing = new DataProcessing();
         }
 
-        public List<double> GetCalibratedSampleList()
+        public List<double> GetCalibratedSampleList(List<double> rawDataList, double slope)
         {
-            foreach (var convertDataPoint in dataProcessing.GetRawData())
+            foreach (var convertDataPoint in rawDataList)
             {
-                calibratedSampleList.Add(convertDataPoint * dataProcessing.GetSlope());
+                calibratedSampleList.Add(convertDataPoint * slope);
             }
             return calibratedSampleList;
         }
