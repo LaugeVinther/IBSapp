@@ -28,8 +28,8 @@ namespace BusinessLogic
         public event Action<List<double>, int, int, int, int> NewDataAvailableEvent;
         public event Action<bool> AlarmActivatedEvent;
 
-      //Define variables
-      public int CalculatedPulseValue { get; private set; }
+        //Define variables
+        public int CalculatedPulseValue { get; private set; }
         public int CalculatedSystolicValue { get; private set; }
         public int CalculatedDiastolicValue { get; private set; }
         public int CalculatedAverageBPValue { get; private set; }
@@ -42,7 +42,7 @@ namespace BusinessLogic
         public List<double> _totalDataList;
         private List<double> _incomingDataList;
         private readonly BlockingCollection<List<double>> _dataQueue;
-       public Thread DataCalculationThread;
+        public Thread DataCalculationThread;
 
 
 
@@ -66,22 +66,22 @@ namespace BusinessLogic
             CalculatedSystolicValue = 0;
             CalculatedDiastolicValue = 0;
             CalculatedAverageBPValue = 0;
-            
-            
+
+
             //_dataQueue = _dataProcessing.GetDataQueueToCalculation();
 
-           DataCalculationThread = new Thread(doDataCalculation);
+            DataCalculationThread = new Thread(doDataCalculation);
         }
 
-       public void StartCalcThread()
-       {
-          DataCalculationThread.Start();
-       }
+        public void StartCalcThread()
+        {
+            DataCalculationThread.Start();
+        }
 
-       public void JoinCalcThread()
-       {
-          DataCalculationThread.Join();
-       }
+        public void JoinCalcThread()
+        {
+            DataCalculationThread.Join();
+        }
 
         public void doDataCalculation()
         {
