@@ -39,7 +39,7 @@ namespace BusinessLogic
         public int DiastolicMinThreshold { get; set; }
         private int f_sample;
         private bool _alarmActivated;
-        private List<double> _totalDataList;
+        public List<double> _totalDataList;
         private List<double> _incomingDataList;
         private readonly BlockingCollection<List<double>> _dataQueue;
        public Thread DataCalculationThread;
