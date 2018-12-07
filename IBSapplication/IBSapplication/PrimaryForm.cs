@@ -29,29 +29,15 @@ namespace PresentationLogic
 
         public PrimaryForm(DataProcessing dataProcessing, DataCalculation dataCalculation)
         {
+            InitializeComponent();
 
-
+            _dataProcessing = dataProcessing;
+            _dataCalculation = dataCalculation;
 
             //currentBuisnessLogic = buisnessLogic;
 
             //_dataProcessing = new DataProcessing();
             //_dataCalculation = new DataCalculation(_dataProcessing);
-           
-            _dataProcessing = dataProcessing;
-            _dataCalculation = dataCalculation;
-            _dataCalculation.NewDataAvailableEvent += NewDataAvailableEventMethod;
-
-
-            _dataCalculation.AlarmActivatedEvent += AlarmActivatedEventMethod;
-
-            _dataProcessing.filterSwitchedOn = true;
-            //UpdateChart = new Thread();
-
-            
-
-            _player = new System.Media.SoundPlayer(@"C:\Users\Esma\Documents\Sundhedsteknologi\3. semester\Semesterprojekt 3 - Udvikling af et blodtrykmålesystem\SW\IBSapp\IBSapplication\IBSapplication\bin\Debug\alarm_high_priority_5overtoner.wav"); //korrekt stinavn skal indsættes
-            InitializeComponent();
-            graphSetting();
 
 
         }
@@ -81,38 +67,57 @@ namespace PresentationLogic
         //}
         public void NewDataAvailableEventMethod(List<double> list)
         {
-            List<double> localList = list;
+            //List<double> localList = list;
 
-            if (InvokeRequired)
+            //if (InvokeRequired)
+            //{
+            //    BeginInvoke((Action)delegate
+            //        {
+
+            //            foreach (var number in localList)
+            //            {
+            //                chart1.Series["Blood pressure"].Points.AddY(number);
+            //            }
+            //            chart1.Refresh();
+
+            //        }
+
+            //    );
+            //}
+            if(InvokeRequired)
             {
-                BeginInvoke((Action)delegate
+                BeginInvoke((Action)(() =>
+                {
+                    foreach (var number in list)
                     {
-                       
-                        foreach (var number in localList)
-                        {
-                            chart1.Series["Blood pressure"].Points.AddY(number);
-                        }
-                        chart1.Refresh();
-
+                        chart1.Series["Blood Pressure"].Points.AddY(number);
                     }
-
-                );
+                    chart1.Refresh();
+                }));
+                return;
             }
+
+            foreach (var number in list)
+            {
+                chart1.Series["Blood Pressure"].Points.AddY(number);
+            }
+            chart1.Refresh();
+
         }
 
 
-        public async void AlarmActivatedEventMethod(bool alarmActivated)//Brugt async for at bruge await - på denne måde kan label blinke
+        public void AlarmActivatedEventMethod(bool alarmActivated)//Brugt async for at bruge await - på denne måde kan label blinke
         {
-            //Alarm skal igangsættes med lyd og lys
-            //Afspil lyd
-            _player.Play();
+            ////Alarm skal igangsættes med lyd og lys
+            ////Afspil lyd
+            //_player.Play();
 
-            //igangsæt lys
-            while (true)
-            {
-                await Task.Delay(500);
-                SysDiaTB.ForeColor = SysDiaTB.ForeColor == Color.Red ? Color.Lime : Color.Red;
-            }
+            ////igangsæt lys
+            //while (true)
+            //{
+            //    Task.Delay(500);
+            //    SysDiaTB.ForeColor = SysDiaTB.ForeColor == Color.Red ? Color.Lime : Color.Red;
+            //}
 
         }
 
@@ -181,8 +186,7 @@ namespace PresentationLogic
                 DiastolicMaxTB.Enabled = true;
                 DiastolicMinTB.Enabled = true;
             }
-
-            if (StartStopBT.Text == "STOP")
+            else if (StartStopBT.Text == "STOP")
             {
                 StartStopBT.BackColor = Color.LawnGreen;
                 StartStopBT.Text = "START";
@@ -322,6 +326,21 @@ namespace PresentationLogic
                 FilterB.Text = "ON";
                 _dataProcessing.filterSwitchedOn = true;
             }
+        }
+
+        private void PrimaryForm_Load(object sender, EventArgs e)
+        {
+            _dataCalculation.NewDataAvailableEvent += NewDataAvailableEventMethod;
+
+
+            _dataCalculation.AlarmActivatedEvent += AlarmActivatedEventMethod;
+
+            _dataProcessing.filterSwitchedOn = true;
+            //UpdateChart = new Thread();
+
+            graphSetting();
+
+            _player = new System.Media.SoundPlayer(@"C:\Users\Esma\Documents\Sundhedsteknologi\3. semester\Semesterprojekt 3 - Udvikling af et blodtrykmålesystem\SW\IBSapp\IBSapplication\IBSapplication\bin\Debug\alarm_high_priority_5overtoner.wav"); //korrekt stinavn skal indsættes
         }
     }
 }

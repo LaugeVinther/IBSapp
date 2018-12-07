@@ -43,7 +43,6 @@ namespace BusinessLogic
             _dataCollector = dataCollection;
             _calibrate = new Calibrate();
             _unitConverter = new UnitConverter();
-            dataProcessingThread = new Thread(Start);
             _digitalFilter = new DigitalFilter();
             _zeroPointAdjustment = new ZeroPointAdjustment();
 
@@ -122,6 +121,7 @@ namespace BusinessLogic
 
         public void StartDataProcessingThread ()
         {
+            dataProcessingThread = new Thread(Start);
             dataProcessingThread.Start();
         }
 

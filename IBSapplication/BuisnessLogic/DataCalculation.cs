@@ -70,16 +70,17 @@ namespace BusinessLogic
 
             //_dataQueue = _dataProcessing.GetDataQueueToCalculation();
 
-            DataCalculationThread = new Thread(doDataCalculation);
         }
 
         public void StartCalcThread()
         {
+            DataCalculationThread = new Thread(doDataCalculation);
             DataCalculationThread.Start();
         }
 
         public void JoinCalcThread()
         {
+            DataCalculationThread.Abort();
             DataCalculationThread.Join();
         }
 
@@ -117,8 +118,8 @@ namespace BusinessLogic
                 //NewDataAvailableEvent?.Invoke(_totalDataList, CalculatedPulseValue, CalculatedSystolicValue, CalculatedDiastolicValue, CalculatedAverageBPValue);
                 NewDataAvailableEvent?.Invoke(_incomingDataList);
 
+                Thread.Yield();
             }
-
         }
         //public void GetProcessedData()
         //{

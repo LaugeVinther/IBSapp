@@ -13,24 +13,28 @@ namespace DataLogic
 {
     public class DataCollection : IDataCollection
     {
-        private readonly BlockingCollection<List<double>> _dataQueue;
+        private BlockingCollection<List<double>> _dataQueue;
         private bool keepLoading = false;
         public Thread dataLogicThread;
 
         public DataCollection(BlockingCollection<List<double>> dataQueue)
         {
             _dataQueue = dataQueue;
-            dataLogicThread = new Thread(LoadData);
         }
 
         public void StartLoading()
         {
+            if(_dataQueue.IsAddingCompleted)
+                _dataQueue = new BlockingCollection<List<double>>();
+            keepLoading = true;
+            dataLogicThread = new Thread(LoadData);
             dataLogicThread.Start();
         }
 
        public void StopLoading()
        {
-          dataLogicThread.Join();
+            keepLoading = false;
+            dataLogicThread.Join();
        }
 
         public void LoadData()
@@ -41,7 +45,7 @@ namespace DataLogic
             NI_DAQ daq = new NI_DAQ();
 
             //5 Valg af Dev1 enhed og ai0 input kanal. Property på datacollector:
-            daq.deviceName = "Dev2/ai0";
+            daq.deviceName = "Dev1/ai0";
 
             while (keepLoading == true)
             {
@@ -53,6 +57,7 @@ namespace DataLogic
                 //currentDTO.rawSamples = daq.currentVoltageSeq;
 
                 _dataQueue.Add(currentmV);
+                Thread.Yield();
             }
 
             //Måske vi skal ahve noget kode, der giver hver sample en tid.
@@ -75,7 +80,7 @@ namespace DataLogic
             NI_DAQ daq = new NI_DAQ();
 
             //5 Valg af Dev1 enhed og ai0 input kanal. Property på datacollector:
-            daq.deviceName = "Dev2/ai0";
+            daq.deviceName = "Dev1/ai0";
 
             //Angivelse af samples der skal måles.
             daq.samplesPerChannel = 5;
