@@ -12,6 +12,6 @@ namespace Interfaces
         List<double> FilterOn(List<double> calibratedSampleList);
         List<double> FilterOff(List<double> calibratedSampleList);
 
-       void DownSampling(List<double> calibratedSampleList);
+       List<double> DownSampling(List<double> calibratedSampleList);
     }
 }

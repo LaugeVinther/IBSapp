@@ -11,24 +11,25 @@ namespace BusinessLogic
 {
     public class DigitalFilter : IDigitalFilter
     {
-       public List<double> downSampledSamples { get; private set; }
-       public List<double> smoothedSamples { get; private set; }
+       //public List<double> downSampledSamples { get; private set; }
+       //public List<double> smoothedSamples { get; private set; }
 
       public DigitalFilter()
        {
-           downSampledSamples = new List<double>();
-          smoothedSamples=new List<double>();
+           //downSampledSamples = new List<double>();
+          //smoothedSamples=new List<double>();
        }
        public List<double> FilterOn(List<double> calibratedSampleList) 
        {
          //Kør først downsampling 
-          DownSampling(calibratedSampleList);
-
+          //DownSampling(calibratedSampleList);
+          List<double> smoothedSamples = new List<double>();
          //Herefter lav midlingsfilter på de nedsamlede data
-          int length = downSampledSamples.Count();
-          List<double> samples = downSampledSamples;
+          
+          List<double> samples = DownSampling(calibratedSampleList);
+          int length = samples.Count();
 
-          for (int i = 5; i < length - 5; i ++)
+         for (int i = 5; i < length - 5; i ++)
           {
              double sum = 0;
              for (int j = -5; j < 5; j++)
@@ -44,12 +45,12 @@ namespace BusinessLogic
 
        public List<double> FilterOff(List<double> calibratedSampleList) 
        {
-          DownSampling(calibratedSampleList);
-          return downSampledSamples;
+          return DownSampling(calibratedSampleList);
        }
 
-       public void DownSampling(List<double> calibratedSampleList)
+       public List<double> DownSampling(List<double> calibratedSampleList)
        {
+          List<double> downSampledSamples =new List<double>();
           int length = calibratedSampleList.Count();
           List<double> samples = calibratedSampleList;
          for (int i = 9; i < length - 9; i += 19)
@@ -63,6 +64,7 @@ namespace BusinessLogic
              downSampledSamples.Add(sum / (9 + 1 + 9));
           }
 
-      }
+          return downSampledSamples;
+       }
     }
 }
