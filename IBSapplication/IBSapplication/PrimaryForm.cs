@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Media;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
@@ -23,57 +24,82 @@ namespace PresentationLogic
         private DataProcessing _dataProcessing;
         private DataCalculation _dataCalculation;
         private SoundPlayer _player;
+        //public Thread UpdateChart;
 
-        
+
         public PrimaryForm(DataProcessing dataProcessing, DataCalculation dataCalculation)
         {
-            InitializeComponent();
+
 
 
             //currentBuisnessLogic = buisnessLogic;
-            graphSetting();
+
             //_dataProcessing = new DataProcessing();
             //_dataCalculation = new DataCalculation(_dataProcessing);
-
+           
             _dataProcessing = dataProcessing;
             _dataCalculation = dataCalculation;
-
-
-            _dataProcessing.filterSwitchedOn = true;
-            
-
             _dataCalculation.NewDataAvailableEvent += NewDataAvailableEventMethod;
 
+
             _dataCalculation.AlarmActivatedEvent += AlarmActivatedEventMethod;
-          
+
+            _dataProcessing.filterSwitchedOn = true;
+            //UpdateChart = new Thread();
+
+            
+
             _player = new System.Media.SoundPlayer(@"C:\Users\Esma\Documents\Sundhedsteknologi\3. semester\Semesterprojekt 3 - Udvikling af et blodtrykmålesystem\SW\IBSapp\IBSapplication\IBSapplication\bin\Debug\alarm_high_priority_5overtoner.wav"); //korrekt stinavn skal indsættes
-
-
+            InitializeComponent();
+            graphSetting();
 
 
         }
 
-        public void NewDataAvailableEventMethod(List<double> list, int Pulse, int sysBP, int diaBP, int avgBP)
+        //public void NewDataAvailableEventMethod(List<double> list, int Pulse, int sysBP, int diaBP, int avgBP)
+        //{
+        //    List<double> localList = list;
+
+        //    if (InvokeRequired)
+        //    {
+        //        BeginInvoke((Action)delegate
+        //       {
+        //           PulseTB.Text = Pulse.ToString();
+        //           SysDiaTB.Text = (sysBP + "/" + diaBP);
+        //           AverageBP_TB.Text = avgBP.ToString();
+
+        //           foreach (var number in localList)
+        //           {
+        //               chart1.Series["Blood Pressure"].Points.AddY(number);
+        //           }
+        //           chart1.Refresh();
+
+        //       }
+
+        //        );
+        //    }
+        //}
+        public void NewDataAvailableEventMethod(List<double> list)
         {
+            List<double> localList = list;
+
             if (InvokeRequired)
             {
-                BeginInvoke((Action) delegate
-                {
-                    PulseTB.Text = Pulse.ToString();
-                    SysDiaTB.Text = (sysBP + "/" + diaBP);
-                    AverageBP_TB.Text = avgBP.ToString();
-
-                    foreach (var number in list)
+                BeginInvoke((Action)delegate
                     {
-                        chart1.Series["Blood Pressure"].Points.AddY(number);
+                       
+                        foreach (var number in localList)
+                        {
+                            chart1.Series["Blood pressure"].Points.AddY(number);
+                        }
+                        chart1.Refresh();
+
                     }
 
-                  
-                }
-                    
-                    );
+                );
             }
         }
+
 
         public async void AlarmActivatedEventMethod(bool alarmActivated)//Brugt async for at bruge await - på denne måde kan label blinke
         {
@@ -85,17 +111,17 @@ namespace PresentationLogic
             while (true)
             {
                 await Task.Delay(500);
-                SysDiaTB.ForeColor = SysDiaTB.ForeColor == Color.Red ? Color.Lime : Color.Red; 
+                SysDiaTB.ForeColor = SysDiaTB.ForeColor == Color.Red ? Color.Lime : Color.Red;
             }
 
         }
 
-           private void graphSetting() // OBS! tallene skal laves om efter standarden!
+        private void graphSetting() // OBS! tallene skal laves om efter standarden!
         {
             //Major grid 
             chart1.Series["Blood Pressure"].IsXValueIndexed = false;
             chart1.ChartAreas["ChartArea1"].AxisX.Minimum = 0;
-            chart1.ChartAreas["ChartArea1"].AxisX.Maximum = 60; 
+            chart1.ChartAreas["ChartArea1"].AxisX.Maximum = 60;
             chart1.ChartAreas["ChartArea1"].AxisX.Interval = 10;
             chart1.ChartAreas["ChartArea1"].AxisY.Minimum = 0;
             chart1.ChartAreas["ChartArea1"].AxisY.Maximum = 200;
@@ -115,7 +141,8 @@ namespace PresentationLogic
             chart1.ChartAreas["ChartArea1"].AxisY.MinorGrid.LineDashStyle = ChartDashStyle.Dot;
             chart1.ChartAreas["ChartArea1"].AxisX.MinorGrid.LineDashStyle = ChartDashStyle.Dot;
 
-            chart1.Invalidate();
+            //chart1.Invalidate();
+            chart1.Refresh();
 
         }
 
@@ -141,117 +168,117 @@ namespace PresentationLogic
         {
             //når der trykkes på start-knappen skal den "aktivere" DataProcessing, som kan hente listen af Datapunkter fra DataCollection
 
-           if (StartStopBT.Text == "START")
-           {
-            _dataProcessing.StartDataProcessingThread();
-            _dataCalculation.StartCalcThread();
-
-              StartStopBT.BackColor = Color.Red;
-              StartStopBT.Text = "STOP";
-
-              SystolicMaxTB.Enabled = true;
-              SystolicMinTB.Enabled = true;
-              DiastolicMaxTB.Enabled = true;
-              DiastolicMinTB.Enabled = true;
-           }
-
-         if (StartStopBT.Text == "STOP")
-         {
-            StartStopBT.BackColor = Color.LawnGreen;
-            StartStopBT.Text = "START";
-
-            _dataCalculation.JoinCalcThread();
-            _dataProcessing.JoinThreads();
-         }
-
-      }
-
-
-   
-
-      private void SystolicMaxTB_TextChanged(object sender, EventArgs e)
-      {
-         int sysMax;
-         try
-         {
-             sysMax=Convert.ToInt32(SystolicMaxTB.Text);
-            if (sysMax > 0)
+            if (StartStopBT.Text == "START")
             {
-               _dataCalculation.SystolicMaxThreshold = sysMax;
-            }
-            else
-            {
-               MessageBox.Show("Den indtastede værdi er ugyldig");
-            }
-         }
-         catch (FormatException err)
-         {
-            MessageBox.Show("Den indtastede værdi er ugyldig");
-         }
-      }
+                _dataProcessing.StartDataProcessingThread();
+                _dataCalculation.StartCalcThread();
 
-      private void SystolicMinTB_TextChanged(object sender, EventArgs e)
-      {
-         int sysMin;
-         try
-         {
-            sysMin = Convert.ToInt32(SystolicMinTB.Text);
-            if (sysMin > 0)
-            {
-               _dataCalculation.SystolicMinThreshold = sysMin;
-            }
-            else
-            {
-               MessageBox.Show("Den indtastede værdi er ugyldig");
-            }
-         }
-         catch (FormatException err)
-         {
-            MessageBox.Show("Den indtastede værdi er ugyldig");
-         }
-      }
+                StartStopBT.BackColor = Color.Red;
+                StartStopBT.Text = "STOP";
 
-      private void DiastolicMaxTB_TextChanged(object sender, EventArgs e)
-      {
-         int diaMax;
-         try
-         {
-            diaMax = Convert.ToInt32(DiastolicMaxTB.Text);
-            if (diaMax > 0)
-            {
-               _dataCalculation.DiastolicMaxThreshold = diaMax;
+                SystolicMaxTB.Enabled = true;
+                SystolicMinTB.Enabled = true;
+                DiastolicMaxTB.Enabled = true;
+                DiastolicMinTB.Enabled = true;
             }
-            else
-            {
-               MessageBox.Show("Den indtastede værdi er ugyldig");
-            }
-         }
-         catch (FormatException err)
-         {
-            MessageBox.Show("Den indtastede værdi er ugyldig");
-         }
-      }
 
-      private void DiastolicMinTB_TextChanged(object sender, EventArgs e)
-      {
-         int diaMin;
-         try
-         {
-            diaMin = Convert.ToInt32(DiastolicMinTB.Text);
-            if (diaMin > 0)
+            if (StartStopBT.Text == "STOP")
             {
-               _dataCalculation.DiastolicMinThreshold = diaMin;
+                StartStopBT.BackColor = Color.LawnGreen;
+                StartStopBT.Text = "START";
+
+                _dataCalculation.JoinCalcThread();
+                _dataProcessing.JoinThreads();
             }
-            else
+
+        }
+
+
+
+
+        private void SystolicMaxTB_TextChanged(object sender, EventArgs e)
+        {
+            int sysMax;
+            try
             {
-               MessageBox.Show("Den indtastede værdi er ugyldig");
+                sysMax = Convert.ToInt32(SystolicMaxTB.Text);
+                if (sysMax > 0)
+                {
+                    _dataCalculation.SystolicMaxThreshold = sysMax;
+                }
+                else
+                {
+                    MessageBox.Show("Den indtastede værdi er ugyldig");
+                }
             }
-         }
-         catch (FormatException err)
-         {
-            MessageBox.Show("Den indtastede værdi er ugyldig");
-         }
-      }
+            catch (FormatException err)
+            {
+                MessageBox.Show("Den indtastede værdi er ugyldig");
+            }
+        }
+
+        private void SystolicMinTB_TextChanged(object sender, EventArgs e)
+        {
+            int sysMin;
+            try
+            {
+                sysMin = Convert.ToInt32(SystolicMinTB.Text);
+                if (sysMin > 0)
+                {
+                    _dataCalculation.SystolicMinThreshold = sysMin;
+                }
+                else
+                {
+                    MessageBox.Show("Den indtastede værdi er ugyldig");
+                }
+            }
+            catch (FormatException err)
+            {
+                MessageBox.Show("Den indtastede værdi er ugyldig");
+            }
+        }
+
+        private void DiastolicMaxTB_TextChanged(object sender, EventArgs e)
+        {
+            int diaMax;
+            try
+            {
+                diaMax = Convert.ToInt32(DiastolicMaxTB.Text);
+                if (diaMax > 0)
+                {
+                    _dataCalculation.DiastolicMaxThreshold = diaMax;
+                }
+                else
+                {
+                    MessageBox.Show("Den indtastede værdi er ugyldig");
+                }
+            }
+            catch (FormatException err)
+            {
+                MessageBox.Show("Den indtastede værdi er ugyldig");
+            }
+        }
+
+        private void DiastolicMinTB_TextChanged(object sender, EventArgs e)
+        {
+            int diaMin;
+            try
+            {
+                diaMin = Convert.ToInt32(DiastolicMinTB.Text);
+                if (diaMin > 0)
+                {
+                    _dataCalculation.DiastolicMinThreshold = diaMin;
+                }
+                else
+                {
+                    MessageBox.Show("Den indtastede værdi er ugyldig");
+                }
+            }
+            catch (FormatException err)
+            {
+                MessageBox.Show("Den indtastede værdi er ugyldig");
+            }
+        }
 
         private void AdaptThresholdsBT_Click(object sender, EventArgs e)
         {
@@ -261,7 +288,7 @@ namespace PresentationLogic
                 SystolicMinTB.Enabled = false;
                 DiastolicMaxTB.Enabled = false;
                 DiastolicMinTB.Enabled = false;
-            }     
+            }
         }
 
         private void ThresholdCheckpoint_CheckedChanged(object sender, EventArgs e)
@@ -270,7 +297,7 @@ namespace PresentationLogic
             SystolicMinTB.Enabled = true;
             DiastolicMaxTB.Enabled = true;
             DiastolicMinTB.Enabled = true;
-            
+
         }
 
         private void chart1_Click(object sender, EventArgs e)
@@ -278,23 +305,23 @@ namespace PresentationLogic
 
         }
 
-      private void FilterB_Click(object sender, EventArgs e)
-      {
-         if (FilterB.Text == "ON")
-         {
-            FilterB.BackColor = Color.Red; //symbolizes light turned on
+        private void FilterB_Click(object sender, EventArgs e)
+        {
+            if (FilterB.Text == "ON")
+            {
+                FilterB.BackColor = Color.Red; //symbolizes light turned on
 
-            FilterB.Text = "OFF";
-            _dataProcessing.filterSwitchedOn = false;
-         }
+                FilterB.Text = "OFF";
+                _dataProcessing.filterSwitchedOn = false;
+            }
 
-         else if (FilterB.Text == "OFF")
-         {
-            FilterB.BackColor = Color.LawnGreen; //symbolizes light turned off
+            else if (FilterB.Text == "OFF")
+            {
+                FilterB.BackColor = Color.LawnGreen; //symbolizes light turned off
 
-            FilterB.Text = "ON";
-            _dataProcessing.filterSwitchedOn = true;
-         }
-      }
-   }
+                FilterB.Text = "ON";
+                _dataProcessing.filterSwitchedOn = true;
+            }
+        }
+    }
 }

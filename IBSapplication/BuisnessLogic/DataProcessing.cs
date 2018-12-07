@@ -30,14 +30,14 @@ namespace BusinessLogic
         //Tråde
         private readonly BlockingCollection<List<double>> _dataQueue;
         private readonly BlockingCollection<List<double>> _dataQueueToCalculation;
-        Thread dataProcessingThread;
+        public Thread dataProcessingThread;
 
         public DataProcessing(BlockingCollection<List<double>> dataQueue, BlockingCollection<List<double>> dataQueueToCalculation, DataCollection dataCollection)
         {
             //create variables
             _dataQueueToCalculation = dataQueueToCalculation;
             _dataQueue = dataQueue;
-            processedDataList = new List<double>();
+            
 
             //create relations 
             _dataCollector = dataCollection;
@@ -53,10 +53,12 @@ namespace BusinessLogic
 
         public void Start()
         {
+
             _dataCollector.StartLoading();
 
             while (!_dataQueue.IsCompleted)
             {
+                processedDataList = new List<double>();
                 try
                 {
                     rawDataList = _dataQueue.Take();

@@ -10,7 +10,7 @@ namespace BusinessLogic
 {
     public class UnitConverter : IUnitConverter
     {
-        private List<double> calibratedSampleList = new List<double>();
+       
 
         public UnitConverter ()
         {
@@ -18,6 +18,7 @@ namespace BusinessLogic
 
         public List<double> GetCalibratedSampleList(List<double> rawDataList, double slope, double zeroPoint)
         {
+            List<double> calibratedSampleList = new List<double>();
             foreach (var convertDataPoint in rawDataList)
             {
                 double localConverDataPoint = convertDataPoint;

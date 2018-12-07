@@ -14,12 +14,22 @@ namespace BusinessLogic
         
         public List<double> getProcessedDataList(List<double> listFromDigitalFilter)
         {
-            foreach (var sample in listFromDigitalFilter)
+            if (processedDataList.Count > 7000000)
             {
-                processedDataList.Add(sample);
+                for (int i = 0; i < 1000; i++)
+                {
+                    processedDataList.RemoveAt(0);
+                }
+            }
+            else
+            {
+                foreach (var sample in listFromDigitalFilter)
+                {
+                    processedDataList.Add(sample);
+                }
             }
 
-           return processedDataList;
+            return processedDataList;
         }
     }
 }
