@@ -25,11 +25,11 @@ namespace BusinessLogic
 
 
         //Events
-        public event Action<List<double>, int, int, int, int> NewDataAvailableEvent;
+        public event Action<List<double>> NewDataAvailableEvent;
         public event Action<bool> AlarmActivatedEvent;
 
-      //Define variables
-      public int CalculatedPulseValue { get; private set; }
+        //Define variables
+        public int CalculatedPulseValue { get; private set; }
         public int CalculatedSystolicValue { get; private set; }
         public int CalculatedDiastolicValue { get; private set; }
         public int CalculatedAverageBPValue { get; private set; }
@@ -39,23 +39,24 @@ namespace BusinessLogic
         public int DiastolicMinThreshold { get; set; }
         private int f_sample;
         private bool _alarmActivated;
-        private List<double> _totalDataList;
+        public List<double> _totalDataList;
         private List<double> _incomingDataList;
         private readonly BlockingCollection<List<double>> _dataQueue;
-       public Thread DataCalculationThread;
+        public Thread DataCalculationThread;
 
 
 
-        public DataCalculation(DataProcessing dataProcessing)
+        public DataCalculation(BlockingCollection<List<double>> dataQueueToCalculation, IDatabaseSaver databaseSaver)
         {
-            _dataProcessing = dataProcessing;
+            //_dataProcessing = dataProcessing;
             _pulse = new Pulse();
             _bloodPressure = new BloodPressure();
             _processedDataCollector = new ProcessedDataCollector();
-            _databaseSaver = new DatabaseSaver();
+            _databaseSaver = databaseSaver;
             _binFormatter = new BinFormatter();
             _alarm = new Alarm();
             _alarmList = new List<bool>(2);
+            _dataQueue = dataQueueToCalculation;
 
 
 
@@ -65,19 +66,23 @@ namespace BusinessLogic
             CalculatedSystolicValue = 0;
             CalculatedDiastolicValue = 0;
             CalculatedAverageBPValue = 0;
-            _dataQueue = _dataProcessing.GetDataQueueToCalculation();
-           DataCalculationThread = new Thread(doDataCalculation);
+
+
+            //_dataQueue = _dataProcessing.GetDataQueueToCalculation();
+
         }
 
-       public void StartCalcThread()
-       {
-          DataCalculationThread.Start();
-       }
+        public void StartCalcThread()
+        {
+            DataCalculationThread = new Thread(doDataCalculation);
+            DataCalculationThread.Start();
+        }
 
-       public void JoinCalcThread()
-       {
-          DataCalculationThread.Join();
-       }
+        public void JoinCalcThread()
+        {
+            DataCalculationThread.Abort();
+            DataCalculationThread.Join();
+        }
 
         public void doDataCalculation()
         {
@@ -102,17 +107,19 @@ namespace BusinessLogic
                 CalculatedAverageBPValue = _bloodPressure._dtoBloodpressure.AverageBP;
 
 
-                _alarmActivated = _alarm.CheckAlarming(_bloodPressure._dtoBloodpressure);
+                //_alarmActivated = _alarm.CheckAlarming(_bloodPressure._dtoBloodpressure);
 
-                if (_alarmActivated == true)
-                {
-                    AlarmActivatedEvent?.Invoke(_alarmActivated);
-                }
+                //if (_alarmActivated == true)
+                //{
+                //    AlarmActivatedEvent?.Invoke(_alarmActivated);
+                //}
 
 
-                NewDataAvailableEvent?.Invoke(_totalDataList, CalculatedPulseValue, CalculatedSystolicValue, CalculatedDiastolicValue, CalculatedAverageBPValue);
+                //NewDataAvailableEvent?.Invoke(_totalDataList, CalculatedPulseValue, CalculatedSystolicValue, CalculatedDiastolicValue, CalculatedAverageBPValue);
+                NewDataAvailableEvent?.Invoke(_incomingDataList);
+
+                Thread.Yield();
             }
-
         }
         //public void GetProcessedData()
         //{

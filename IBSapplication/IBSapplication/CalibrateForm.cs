@@ -40,13 +40,6 @@ namespace PresentationLogic
                 this.Close();
         }
 
-        private void CalibrationBT_Click(object sender, EventArgs e)
-        {
-            calibrate = new Calibrate();
-            calibrate.Calibration();
-            this.Close();
-        }
-
         private void Measure10mmHgBT_Click(object sender, EventArgs e)
         {
             _dataProcessing.GetVoltageData(10);
