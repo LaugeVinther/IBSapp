@@ -23,6 +23,8 @@ namespace PresentationLogic
         private DataProcessing _dataProcessing;
         private DataCalculation _dataCalculation;
         private SoundPlayer _player;
+        private const int _windowSize = 10000;
+        private int _currentSample = 0;
 
 
         public PrimaryForm(DataProcessing dataProcessing, DataCalculation dataCalculation)
@@ -75,10 +77,11 @@ namespace PresentationLogic
 
                     foreach (var number in list)
                     {
-                        chart1.Series["Blood Pressure"].Points.AddY(number);
+                        chart1.Series[0].Points.AddY(number);
+                        //chart1.Series[0].Points[_currentSample].SetValueY(number);
+                        //_currentSample = (_currentSample + 1) % _windowSize;
                     }
-
-
+                   
                 }
 
                     ));
@@ -106,21 +109,21 @@ namespace PresentationLogic
             //Major grid 
             chart1.Series["Blood Pressure"].IsXValueIndexed = false;
             chart1.ChartAreas["ChartArea1"].AxisX.Minimum = 0;
-            chart1.ChartAreas["ChartArea1"].AxisX.Maximum = 60;
+            chart1.ChartAreas["ChartArea1"].AxisX.Maximum = 100;
             chart1.ChartAreas["ChartArea1"].AxisX.Interval = 10;
-            chart1.ChartAreas["ChartArea1"].AxisY.Minimum = 0;
-            chart1.ChartAreas["ChartArea1"].AxisY.Maximum = 200;
+            chart1.ChartAreas["ChartArea1"].AxisY.Minimum = -50;
+            chart1.ChartAreas["ChartArea1"].AxisY.Maximum = 50;
             chart1.ChartAreas["ChartArea1"].AxisY.Interval = 20;
             chart1.ChartAreas["ChartArea1"].AxisX.MajorGrid.LineWidth = 2;
             chart1.ChartAreas["ChartArea1"].AxisY.MajorGrid.LineWidth = 2;
-            chart1.ChartAreas["ChartArea1"].AxisX.MajorGrid.LineColor = Color.LightGreen;
-            chart1.ChartAreas["ChartArea1"].AxisY.MajorGrid.LineColor = Color.LightGreen;
+            chart1.ChartAreas["ChartArea1"].AxisX.MajorGrid.LineColor = Color.Black;
+            chart1.ChartAreas["ChartArea1"].AxisY.MajorGrid.LineColor = Color.Black;
 
             //Minor grid
             chart1.ChartAreas["ChartArea1"].AxisX.MinorGrid.Enabled = true;
             chart1.ChartAreas["ChartArea1"].AxisY.MinorGrid.Enabled = true;
-            chart1.ChartAreas["ChartArea1"].AxisX.MinorGrid.LineColor = Color.LightGreen;
-            chart1.ChartAreas["ChartArea1"].AxisY.MinorGrid.LineColor = Color.LightGreen;
+            chart1.ChartAreas["ChartArea1"].AxisX.MinorGrid.LineColor = Color.Black;
+            chart1.ChartAreas["ChartArea1"].AxisY.MinorGrid.LineColor = Color.Black;
             chart1.ChartAreas["ChartArea1"].AxisX.MinorGrid.Interval = 20;
             chart1.ChartAreas["ChartArea1"].AxisY.MinorGrid.Interval = 0.1;
             chart1.ChartAreas["ChartArea1"].AxisY.MinorGrid.LineDashStyle = ChartDashStyle.Dot;

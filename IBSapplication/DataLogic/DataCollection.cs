@@ -58,8 +58,9 @@ namespace DataLogic
                 //currentDTO.rawSamples = daq.currentVoltageSeq;
 
                 _dataQueue.Add(currentmV);
-                Thread.Sleep(1000);
+                
                 Thread.Yield();
+                Thread.Sleep(1000);
             }
 
             //Måske vi skal ahve noget kode, der giver hver sample en tid.
@@ -105,7 +106,7 @@ namespace DataLogic
             double[] sinus = new double[SIZE];
 
             for (int t = 0; t < SIZE; t++)
-                sinus[t] = 10 * Math.Sin(2 * Math.PI * (t * ((1 * FREQUENCY) / (1.0 * SAMPLINGSRATE))));
+                sinus[t] = 5 * Math.Sin(2 * Math.PI * (t * ((1 * FREQUENCY) / (1.0 * SAMPLINGSRATE))));
 
             return sinus.ToList();
         }
