@@ -24,11 +24,8 @@ namespace UnitTest
             
         }
 
-        [TestCase(false, false, false, false)]
-        [TestCase(false, false, true, false)]
-        [TestCase(false, true, true, false)]
-        [TestCase(true, true, false, true)]
-        public void Alarming_BPMeasurementsInitiallyFa_OutputIsTrue()
+        [Test]
+        public void Alarming_BPMeasurements_OutputIsTrue()
         {
 
             dtoBloodpressure.Systolic = 190;
