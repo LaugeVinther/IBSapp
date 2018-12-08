@@ -13,39 +13,32 @@ namespace UnitTest
     public class AlarmUnitTest
     {
         private Alarm uut;
+        private DTO_Bloodpressure dtoBloodpressure;
+       
 
         [SetUp]
         public void SetUp()
         {
             uut = new Alarm();
+            dtoBloodpressure = new DTO_Bloodpressure();
+            
         }
 
         [TestCase(false, false, false, false)]
         [TestCase(false, false, true, false)]
         [TestCase(false, true, true, false)]
-        [TestCase(false, true, false, false)]
-        public void Alarming_ThreeBPMeasurementsInitiallyFalse_OutputIsFalse(bool s1, bool s2, bool s3, bool expectedResult)
-        {
-            uut.CheckAlarming(s1);
-            uut.CheckAlarming(s2)
-            bool result = uut.CheckAlarming(s3);
-            Assert.That(result, Is.EqualTo(expectedResult));
-        }
-
-
         [TestCase(true, true, false, true)]
-        [TestCase(true, false, false, true)]
-        [TestCase(false, false, false, false)]
-        public void Alarming_ThreeBPMeasurementsInitiallyTrue_OutputIsFalse(bool s1, bool s2, bool s3, bool expectedResult)
+        public void Alarming_BPMeasurementsInitiallyFa_OutputIsTrue()
         {
-            uut.CheckAlarming(true);
-            uut.CheckAlarming(true);
-            uut.CheckAlarming(true);
-            uut.CheckAlarming(s1);
-            uut.CheckAlarming(s2);
-            bool result = uut.CheckAlarming(s3);
-            Assert.That(result, Is.EqualTo(expectedResult));
+
+            dtoBloodpressure.Systolic = 190;
+            dtoBloodpressure.Diastolic = 50;
+
+            uut.CheckAlarming(dtoBloodpressure);
+            bool result = uut.CheckAlarming(dtoBloodpressure);
+            Assert.That(result, Is.EqualTo(true));
         }
+       
 
     }
 }
