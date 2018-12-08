@@ -6,7 +6,6 @@ using System.Drawing;
 using System.Linq;
 using System.Media;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
@@ -24,89 +23,70 @@ namespace PresentationLogic
         private DataProcessing _dataProcessing;
         private DataCalculation _dataCalculation;
         private SoundPlayer _player;
-        //public Thread UpdateChart;
 
 
         public PrimaryForm(DataProcessing dataProcessing, DataCalculation dataCalculation)
         {
             InitializeComponent();
 
-            _dataProcessing = dataProcessing;
-            _dataCalculation = dataCalculation;
 
             //currentBuisnessLogic = buisnessLogic;
 
             //_dataProcessing = new DataProcessing();
             //_dataCalculation = new DataCalculation(_dataProcessing);
 
+            _dataProcessing = dataProcessing;
+            _dataCalculation = dataCalculation;
+
+
+
+
+
+
+
+
+
 
         }
 
-        //public void NewDataAvailableEventMethod(List<double> list, int Pulse, int sysBP, int diaBP, int avgBP)
-        //{
-        //    List<double> localList = list;
-
-        //    if (InvokeRequired)
-        //    {
-        //        BeginInvoke((Action)delegate
-        //       {
-        //           PulseTB.Text = Pulse.ToString();
-        //           SysDiaTB.Text = (sysBP + "/" + diaBP);
-        //           AverageBP_TB.Text = avgBP.ToString();
-
-        //           foreach (var number in localList)
-        //           {
-        //               chart1.Series["Blood Pressure"].Points.AddY(number);
-        //           }
-        //           chart1.Refresh();
-
-        //       }
-
-        //        );
-        //    }
-        //}
-        public void NewDataAvailableEventMethod(List<double> list)
+        public void PrimaryForm_Load(object sender, EventArgs e)
         {
-            //List<double> localList = list;
+            _dataCalculation.NewDataAvailableEvent += NewDataAvailableEventMethod;
 
-            //if (InvokeRequired)
-            //{
-            //    BeginInvoke((Action)delegate
-            //        {
+            _dataCalculation.AlarmActivatedEvent += AlarmActivatedEventMethod;
 
-            //            foreach (var number in localList)
-            //            {
-            //                chart1.Series["Blood pressure"].Points.AddY(number);
-            //            }
-            //            chart1.Refresh();
 
-            //        }
+            _dataProcessing.filterSwitchedOn = true;
+            graphSetting();
 
-            //    );
-            //}
-            if(InvokeRequired)
+            _player = new System.Media.SoundPlayer(@"C:\Users\Esma\Documents\Sundhedsteknologi\3. semester\Semesterprojekt 3 - Udvikling af et blodtrykmålesystem\SW\IBSapp\IBSapplication\IBSapplication\bin\Debug\alarm_high_priority_5overtoner.wav"); //korrekt stinavn skal indsættes
+
+        }
+
+        public void NewDataAvailableEventMethod(List<double> list, int pulse, int sysBP, int diaBP, int avgBP)
+        {
+            if (InvokeRequired)
             {
                 BeginInvoke((Action)(() =>
                 {
+                    PulseTB.Text = pulse.ToString();
+                    SysDiaTB.Text = (sysBP + "/" + diaBP);
+                    AverageBP_TB.Text = avgBP.ToString();
+
                     foreach (var number in list)
                     {
                         chart1.Series["Blood Pressure"].Points.AddY(number);
                     }
-                    chart1.Refresh();
-                }));
+
+
+                }
+
+                    ));
                 return;
             }
-
-            foreach (var number in list)
-            {
-                chart1.Series["Blood Pressure"].Points.AddY(number);
-            }
-            chart1.Refresh();
-
         }
 
-
-        public void AlarmActivatedEventMethod(bool alarmActivated)//Brugt async for at bruge await - på denne måde kan label blinke
+        public  void AlarmActivatedEventMethod(bool alarmActivated)//Brugt async for at bruge await - på denne måde kan label blinke
         {
             ////Alarm skal igangsættes med lyd og lys
             ////Afspil lyd
@@ -115,7 +95,7 @@ namespace PresentationLogic
             ////igangsæt lys
             //while (true)
             //{
-            //    Task.Delay(500);
+            //    await Task.Delay(500);
             //    SysDiaTB.ForeColor = SysDiaTB.ForeColor == Color.Red ? Color.Lime : Color.Red;
             //}
 
@@ -146,8 +126,7 @@ namespace PresentationLogic
             chart1.ChartAreas["ChartArea1"].AxisY.MinorGrid.LineDashStyle = ChartDashStyle.Dot;
             chart1.ChartAreas["ChartArea1"].AxisX.MinorGrid.LineDashStyle = ChartDashStyle.Dot;
 
-            //chart1.Invalidate();
-            chart1.Refresh();
+            chart1.Invalidate();
 
         }
 
@@ -186,6 +165,7 @@ namespace PresentationLogic
                 DiastolicMaxTB.Enabled = true;
                 DiastolicMinTB.Enabled = true;
             }
+
             else if (StartStopBT.Text == "STOP")
             {
                 StartStopBT.BackColor = Color.LawnGreen;
@@ -326,21 +306,6 @@ namespace PresentationLogic
                 FilterB.Text = "ON";
                 _dataProcessing.filterSwitchedOn = true;
             }
-        }
-
-        private void PrimaryForm_Load(object sender, EventArgs e)
-        {
-            _dataCalculation.NewDataAvailableEvent += NewDataAvailableEventMethod;
-
-
-            _dataCalculation.AlarmActivatedEvent += AlarmActivatedEventMethod;
-
-            _dataProcessing.filterSwitchedOn = true;
-            //UpdateChart = new Thread();
-
-            graphSetting();
-
-            _player = new System.Media.SoundPlayer(@"C:\Users\Esma\Documents\Sundhedsteknologi\3. semester\Semesterprojekt 3 - Udvikling af et blodtrykmålesystem\SW\IBSapp\IBSapplication\IBSapplication\bin\Debug\alarm_high_priority_5overtoner.wav"); //korrekt stinavn skal indsættes
         }
     }
 }
