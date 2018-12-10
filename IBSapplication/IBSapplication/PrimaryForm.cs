@@ -310,5 +310,10 @@ namespace PresentationLogic
                 _dataProcessing.filterSwitchedOn = true;
             }
         }
+
+        private void AverageBP_TB_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

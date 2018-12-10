@@ -67,7 +67,7 @@ namespace PresentationLogic
 
         private void DateOfCalibration_Click(object sender, EventArgs e)
         {
-            DateOfCalibration.Text = "Date of calibration: " + DateTime.Now.ToShortDateString();
+            DateOfCalibration.Text = "Date of calibration: {0}" + DateTime.Now.ToShortDateString();
         }
 
         private void CalibrateChart_Click(object sender, EventArgs e)
