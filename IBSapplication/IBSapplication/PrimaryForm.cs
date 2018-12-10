@@ -136,7 +136,6 @@ namespace PresentationLogic
         private void CalibrationBT_Click(object sender, EventArgs e)
         {
             _calibrateForm = new CalibrateForm(_dataProcessing);
-            _calibrateForm.ShowDialog();
         }
 
         private void SaveBT_Click(object sender, EventArgs e)

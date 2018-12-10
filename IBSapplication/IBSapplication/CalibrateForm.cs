@@ -32,13 +32,13 @@ namespace PresentationLogic
             _calibrateLoginForm = new CalibrateLoginForm(calibrateLoginLogic, this);
             _calibrateLoginForm.ShowDialog();
 
-            //if (this.LoginOK_ == true)
-            //{
-            //    this.Visible = true;
-            //}
-            //else
-            //    this.Close();
-        }
+         if (this.LoginOK_ == true)
+         {
+            this.Visible = true;
+         }
+         else
+            this.Close();
+      }
 
         private void Measure10mmHgBT_Click(object sender, EventArgs e)
         {
