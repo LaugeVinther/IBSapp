@@ -72,8 +72,8 @@ namespace DataLogic
         {
             // Initialize local variables
             sampleRateInHz = 1000;
-            rangeMinimumVolt = -2.5;
-            rangeMaximumVolt = 2.5;
+            rangeMinimumVolt = -0.5;
+            rangeMaximumVolt = 4;
             samplesPerChannel = 500;
             deviceName = "Dev2/ai0";
             seqTimeOut = -1;
