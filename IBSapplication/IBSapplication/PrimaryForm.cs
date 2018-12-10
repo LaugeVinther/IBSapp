@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Media;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
@@ -25,8 +26,9 @@ namespace PresentationLogic
         private SoundPlayer _player;
         private const int _windowSize = 10000;
         private int _currentSample = 0;
-
-
+       public Thread AlarmThread;
+       private bool AlarmThreadIsStarted;
+   
         public PrimaryForm(DataProcessing dataProcessing, DataCalculation dataCalculation)
         {
             InitializeComponent();
@@ -40,18 +42,14 @@ namespace PresentationLogic
             _dataProcessing = dataProcessing;
             _dataCalculation = dataCalculation;
 
+           AlarmThread = new Thread(Alarming);
+           AlarmThreadIsStarted = false;
+           _player = new System.Media.SoundPlayer(@"C:\Users\FridaH\Documents\ST\ST3\PRJ\alarm_high_priority_5overtoner.wav"); //korrekt stinavn skal indsættes
 
 
+      }
 
-
-
-
-
-
-
-        }
-
-        public void PrimaryForm_Load(object sender, EventArgs e)
+      public void PrimaryForm_Load(object sender, EventArgs e)
         {
             _dataCalculation.NewDataAvailableEvent += NewDataAvailableEventMethod;
 
@@ -61,7 +59,6 @@ namespace PresentationLogic
             _dataProcessing.filterSwitchedOn = true;
             graphSetting();
 
-            _player = new System.Media.SoundPlayer(@"C:\Users\Esma\Documents\Sundhedsteknologi\3. semester\Semesterprojekt 3 - Udvikling af et blodtrykmålesystem\SW\IBSapp\IBSapplication\IBSapplication\bin\Debug\alarm_high_priority_5overtoner.wav"); //korrekt stinavn skal indsættes
 
         }
 
@@ -89,20 +86,50 @@ namespace PresentationLogic
             }
         }
 
-        public  void AlarmActivatedEventMethod(bool alarmActivated)//Brugt async for at bruge await - på denne måde kan label blinke
+        public  void AlarmActivatedEventMethod(bool alarmActivated)
         {
-            ////Alarm skal igangsættes med lyd og lys
-            ////Afspil lyd
-            //_player.Play();
+         if (InvokeRequired)
+         {
+            BeginInvoke((Action)(() =>
+                  {
+                     if (_dataCalculation._alarmActivated == true && AlarmThreadIsStarted==false)
+                     {
+                        AlarmThread.Start();
+                        AlarmThreadIsStarted = true;
+                     }
+                     else if (_dataCalculation._alarmActivated==false && AlarmThreadIsStarted==true)
+                     {
+                        AlarmThread.Join();
+                        AlarmThreadIsStarted = false;
+                     }
 
-            ////igangsæt lys
-            //while (true)
-            //{
-            //    await Task.Delay(500);
-            //    SysDiaTB.ForeColor = SysDiaTB.ForeColor == Color.Red ? Color.Lime : Color.Red;
-            //}
 
-        }
+                  }
+
+               ));
+            return;
+         }
+
+      }
+
+       public void Alarming()
+       {
+          while (true)
+          {
+             if (SysDiaTB.ForeColor == Color.Red)
+             {
+                SysDiaTB.ForeColor = Color.Lime;
+                Thread.Sleep(1000);
+             }
+             else
+             {
+                SysDiaTB.ForeColor = Color.Red;
+                Thread.Sleep(1000);
+             }
+             _player.Play();
+         }
+          
+       }
 
         private void graphSetting() // OBS! tallene skal laves om efter standarden!
         {

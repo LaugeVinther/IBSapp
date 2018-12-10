@@ -33,7 +33,7 @@ namespace BusinessLogic
             for (int i = 5; i < length - 5; i++)
             {
                 double sum = 0;
-                for (int j = -5; j < 5; j++)
+                for (int j = -5; j < 0; j++)
                 {
                     sum += samples[i + j];
                 }

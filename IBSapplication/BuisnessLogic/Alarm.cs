@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using DTOLogic;
 using System;
+using System.Media;
 
 namespace BusinessLogic
 {
@@ -14,7 +15,8 @@ namespace BusinessLogic
         private int _thresholdUpperSys;
         private int _thresholdLowerSys;
         public bool IsAlarmActivated = false;
-        private bool[] _alarmArray; 
+        private bool[] _alarmArray;
+        //private SoundPlayer _player;
       
 
 
@@ -25,10 +27,12 @@ namespace BusinessLogic
             _thresholdUpperSys = 90;
             _thresholdLowerSys = 180;
             _alarmArray = new bool[3];
+           //_player = new System.Media.SoundPlayer(@"C:\Users\FridaH\Documents\ST\ST3\PRJ\alarm_high_priority_5overtoner.wav"); //korrekt stinavn skal indsættes
 
-        }
 
-        public bool CheckAlarming(DTO_Bloodpressure dtoBloodpressure)
+      }
+
+      public bool CheckAlarming(DTO_Bloodpressure dtoBloodpressure)
         {
             if (dtoBloodpressure.Systolic > _thresholdUpperSys || dtoBloodpressure.Systolic < _thresholdLowerSys || dtoBloodpressure.Diastolic > _thresholdUpperDia || dtoBloodpressure.Diastolic < _thresholdLowerDia)
             {
@@ -50,7 +54,12 @@ namespace BusinessLogic
             if (_alarmArray[0] == true && _alarmArray[1] == true && _alarmArray[2] == true)
             {
                 IsAlarmActivated = true;
+               //_player.Play();
 
+         }
+            else
+            {
+               IsAlarmActivated = false;
             }
 
 
