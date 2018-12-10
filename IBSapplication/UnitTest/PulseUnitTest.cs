@@ -23,7 +23,7 @@ namespace UnitTest
       [Test]
       public void CalculatePulse_FS1000F1_ExpectPulseIs60()
       {
-         int size = 1000;
+         int size = 1000000;
          int f_sample = 1000;
          int frequency = 1;
 

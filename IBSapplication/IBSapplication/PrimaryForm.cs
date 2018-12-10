@@ -81,7 +81,7 @@ namespace PresentationLogic
                         //chart1.Series[0].Points[_currentSample].SetValueY(number);
                         //_currentSample = (_currentSample + 1) % _windowSize;
                     }
-                   
+
                 }
 
                     ));
@@ -89,7 +89,7 @@ namespace PresentationLogic
             }
         }
 
-        public  void AlarmActivatedEventMethod(bool alarmActivated)//Brugt async for at bruge await - på denne måde kan label blinke
+        public void AlarmActivatedEventMethod(bool alarmActivated)//Brugt async for at bruge await - på denne måde kan label blinke
         {
             ////Alarm skal igangsættes med lyd og lys
             ////Afspil lyd
@@ -116,14 +116,14 @@ namespace PresentationLogic
             chart1.ChartAreas["ChartArea1"].AxisY.Interval = 20;
             chart1.ChartAreas["ChartArea1"].AxisX.MajorGrid.LineWidth = 2;
             chart1.ChartAreas["ChartArea1"].AxisY.MajorGrid.LineWidth = 2;
-            chart1.ChartAreas["ChartArea1"].AxisX.MajorGrid.LineColor = Color.Black;
-            chart1.ChartAreas["ChartArea1"].AxisY.MajorGrid.LineColor = Color.Black;
+            chart1.ChartAreas["ChartArea1"].AxisX.MajorGrid.LineColor = Color.LightGreen;
+            chart1.ChartAreas["ChartArea1"].AxisY.MajorGrid.LineColor = Color.LightGreen;
 
             //Minor grid
             chart1.ChartAreas["ChartArea1"].AxisX.MinorGrid.Enabled = true;
             chart1.ChartAreas["ChartArea1"].AxisY.MinorGrid.Enabled = true;
-            chart1.ChartAreas["ChartArea1"].AxisX.MinorGrid.LineColor = Color.Black;
-            chart1.ChartAreas["ChartArea1"].AxisY.MinorGrid.LineColor = Color.Black;
+            chart1.ChartAreas["ChartArea1"].AxisX.MinorGrid.LineColor = Color.LightGreen;
+            chart1.ChartAreas["ChartArea1"].AxisY.MinorGrid.LineColor = Color.LightGreen;
             chart1.ChartAreas["ChartArea1"].AxisX.MinorGrid.Interval = 20;
             chart1.ChartAreas["ChartArea1"].AxisY.MinorGrid.Interval = 0.1;
             chart1.ChartAreas["ChartArea1"].AxisY.MinorGrid.LineDashStyle = ChartDashStyle.Dot;
@@ -136,7 +136,6 @@ namespace PresentationLogic
         private void CalibrationBT_Click(object sender, EventArgs e)
         {
             _calibrateForm = new CalibrateForm(_dataProcessing);
-            _calibrateForm.ShowDialog();
         }
 
         private void SaveBT_Click(object sender, EventArgs e)
@@ -163,10 +162,10 @@ namespace PresentationLogic
                 StartStopBT.BackColor = Color.Red;
                 StartStopBT.Text = "STOP";
 
-                SystolicMaxTB.Enabled = true;
-                SystolicMinTB.Enabled = true;
-                DiastolicMaxTB.Enabled = true;
-                DiastolicMinTB.Enabled = true;
+                //SystolicMaxTB.Enabled = true;
+                //SystolicMinTB.Enabled = true;
+                //DiastolicMaxTB.Enabled = true;
+                //DiastolicMinTB.Enabled = true;
             }
 
             else if (StartStopBT.Text == "STOP")
@@ -269,21 +268,32 @@ namespace PresentationLogic
 
         private void AdaptThresholdsBT_Click(object sender, EventArgs e)
         {
-            if (ThresholdCheckpoint.Checked == true)
+            SystolicMaxTB.Enabled = false;
+            SystolicMinTB.Enabled = false;
+            DiastolicMaxTB.Enabled = false;
+            DiastolicMinTB.Enabled = false;
+            
+        }
+
+        private void ThresholdCheckpoint_CheckedChanged(object sender, EventArgs e)
+        {
+            if(ThresholdCheckpoint.Checked==true)
+            {
+                SystolicMaxTB.Enabled = true;
+                SystolicMinTB.Enabled = true;
+                DiastolicMaxTB.Enabled = true;
+                DiastolicMinTB.Enabled = true;
+                AdaptThresholdsBT.Enabled = true;
+            }
+            else
             {
                 SystolicMaxTB.Enabled = false;
                 SystolicMinTB.Enabled = false;
                 DiastolicMaxTB.Enabled = false;
                 DiastolicMinTB.Enabled = false;
             }
-        }
+            
 
-        private void ThresholdCheckpoint_CheckedChanged(object sender, EventArgs e)
-        {
-            SystolicMaxTB.Enabled = true;
-            SystolicMinTB.Enabled = true;
-            DiastolicMaxTB.Enabled = true;
-            DiastolicMinTB.Enabled = true;
 
         }
 

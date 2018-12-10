@@ -60,7 +60,7 @@ namespace DataLogic
                 _dataQueue.Add(currentmV);
 
                 Thread.Yield();
-                Thread.Sleep(2000);
+                Thread.Sleep(5000);
             }
 
             //Måske vi skal ahve noget kode, der giver hver sample en tid.

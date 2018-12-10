@@ -240,11 +240,13 @@
             this.mmHgTB.Size = new System.Drawing.Size(69, 25);
             this.mmHgTB.TabIndex = 27;
             this.mmHgTB.Text = "mmHg";
+            this.mmHgTB.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // PulseTB
             // 
             this.PulseTB.BackColor = System.Drawing.Color.Black;
             this.PulseTB.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.PulseTB.Enabled = false;
             this.PulseTB.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.PulseTB.ForeColor = System.Drawing.Color.Yellow;
             this.PulseTB.Location = new System.Drawing.Point(920, 175);
@@ -259,6 +261,7 @@
             // 
             this.AverageBP_TB.BackColor = System.Drawing.Color.Black;
             this.AverageBP_TB.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.AverageBP_TB.Enabled = false;
             this.AverageBP_TB.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.AverageBP_TB.ForeColor = System.Drawing.Color.Blue;
             this.AverageBP_TB.Location = new System.Drawing.Point(905, 101);
@@ -274,6 +277,7 @@
             // 
             this.SysDiaTB.BackColor = System.Drawing.Color.Black;
             this.SysDiaTB.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.SysDiaTB.Enabled = false;
             this.SysDiaTB.Font = new System.Drawing.Font("Microsoft Sans Serif", 32F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.SysDiaTB.ForeColor = System.Drawing.Color.Lime;
             this.SysDiaTB.Location = new System.Drawing.Point(813, 23);
