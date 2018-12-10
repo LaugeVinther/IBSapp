@@ -81,7 +81,7 @@ namespace PresentationLogic
                         //chart1.Series[0].Points[_currentSample].SetValueY(number);
                         //_currentSample = (_currentSample + 1) % _windowSize;
                     }
-                   
+
                 }
 
                     ));
@@ -89,7 +89,7 @@ namespace PresentationLogic
             }
         }
 
-        public  void AlarmActivatedEventMethod(bool alarmActivated)//Brugt async for at bruge await - på denne måde kan label blinke
+        public void AlarmActivatedEventMethod(bool alarmActivated)//Brugt async for at bruge await - på denne måde kan label blinke
         {
             ////Alarm skal igangsættes med lyd og lys
             ////Afspil lyd
@@ -269,13 +269,11 @@ namespace PresentationLogic
 
         private void AdaptThresholdsBT_Click(object sender, EventArgs e)
         {
-            if (ThresholdCheckpoint.Checked == true)
-            {
-                SystolicMaxTB.Enabled = false;
-                SystolicMinTB.Enabled = false;
-                DiastolicMaxTB.Enabled = false;
-                DiastolicMinTB.Enabled = false;
-            }
+            SystolicMaxTB.Enabled = false;
+            SystolicMinTB.Enabled = false;
+            DiastolicMaxTB.Enabled = false;
+            DiastolicMinTB.Enabled = false;
+            
         }
 
         private void ThresholdCheckpoint_CheckedChanged(object sender, EventArgs e)
@@ -284,6 +282,8 @@ namespace PresentationLogic
             SystolicMinTB.Enabled = true;
             DiastolicMaxTB.Enabled = true;
             DiastolicMinTB.Enabled = true;
+            AdaptThresholdsBT.Enabled = true;
+
 
         }
 
