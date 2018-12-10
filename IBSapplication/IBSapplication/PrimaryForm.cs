@@ -184,23 +184,48 @@ namespace PresentationLogic
 
         private void SystolicMaxTB_TextChanged(object sender, EventArgs e)
         {
-            int sysMax;
-            try
+            //int sysMax;
+            //try
+            //{
+            //    sysMax = Convert.ToInt32(SystolicMaxTB.Text);
+            //    if (sysMax > 0)
+            //    {
+            //        _dataCalculation.SystolicMaxThreshold = sysMax;
+            //    }
+            //    else
+            //    {
+            //        MessageBox.Show("Den indtastede værdi er ugyldig");
+            //    }
+            //}
+            //catch (FormatException err)
+            //{
+            //    MessageBox.Show("Den indtastede værdi er ugyldig");
+            //}
+        }
+
+        private void SystolicMaxTB_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if(e.KeyChar ==(Char)Keys.Tab)
             {
-                sysMax = Convert.ToInt32(SystolicMaxTB.Text);
-                if (sysMax > 0)
+                int sysMax;
+                try
                 {
-                    _dataCalculation.SystolicMaxThreshold = sysMax;
+                    sysMax = Convert.ToInt32(SystolicMaxTB.Text);
+                    if (sysMax > 0)
+                    {
+                        _dataCalculation.SystolicMaxThreshold = sysMax;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Den indtastede værdi er ugyldig");
+                    }
                 }
-                else
+                catch (FormatException err)
                 {
                     MessageBox.Show("Den indtastede værdi er ugyldig");
                 }
             }
-            catch (FormatException err)
-            {
-                MessageBox.Show("Den indtastede værdi er ugyldig");
-            }
+            
         }
 
         private void SystolicMinTB_TextChanged(object sender, EventArgs e)
