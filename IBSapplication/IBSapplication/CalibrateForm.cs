@@ -63,11 +63,12 @@ namespace PresentationLogic
         private void CalibrateBT_Click(object sender, EventArgs e)
         {
             _dataProcessing.GetCalibration();
+            MessageBox.Show("Calibration succeeded");
         }
 
         private void DateOfCalibration_Click(object sender, EventArgs e)
         {
-            DateOfCalibration.Text = "Date of calibration: {0}" + DateTime.Now.ToShortDateString();
+            DateOfCalibration.Text = DateTime.Now.ToShortDateString();
         }
 
         private void CalibrateChart_Click(object sender, EventArgs e)
