@@ -225,125 +225,49 @@ namespace PresentationLogic
 
         }
 
-
-
-
-        private void SystolicMaxTB_TextChanged(object sender, EventArgs e)
-        {
-            //int sysMax;
-            //try
-            //{
-            //    sysMax = Convert.ToInt32(SystolicMaxTB.Text);
-            //    if (sysMax > 0)
-            //    {
-            //        _dataCalculation.SystolicMaxThreshold = sysMax;
-            //    }
-            //    else
-            //    {
-            //        MessageBox.Show("Den indtastede værdi er ugyldig");
-            //    }
-            //}
-            //catch (FormatException err)
-            //{
-            //    MessageBox.Show("Den indtastede værdi er ugyldig");
-            //}
-        }
-
-        private void SystolicMaxTB_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if(e.KeyChar ==(Char)Keys.Tab)
-            {
-                int sysMax;
-                try
-                {
-                    sysMax = Convert.ToInt32(SystolicMaxTB.Text);
-                    if (sysMax > 0)
-                    {
-                        _dataCalculation.SystolicMaxThreshold = sysMax;
-                    }
-                    else
-                    {
-                        MessageBox.Show("Den indtastede værdi er ugyldig");
-                    }
-                }
-                catch (FormatException err)
-                {
-                    MessageBox.Show("Den indtastede værdi er ugyldig");
-                }
-            }
-            
-        }
-
-        private void SystolicMinTB_TextChanged(object sender, EventArgs e)
-        {
-            int sysMin;
-            try
-            {
-                sysMin = Convert.ToInt32(SystolicMinTB.Text);
-                if (sysMin > 0)
-                {
-                    _dataCalculation.SystolicMinThreshold = sysMin;
-                }
-                else
-                {
-                    MessageBox.Show("Den indtastede værdi er ugyldig");
-                }
-            }
-            catch (FormatException err)
-            {
-                MessageBox.Show("Den indtastede værdi er ugyldig");
-            }
-        }
-
-        private void DiastolicMaxTB_TextChanged(object sender, EventArgs e)
-        {
-            int diaMax;
-            try
-            {
-                diaMax = Convert.ToInt32(DiastolicMaxTB.Text);
-                if (diaMax > 0)
-                {
-                    _dataCalculation.DiastolicMaxThreshold = diaMax;
-                }
-                else
-                {
-                    MessageBox.Show("Den indtastede værdi er ugyldig");
-                }
-            }
-            catch (FormatException err)
-            {
-                MessageBox.Show("Den indtastede værdi er ugyldig");
-            }
-        }
-
-        private void DiastolicMinTB_TextChanged(object sender, EventArgs e)
-        {
-            int diaMin;
-            try
-            {
-                diaMin = Convert.ToInt32(DiastolicMinTB.Text);
-                if (diaMin > 0)
-                {
-                    _dataCalculation.DiastolicMinThreshold = diaMin;
-                }
-                else
-                {
-                    MessageBox.Show("Den indtastede værdi er ugyldig");
-                }
-            }
-            catch (FormatException err)
-            {
-                MessageBox.Show("Den indtastede værdi er ugyldig");
-            }
-        }
-
         private void AdaptThresholdsBT_Click(object sender, EventArgs e)
         {
-            SystolicMaxTB.Enabled = false;
-            SystolicMinTB.Enabled = false;
-            DiastolicMaxTB.Enabled = false;
-            DiastolicMinTB.Enabled = false;
-
+           int diaMin;
+           int diaMax;
+           int sysMin;
+           int sysMax;
+         try
+           {
+              sysMin = Convert.ToInt32(SystolicMinTB.Text);
+            diaMin = Convert.ToInt32(DiastolicMinTB.Text);
+              diaMax = Convert.ToInt32(DiastolicMaxTB.Text);
+              sysMax = Convert.ToInt32(SystolicMaxTB.Text);
+            if (diaMin > 0 && diaMax>0 && sysMin>0 && sysMax>0)
+              {
+                 _dataCalculation.DiastolicMinThreshold = diaMin;
+                 _dataCalculation.DiastolicMaxThreshold = diaMax;
+                 _dataCalculation.SystolicMinThreshold = sysMin;
+                 _dataCalculation.SystolicMaxThreshold = sysMax;
+                 SystolicMaxTB.Enabled = false;
+                 SystolicMinTB.Enabled = false;
+                 DiastolicMaxTB.Enabled = false;
+                 DiastolicMinTB.Enabled = false;
+                 AdaptThresholdsBT.Enabled = false;
+                 ThresholdCheckpoint.Checked = false;
+                 MessageBox.Show("De nye grænseværdier er sat");
+              }
+              else
+              {
+                 MessageBox.Show("En eller flere af de indtastede værdier er ugyldige");
+                 SystolicMaxTB.Clear();
+                 SystolicMinTB.Clear();
+                 DiastolicMaxTB.Clear();
+                 DiastolicMinTB.Clear();
+            }
+           }
+           catch (FormatException err)
+           {
+              MessageBox.Show("En eller flere af de indtastede værdier er ugyldige");
+              SystolicMaxTB.Clear();
+              SystolicMinTB.Clear();
+              DiastolicMaxTB.Clear();
+              DiastolicMinTB.Clear();
+         }
         }
 
         private void ThresholdCheckpoint_CheckedChanged(object sender, EventArgs e)
