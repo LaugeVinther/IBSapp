@@ -10,11 +10,14 @@ namespace BusinessLogic
 {
     public class BloodPressure : IBloodPressure
     {
-       public DTO_Bloodpressure _dtoBloodpressure { get; private set; }
+        public DTO_Bloodpressure _dtoBloodpressure { get; private set; }
+    
 
-       public BloodPressure()
+
+        public BloodPressure(Alarm alarm)
        {
           _dtoBloodpressure = new DTO_Bloodpressure();
+           
        }
 
        public void CalculateBP(double [] measurements, double fs,int pulse)
@@ -48,6 +51,8 @@ namespace BusinessLogic
           _dtoBloodpressure.AverageBP = (int)(sum / numberOfElementsIn2Cycles);
           _dtoBloodpressure.Diastolic = (int)min;
           _dtoBloodpressure.Systolic = (int)max;
+
+          
        }
     }
 }
