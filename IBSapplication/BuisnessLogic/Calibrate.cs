@@ -79,7 +79,6 @@ namespace BusinessLogic
 
             //BAre lige til test
             slope = 50;
-
             return slope;
 
         }
