@@ -85,13 +85,14 @@ namespace BusinessLogic
             _thresholdLowerSys = thresholdlowersys;
         }
 
-        public void Alarming()
-        {
-            while (true)
-            {
-                _player.Play();
-            }
-        }
+       public void Alarming()
+       {
+          while (true)
+          {
+             _player.Play();
+             Thread.Sleep(4000);
+          }
+       }
 
     }
 }

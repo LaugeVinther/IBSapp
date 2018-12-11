@@ -51,10 +51,10 @@ namespace DataLogic
             {
                 List<double> currentmV;
                 //DTO_mV currentDTO = new DTO_mV();
-                daq.getVoltageSeqBlocking();
+                //daq.getVoltageSeqBlocking();
 
-                currentmV = daq.currentVoltageSeq;
-                //currentmV = LavTestSamples();
+                //currentmV = daq.currentVoltageSeq;
+                currentmV = LavTestSamples();
                 //currentDTO.rawSamples = daq.currentVoltageSeq;
 
                 _dataQueue.Add(currentmV);
@@ -96,20 +96,20 @@ namespace DataLogic
             return fiveDataPoint;
         }
 
-        //public List<double> LavTestSamples() //til blodtryk
-        //{
-        //    const int SIZE = 1000000;
-        //    const int SAMPLINGSRATE = 1000;
-        //    const int FREQUENCY = 1;
+      public List<double> LavTestSamples() //til blodtryk
+      {
+         const int SIZE = 1000000;
+         const int SAMPLINGSRATE = 1000;
+         const int FREQUENCY = 1;
 
-        //    // Funktionsbeskrivelsen
-        //    double[] sinus = new double[SIZE];
+         // Funktionsbeskrivelsen
+         double[] sinus = new double[SIZE];
 
-        //    for (int t = 0; t < SIZE; t++)
-        //        sinus[t] = 5 * Math.Sin(2 * Math.PI * (t * ((1 * FREQUENCY) / (1.0 * SAMPLINGSRATE))));
+         for (int t = 0; t < SIZE; t++)
+            sinus[t] = 5 * Math.Sin(2 * Math.PI * (t * ((1 * FREQUENCY) / (1.0 * SAMPLINGSRATE))));
 
-        //    return sinus.ToList();
-        //}
+         return sinus.ToList();
+      }
 
-    }
+   }
 }
