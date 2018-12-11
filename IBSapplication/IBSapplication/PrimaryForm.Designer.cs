@@ -308,7 +308,6 @@
          this.SystolicMaxTB.Name = "SystolicMaxTB";
          this.SystolicMaxTB.Size = new System.Drawing.Size(73, 33);
          this.SystolicMaxTB.TabIndex = 45;
-         this.SystolicMaxTB.TextChanged += new System.EventHandler(this.SystolicMaxTB_TextChanged);
          // 
          // chart1
          // 
