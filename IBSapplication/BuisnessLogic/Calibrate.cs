@@ -68,7 +68,7 @@ namespace BusinessLogic
             slope = ((sumxy - sumx * sumy / n) / (sumx2 - sumx * sumx / n));
 
             //BAre lige til test
-            //slope = 50;
+            //slope = 51.6249;
             return slope;
              
         }

@@ -46,7 +46,7 @@ namespace BusinessLogic
             _digitalFilter = new DigitalFilter();
             _zeroPointAdjustment = new ZeroPointAdjustment();
 
-           
+            slope = _calibrate.Load(@"C:\Users\Esma\Documents\Sundhedsteknologi\3. semester\Semesterprojekt 3 - Udvikling af et blodtrykmålesystem\SW\IBSapp\IBSapplication\BuisnessLogic\bin\Debug\Slope.txt");
 
         }
 
@@ -67,7 +67,7 @@ namespace BusinessLogic
 
                 }
                 //Kør unitconverteren
-                slope = 50;
+                //slope = 50;
                 processedDataList = _unitConverter.GetCalibratedSampleList(rawDataList, slope, _zeroPointAdjustment.zeroPoint);
                 // Digital filter
 
@@ -117,8 +117,9 @@ namespace BusinessLogic
 
         public void GetCalibration()
         {
-            _calibrate.SaveSlope(slope, @"INDSÆT STI");
-            slope = _calibrate.Load(@"INDSÆT STI");
+            slope = _calibrate.Calibration();
+            _calibrate.SaveSlope(slope,
+                @"C:\Users\Esma\Documents\Sundhedsteknologi\3. semester\Semesterprojekt 3 - Udvikling af et blodtrykmålesystem\SW\IBSapp\IBSapplication\BuisnessLogic\bin\Debug\Slope.txt");
         }
 
         public void StartDataProcessingThread ()
