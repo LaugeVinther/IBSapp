@@ -59,7 +59,7 @@
             // 
             // PasswordTB
             // 
-            this.PasswordTB.BackColor = System.Drawing.SystemColors.Desktop;
+            this.PasswordTB.BackColor = System.Drawing.SystemColors.Window;
             this.PasswordTB.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.PasswordTB.Location = new System.Drawing.Point(376, 192);
             this.PasswordTB.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -71,7 +71,7 @@
             // 
             // UsernameTB
             // 
-            this.UsernameTB.BackColor = System.Drawing.SystemColors.Desktop;
+            this.UsernameTB.BackColor = System.Drawing.SystemColors.Window;
             this.UsernameTB.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.UsernameTB.Location = new System.Drawing.Point(109, 192);
             this.UsernameTB.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);

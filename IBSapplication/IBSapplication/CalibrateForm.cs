@@ -44,18 +44,23 @@ namespace PresentationLogic
         {
             _dataProcessing.GetVoltageData(10);
             Measure10mmHgBT.Enabled = false;
+            MessageBox.Show("10 mmHg is measured", "Success", MessageBoxButtons.OK, MessageBoxIcon.None);
         }
 
         private void Measure50mmHgBT_Click(object sender, EventArgs e)
         {
             _dataProcessing.GetVoltageData(50);
             Measure50mmHgBT.Enabled = false;
+            MessageBox.Show("50 mmHg is measured", "Success", MessageBoxButtons.OK, MessageBoxIcon.None);
+
         }
 
         private void Measure100mmHgBT_Click(object sender, EventArgs e)
         {
             _dataProcessing.GetVoltageData(100);
             Measure100mmHgBT.Enabled = false;
+            MessageBox.Show("100 mmHg is measured", "Success", MessageBoxButtons.OK, MessageBoxIcon.None);
+
 
             CalibrateBT.Enabled = true;
         }
@@ -63,7 +68,12 @@ namespace PresentationLogic
         private void CalibrateBT_Click(object sender, EventArgs e)
         {
             _dataProcessing.GetCalibration();
-            MessageBox.Show("Calibration succeeded");
+            DialogResult result = MessageBox.Show("Calibration succeeded", "Success", MessageBoxButtons.OK, MessageBoxIcon.None);
+            if (result == DialogResult.OK)
+            {
+                this.Close();
+            }
+
         }
 
         private void DateOfCalibration_Click(object sender, EventArgs e)
