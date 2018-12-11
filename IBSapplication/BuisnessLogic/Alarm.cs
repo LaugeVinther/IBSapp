@@ -90,7 +90,7 @@ namespace BusinessLogic
           while (true)
           {
              _player.Play();
-             Thread.Sleep(1000);
+             Thread.Sleep(4000);
           }
        }
 
