@@ -50,7 +50,17 @@ namespace PresentationLogic
 
         private void CancelBT_Click(object sender, EventArgs e)
         {
-            this.Close();
+            DialogResult result = MessageBox.Show("Are you sure you want to cancel?", "Warning", MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question);
+
+            if (result == DialogResult.Yes)
+            {
+                this.Close();
+            }
+            else
+            {
+                
+            }
         }
     }
 }
