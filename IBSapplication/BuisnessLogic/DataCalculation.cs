@@ -26,7 +26,7 @@ namespace BusinessLogic
 
         //Events
         public event Action<List<double>, int, int, int, int> NewDataAvailableEvent;
-        public event Action<bool> AlarmActivatedEvent;
+        //public event Action<bool> AlarmActivatedEvent;
 
         //Define variables
         public int CalculatedPulseValue { get; private set; }

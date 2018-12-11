@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Media;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
@@ -22,12 +23,14 @@ namespace PresentationLogic
         private ZeroPointAdjustmentForm _zeroPointAdjustmentForm;
         private DataProcessing _dataProcessing;
         private DataCalculation _dataCalculation;
-        private SoundPlayer _player;
+        //private SoundPlayer _player;
+        private Alarm _alarm;
+        private BloodPressure _bloodPressure;
         private const int _windowSize = 10000;
         private int _currentSample = 0;
 
 
-        public PrimaryForm(DataProcessing dataProcessing, DataCalculation dataCalculation)
+        public PrimaryForm(DataProcessing dataProcessing, DataCalculation dataCalculation, BloodPressure bloodPressure)
         {
             InitializeComponent();
 
@@ -38,15 +41,8 @@ namespace PresentationLogic
             //_dataCalculation = new DataCalculation(_dataProcessing);
 
             _dataProcessing = dataProcessing;
-            _dataCalculation = dataCalculation;
-
-
-
-
-
-
-
-
+            //_dataCalculation = dataCalculation;
+            _bloodPressure = bloodPressure;
 
 
         }
@@ -55,13 +51,18 @@ namespace PresentationLogic
         {
             _dataCalculation.NewDataAvailableEvent += NewDataAvailableEventMethod;
 
-            _dataCalculation.AlarmActivatedEvent += AlarmActivatedEventMethod;
+            //_dataCalculation.AlarmActivatedEvent += AlarmActivatedEventMethod;
+
+            //_bloodPressure.NewDataAvailableEvent += NewDataAvailableEventMethod;
+
+            _bloodPressure.AlarmActivatedEvent += AlarmActivatedEventMethod;
+
 
 
             _dataProcessing.filterSwitchedOn = true;
             graphSetting();
 
-            _player = new System.Media.SoundPlayer(@"C:\Users\Esma\Documents\Sundhedsteknologi\3. semester\Semesterprojekt 3 - Udvikling af et blodtrykmålesystem\SW\IBSapp\IBSapplication\IBSapplication\bin\Debug\alarm_high_priority_5overtoner.wav"); //korrekt stinavn skal indsættes
+            //_player = new System.Media.SoundPlayer(@"C:\Users\Esma\Documents\Sundhedsteknologi\3. semester\Semesterprojekt 3 - Udvikling af et blodtrykmålesystem\SW\IBSapp\IBSapplication\IBSapplication\bin\Debug\alarm_high_priority_5overtoner.wav"); //korrekt stinavn skal indsættes
 
         }
 
@@ -89,20 +90,34 @@ namespace PresentationLogic
             }
         }
 
-        public  void AlarmActivatedEventMethod(bool alarmActivated)//Brugt async for at bruge await - på denne måde kan label blinke
+        public void AlarmActivatedEventMethod(bool alarmActivated)//Brugt async for at bruge await - på denne måde kan label blinke
         {
-            ////Alarm skal igangsættes med lyd og lys
-            ////Afspil lyd
-            //_player.Play();
+            //Hele player flyttet til Alarm. Eventet bruges til få lys til at blinke
 
-            ////igangsæt lys
-            //while (true)
-            //{
-            //    await Task.Delay(500);
-            //    SysDiaTB.ForeColor = SysDiaTB.ForeColor == Color.Red ? Color.Lime : Color.Red;
-            //}
+            //Lys til at blinke
+            if (InvokeRequired)
+            {
+                BeginInvoke((Action) (() =>
+                        {
+                            while (_alarm.IsAlarmActivated == true)
+                            {
+                                if (SysDiaTB.ForeColor == Color.Red)
+                                {
+                                    SysDiaTB.ForeColor = Color.Lime;
+                                }
+                                else
+                                {
+                                    SysDiaTB.ForeColor = Color.Red;
+                                }
+                            }
+                        }
+                    ));
+                return;
+                       
+            }
 
         }
+
 
         private void graphSetting() // OBS! tallene skal laves om efter standarden!
         {
