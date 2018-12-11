@@ -204,12 +204,19 @@ namespace PresentationLogic
 
             else if (StartStopBT.Text == "STOP")
             {
-                StartStopBT.BackColor = Color.LawnGreen;
-                StartStopBT.Text = "START";
+                DialogResult result = MessageBox.Show("Are you sure you want to stop measuring?", "Warning", MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question);
 
-                _dataCalculation.JoinCalcThread();
-                _dataProcessing.JoinThreads();
+                if (result == DialogResult.Yes)
+                {
+                    StartStopBT.BackColor = Color.LawnGreen;
+                    StartStopBT.Text = "START";
 
+                    _dataCalculation.JoinCalcThread();
+                    _dataProcessing.JoinThreads();
+                }
+
+              
                 //chart1.Series[0].Points.Clear();
                 //AverageBP_TB.Text = "";
                 //PulseTB.Text = "";
