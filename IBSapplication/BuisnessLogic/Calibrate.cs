@@ -46,17 +46,6 @@ namespace BusinessLogic
 
             }
 
-            //int counter = 0;
-            //for (int i = 0; i <= voltageArray.Length; i++)
-            //{
-            //    if (counter == 3)
-            //    {
-            //        counter = 0;
-            //    }
-            //    voltageArray[i] = voltage;
-            //    pressureArray[i] = pressure;
-            //    counter++;
-            //}
         }
 
         public double Calibration()
@@ -78,7 +67,7 @@ namespace BusinessLogic
             slope = ((sumxy - sumx * sumy / n) / (sumx2 - sumx * sumx / n));
 
             //BAre lige til test
-            slope = 50;
+            //slope = 50;
             return slope;
 
         }

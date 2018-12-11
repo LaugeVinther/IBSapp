@@ -24,7 +24,7 @@ namespace BusinessLogic
 
             foreach (double measurement in zeroPointMeasurement)
             {
-                localZeroPoint = +measurement;
+                localZeroPoint += measurement;
             }
 
             localZeroPoint = localZeroPoint / zeroPointMeasurement.Count;
