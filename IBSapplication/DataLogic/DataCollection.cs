@@ -51,16 +51,16 @@ namespace DataLogic
             {
                 List<double> currentmV;
                 //DTO_mV currentDTO = new DTO_mV();
-                //daq.getVoltageSeqBlocking();
+                daq.getVoltageSeqBlocking();
 
-                //currentmV = daq.currentVoltageSeq;
-                currentmV = LavTestSamples();
+                currentmV = daq.currentVoltageSeq;
+                //currentmV = LavTestSamples();
                 //currentDTO.rawSamples = daq.currentVoltageSeq;
 
                 _dataQueue.Add(currentmV);
 
                 Thread.Yield();
-               Thread.Sleep(5000); //Til sinus testkode
+                //Thread.Sleep(5000); //Til sinus testkode
                 //Thread.Sleep(1);}}
             }
 

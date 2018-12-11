@@ -43,6 +43,7 @@ namespace BusinessLogic
         private List<double> _incomingDataList;
         private readonly BlockingCollection<List<double>> _dataQueue;
         public Thread DataCalculationThread;
+        public bool IsDoingCalculations { get; set; }
 
 
 
@@ -74,48 +75,55 @@ namespace BusinessLogic
 
         public void StartCalcThread()
         {
+            IsDoingCalculations = true;
             DataCalculationThread = new Thread(doDataCalculation);
             DataCalculationThread.Start();
         }
 
         public void JoinCalcThread()
         {
+            IsDoingCalculations = false;
             _alarm.ProgramRunning = false;
-            DataCalculationThread.Join();
+            //DataCalculationThread.Join();
         }
 
         public void doDataCalculation()
         {
-            while (!_dataQueue.IsCompleted)
+            while (IsDoingCalculations == true)
             {
-                _incomingDataList = new List<double>();
-                try
+                while (!_dataQueue.IsCompleted)
                 {
-                    _incomingDataList = _dataQueue.Take();
+                    _incomingDataList = new List<double>();
+                    try
+                    {
+                        _incomingDataList = _dataQueue.Take();
+                    }
+                    catch
+                    {
+                        //
+                    }
+
+                    _totalDataList = _processedDataCollector.getProcessedDataList(_incomingDataList);
+
+                    _pulse.CalculatePulse(_totalDataList.ToArray(), f_sample);
+                    CalculatedPulseValue = _pulse.pulse;
+
+                    _bloodPressure.CalculateBP(_totalDataList.ToArray(), f_sample, CalculatedPulseValue);
+                    CalculatedSystolicValue = _bloodPressure._dtoBloodpressure.Systolic;
+                    CalculatedDiastolicValue = _bloodPressure._dtoBloodpressure.Diastolic;
+                    CalculatedAverageBPValue = _bloodPressure._dtoBloodpressure.AverageBP;
+
+
+                    _alarmActivated = _alarm.CheckAlarming(_bloodPressure._dtoBloodpressure);
+
+                    AlarmActivatedEvent?.Invoke(_alarmActivated);
+
+                    //NewDataAvailableEvent?.Invoke(_totalDataList, CalculatedPulseValue, CalculatedSystolicValue, CalculatedDiastolicValue, CalculatedAverageBPValue);
+                    NewDataAvailableEvent?.Invoke(_incomingDataList, CalculatedPulseValue, CalculatedSystolicValue,
+                        CalculatedDiastolicValue, CalculatedAverageBPValue);
+
+                    Thread.Yield();
                 }
-                catch
-                {
-                    //
-                }
-                _totalDataList = _processedDataCollector.getProcessedDataList(_incomingDataList);
-
-                _pulse.CalculatePulse(_totalDataList.ToArray(), f_sample);
-                 CalculatedPulseValue = _pulse.pulse;
-
-                _bloodPressure.CalculateBP(_totalDataList.ToArray(), f_sample, CalculatedPulseValue);
-                CalculatedSystolicValue = _bloodPressure._dtoBloodpressure.Systolic;
-                CalculatedDiastolicValue = _bloodPressure._dtoBloodpressure.Diastolic;
-                CalculatedAverageBPValue = _bloodPressure._dtoBloodpressure.AverageBP;
-
-
-                _alarmActivated = _alarm.CheckAlarming(_bloodPressure._dtoBloodpressure);
-
-               AlarmActivatedEvent?.Invoke(_alarmActivated);
-
-            //NewDataAvailableEvent?.Invoke(_totalDataList, CalculatedPulseValue, CalculatedSystolicValue, CalculatedDiastolicValue, CalculatedAverageBPValue);
-            NewDataAvailableEvent?.Invoke(_incomingDataList, CalculatedPulseValue, CalculatedSystolicValue, CalculatedDiastolicValue, CalculatedAverageBPValue);
-
-                Thread.Yield();
             }
         }
         //public void GetProcessedData()
