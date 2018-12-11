@@ -14,12 +14,6 @@ namespace BusinessLogic
     
 
 
-        public BloodPressure(Alarm alarm)
-       {
-          _dtoBloodpressure = new DTO_Bloodpressure();
-           
-       }
-
        public void CalculateBP(double [] measurements, double fs,int pulse)
        {
           int numberOfElementsIn2Cycles = (int)((fs * 2) * pulse);
