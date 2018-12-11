@@ -30,7 +30,9 @@ namespace BusinessLogic
             _thresholdUpperSys = 90;
             _thresholdLowerSys = 180;
             _alarmArray = new bool[3];
-            _player = new System.Media.SoundPlayer(@"C:\Users\FridaH\Documents\ST\ST3\PRJ\alarm_high_priority_5overtoner.wav"); //korrekt stinavn skal indsættes
+            //_player = new System.Media.SoundPlayer(@"C:\BuisnessLogic\Alarm\alarm_high_priority_5overtoner.wav"); //korrekt stinavn skal indsættes
+            //_player = new System.Media.SoundPlayer(@"C:\Users\FridaH\Documents\ST\ST3\PRJ\alarm_high_priority_5overtoner.wav"); //korrekt stinavn skal indsættes
+            _player = new System.Media.SoundPlayer(@"C:\Users\Esma\Documents\Sundhedsteknologi\3. semester\Semesterprojekt 3 - Udvikling af et blodtrykmålesystem\SW\IBSapp\IBSapplication\BuisnessLogic\Alarm\alarm_high_priority_5overtoner.wav");
             AlarmThread = new Thread(Alarming);
             AlarmThreadIsStarted = false;
 
