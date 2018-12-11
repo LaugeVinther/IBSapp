@@ -12,6 +12,8 @@ namespace Interfaces
         void GetTresholds(int thresholdupperdia, int thresholdlowerdia, int thresholduppersys, int thresholdlowersys);
         bool CheckAlarming(DTO_Bloodpressure dtoBloodpressure);
 
+        bool ProgramRunning { get; set; }
+
 
     }
 }
