@@ -23,11 +23,11 @@ namespace PresentationLogic
         private ZeroPointAdjustmentForm _zeroPointAdjustmentForm;
         private DataProcessing _dataProcessing;
         private DataCalculation _dataCalculation;
-        private SoundPlayer _player;
+        //private SoundPlayer _player;
         private const int _windowSize = 10000;
         private int _currentSample = 0;
-       public Thread AlarmThread;
-       private bool AlarmThreadIsStarted;
+       //public Thread AlarmThread;
+       private bool AlarmIsStarted;
    
         public PrimaryForm(DataProcessing dataProcessing, DataCalculation dataCalculation)
         {
@@ -42,9 +42,9 @@ namespace PresentationLogic
             _dataProcessing = dataProcessing;
             _dataCalculation = dataCalculation;
 
-           AlarmThread = new Thread(Alarming);
-           AlarmThreadIsStarted = false;
-           _player = new System.Media.SoundPlayer(@"C:\Users\FridaH\Documents\ST\ST3\PRJ\alarm_high_priority_5overtoner.wav"); //korrekt stinavn skal indsættes
+           //AlarmThread = new Thread(Alarming);
+           AlarmIsStarted = false;
+           //_player = new System.Media.SoundPlayer(@"C:\Users\FridaH\Documents\ST\ST3\PRJ\alarm_high_priority_5overtoner.wav"); //korrekt stinavn skal indsættes
 
 
       }
@@ -78,6 +78,11 @@ namespace PresentationLogic
                         //chart1.Series[0].Points[_currentSample].SetValueY(number);
                         //_currentSample = (_currentSample + 1) % _windowSize;
                     }
+
+                   if (AlarmIsStarted == true)
+                   {
+                      Alarming();
+                   }
                    
                 }
 
@@ -92,15 +97,15 @@ namespace PresentationLogic
          {
             BeginInvoke((Action)(() =>
                   {
-                     if (_dataCalculation._alarmActivated == true && AlarmThreadIsStarted==false)
+                     if (_dataCalculation._alarmActivated == true /*&& AlarmThreadIsStarted==false*/)
                      {
-                        AlarmThread.Start();
-                        AlarmThreadIsStarted = true;
+                        //AlarmThread.Start();
+                        AlarmIsStarted = true;
                      }
-                     else if (_dataCalculation._alarmActivated==false && AlarmThreadIsStarted==true)
+                     else if (_dataCalculation._alarmActivated==false /*&& AlarmThreadIsStarted==true*/)
                      {
-                        AlarmThread.Join();
-                        AlarmThreadIsStarted = false;
+                        //AlarmThread.Join();
+                        AlarmIsStarted = false;
                      }
 
 
@@ -114,22 +119,17 @@ namespace PresentationLogic
 
        public void Alarming()
        {
-          while (true)
-          {
-             if (SysDiaTB.ForeColor == Color.Red)
-             {
-                SysDiaTB.ForeColor = Color.Lime;
-                Thread.Sleep(1000);
-             }
-             else
-             {
-                SysDiaTB.ForeColor = Color.Red;
-                Thread.Sleep(1000);
-             }
-             _player.Play();
+         if (SysDiaTB.ForeColor == Color.Red)
+         {
+            SysDiaTB.ForeColor = Color.Lime;
+            Thread.Sleep(1000);
          }
-          
-       }
+         else
+         {
+            SysDiaTB.ForeColor = Color.Red;
+            Thread.Sleep(1000);
+         }
+      }
 
         private void graphSetting() // OBS! tallene skal laves om efter standarden!
         {

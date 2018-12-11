@@ -31,10 +31,10 @@ namespace UnitTest
          double[] sinus = new double[size];
 
          for (int t = 0; t < size; t++)
-            sinus[t] = A * Math.Sin(2 * Math.PI * (t * ((1 * frequency) / (1.0 * f_sample))));
+            sinus[t] = A * Math.Sin(2 * Math.PI * (t * ((1 * frequency) / (1.0 * f_sample))))+5;
 
          uut.CalculateBP(sinus, f_sample,60);
-         Assert.That(uut._dtoBloodpressure.Systolic, Is.EqualTo(A));
+         Assert.That(uut._dtoBloodpressure.Systolic, Is.EqualTo(A+5));
       }
 
       [TestCase(5)]
