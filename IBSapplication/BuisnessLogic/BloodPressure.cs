@@ -11,10 +11,14 @@ namespace BusinessLogic
     public class BloodPressure : IBloodPressure
     {
         public DTO_Bloodpressure _dtoBloodpressure { get; private set; }
-    
 
+        public BloodPressure()
+        {
+            _dtoBloodpressure = new DTO_Bloodpressure();
+           
+        }
 
-       public void CalculateBP(double [] measurements, double fs,int pulse)
+        public void CalculateBP(double [] measurements, double fs,int pulse)
        {
           int numberOfElementsIn2Cycles = (int)((fs * 2) * pulse);
           double max = measurements[measurements.Length - 1];
