@@ -60,6 +60,7 @@ namespace DataLogic
                 _dataQueue.Add(currentmV);
 
                 Thread.Yield();
+               Thread.Sleep(5000); //Til sinus testkode
                 //Thread.Sleep(1);}}
             }
 
