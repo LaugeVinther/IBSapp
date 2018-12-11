@@ -123,12 +123,10 @@ namespace PresentationLogic
          if (SysDiaTB.ForeColor == Color.Red)
          {
             SysDiaTB.ForeColor = Color.Lime;
-            Thread.Sleep(1000);
          }
          else
          {
             SysDiaTB.ForeColor = Color.Red;
-            Thread.Sleep(1000);
          }
       }
 
