@@ -10,5 +10,7 @@ namespace Interfaces
     {
         void AddVoltage(double oneDataPoint, int pressureValue);
         double Calibration();
+        void SaveSlope(double slope, string path);
+        double Load(string path);
     }
 }
