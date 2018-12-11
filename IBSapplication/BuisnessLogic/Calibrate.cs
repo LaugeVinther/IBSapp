@@ -7,7 +7,8 @@ using Interfaces;
 using DTOLogic;
 using DataLogic;
 using System.Collections.Concurrent;
-
+using System.IO;
+using System.Xml.Serialization;
 
 namespace BusinessLogic
 {
@@ -16,7 +17,7 @@ namespace BusinessLogic
         private double[] voltageArray;
         private double[] pressureArray;
         private int counter = 0;
-        private double slope = 1;
+        public double slope { get; set; }
 
         public Calibrate()
         {
@@ -46,17 +47,6 @@ namespace BusinessLogic
 
             }
 
-            //int counter = 0;
-            //for (int i = 0; i <= voltageArray.Length; i++)
-            //{
-            //    if (counter == 3)
-            //    {
-            //        counter = 0;
-            //    }
-            //    voltageArray[i] = voltage;
-            //    pressureArray[i] = pressure;
-            //    counter++;
-            //}
         }
 
         public double Calibration()
@@ -78,10 +68,30 @@ namespace BusinessLogic
             slope = ((sumxy - sumx * sumy / n) / (sumx2 - sumx * sumx / n));
 
             //BAre lige til test
-            slope = 50;
+            //slope = 50;
             return slope;
-
+             
         }
+
+        public void SaveSlope(double slope, string path) // vi gemmer slopen som en XML
+        {
+            FileStream fs = new FileStream(path, FileMode.Create);
+            XmlSerializer serializer = new XmlSerializer(typeof(double));
+
+            serializer.Serialize(fs, slope);
+            fs.Close();
+        }
+
+        public double Load (string path) 
+        {
+            FileStream fs = new FileStream(path, FileMode.Open);
+            XmlSerializer serializer = new XmlSerializer(typeof(double));
+
+            slope = (double)serializer.Deserialize(fs);
+            fs.Close();
+            return slope;
+        }
+            
 
     }
 }

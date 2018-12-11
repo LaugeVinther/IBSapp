@@ -117,7 +117,8 @@ namespace BusinessLogic
 
         public void GetCalibration()
         {
-            slope = _calibrate.Calibration();
+            _calibrate.SaveSlope(slope, @"INDSÆT STI");
+            slope = _calibrate.Load(@"INDSÆT STI");
         }
 
         public void StartDataProcessingThread ()

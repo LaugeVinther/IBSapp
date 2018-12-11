@@ -15,11 +15,12 @@ namespace BusinessLogic
         private int _thresholdLowerDia;
         private int _thresholdUpperSys;
         private int _thresholdLowerSys;
-        public bool IsAlarmActivated = false;
+        public bool IsAlarmActivated;
         private bool[] _alarmArray;
         private SoundPlayer _player;
         public Thread AlarmThread;
         public bool AlarmThreadIsStarted;
+        public bool ProgramRunning { get; set; }
 
 
 
@@ -27,12 +28,16 @@ namespace BusinessLogic
         {
             _thresholdUpperDia = 110;
             _thresholdLowerDia = 60;
-            _thresholdUpperSys = 90;
-            _thresholdLowerSys = 180;
+            _thresholdUpperSys = 180;
+            _thresholdLowerSys = 90;
             _alarmArray = new bool[3];
+            //_player = new System.Media.SoundPlayer(@"C:\BuisnessLogic\Alarm\alarm_high_priority_5overtoner.wav"); //korrekt stinavn skal indsættes
             _player = new System.Media.SoundPlayer(@"C:\Users\FridaH\Documents\ST\ST3\PRJ\alarm_high_priority_5overtoner.wav"); //korrekt stinavn skal indsættes
+            //_player = new System.Media.SoundPlayer(@"C:\Users\Esma\Documents\Sundhedsteknologi\3. semester\Semesterprojekt 3 - Udvikling af et blodtrykmålesystem\SW\IBSapp\IBSapplication\IBSapplication\bin\Debug\alarm_high_priority_5overtoner.wav");
             AlarmThread = new Thread(Alarming);
             AlarmThreadIsStarted = false;
+            IsAlarmActivated = false;
+            ProgramRunning = false;
 
         }
 
@@ -62,6 +67,7 @@ namespace BusinessLogic
                 {
                     AlarmThread.Start();
                     AlarmThreadIsStarted = true;
+                    ProgramRunning = true;
                 }
             }
             else
@@ -71,6 +77,7 @@ namespace BusinessLogic
                 {
                     AlarmThread.Join();
                     AlarmThreadIsStarted = false;
+                    ProgramRunning = false;
                 }
             }
 
@@ -87,10 +94,10 @@ namespace BusinessLogic
 
        public void Alarming()
        {
-          while (true)
+          while (ProgramRunning == true)
           {
              _player.Play();
-             Thread.Sleep(4000);
+              Thread.Sleep(4000);
           }
        }
 

@@ -61,7 +61,7 @@ namespace BusinessLogic
 
 
             //create variables
-            f_sample = 1000;
+            f_sample = 1000/19;
             CalculatedPulseValue = 0;
             CalculatedSystolicValue = 0;
             CalculatedDiastolicValue = 0;
@@ -80,7 +80,7 @@ namespace BusinessLogic
 
         public void JoinCalcThread()
         {
-            DataCalculationThread.Abort();
+            _alarm.ProgramRunning = false;
             DataCalculationThread.Join();
         }
 
@@ -99,10 +99,10 @@ namespace BusinessLogic
                 }
                 _totalDataList = _processedDataCollector.getProcessedDataList(_incomingDataList);
 
-                _pulse.CalculatePulse(_totalDataList.ToArray(), f_sample/19);
+                _pulse.CalculatePulse(_totalDataList.ToArray(), f_sample);
                  CalculatedPulseValue = _pulse.pulse;
 
-                _bloodPressure.CalculateBP(_totalDataList.ToArray(), f_sample/19, CalculatedPulseValue);
+                _bloodPressure.CalculateBP(_totalDataList.ToArray(), f_sample, CalculatedPulseValue);
                 CalculatedSystolicValue = _bloodPressure._dtoBloodpressure.Systolic;
                 CalculatedDiastolicValue = _bloodPressure._dtoBloodpressure.Diastolic;
                 CalculatedAverageBPValue = _bloodPressure._dtoBloodpressure.AverageBP;

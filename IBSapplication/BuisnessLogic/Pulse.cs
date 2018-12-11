@@ -20,7 +20,7 @@ namespace BusinessLogic
 
        public void CalculatePulse(double[] measurements, double f_sample)
        {
-          double [] _measurements = new double[10000];
+          double [] _measurements = new double[(int)(f_sample*10)];
 
           if (measurements.Length>f_sample*10)
           {
