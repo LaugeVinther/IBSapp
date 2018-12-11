@@ -67,6 +67,7 @@ namespace BusinessLogic
 
                 }
                 //Kør unitconverteren
+                slope = 50;
                 processedDataList = _unitConverter.GetCalibratedSampleList(rawDataList, slope, _zeroPointAdjustment.zeroPoint);
                 // Digital filter
 

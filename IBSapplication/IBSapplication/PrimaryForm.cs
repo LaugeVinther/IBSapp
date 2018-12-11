@@ -23,8 +23,8 @@ namespace PresentationLogic
         private ZeroPointAdjustmentForm _zeroPointAdjustmentForm;
         private DataProcessing _dataProcessing;
         private DataCalculation _dataCalculation;
-        //private SoundPlayer _player;
-        private const int _windowSize = 10000;
+        private SoundPlayer _player;
+        private const int _windowSize = 520;
         private int _currentSample = 0;
        //public Thread AlarmThread;
        private bool AlarmIsStarted;
@@ -74,10 +74,11 @@ namespace PresentationLogic
 
                     foreach (var number in list)
                     {
-                        chart1.Series[0].Points.AddY(number);
-                        //chart1.Series[0].Points[_currentSample].SetValueY(number);
-                        //_currentSample = (_currentSample + 1) % _windowSize;
+                        //chart1.Series[0].Points.AddY(number);
+                        chart1.Series[0].Points[_currentSample].SetValueY(number);
+                        _currentSample = (_currentSample + 1) % _windowSize;
                     }
+                    chart1.Refresh();
 
                    if (AlarmIsStarted == true)
                    {
@@ -133,30 +134,37 @@ namespace PresentationLogic
 
         private void graphSetting() // OBS! tallene skal laves om efter standarden!
         {
+            
+            
             //Major grid 
             chart1.Series["Blood Pressure"].IsXValueIndexed = false;
             chart1.ChartAreas["ChartArea1"].AxisX.Minimum = 0;
-            chart1.ChartAreas["ChartArea1"].AxisX.Maximum = 100;
+            chart1.ChartAreas["ChartArea1"].AxisX.Maximum = 520;
             chart1.ChartAreas["ChartArea1"].AxisX.Interval = 10;
-            chart1.ChartAreas["ChartArea1"].AxisY.Minimum = -50;
-            chart1.ChartAreas["ChartArea1"].AxisY.Maximum = 50;
+            chart1.ChartAreas["ChartArea1"].AxisY.Minimum = 0;
+            chart1.ChartAreas["ChartArea1"].AxisY.Maximum = 220;
             chart1.ChartAreas["ChartArea1"].AxisY.Interval = 20;
             chart1.ChartAreas["ChartArea1"].AxisX.MajorGrid.LineWidth = 2;
             chart1.ChartAreas["ChartArea1"].AxisY.MajorGrid.LineWidth = 2;
-            chart1.ChartAreas["ChartArea1"].AxisX.MajorGrid.LineColor = Color.LightGreen;
-            chart1.ChartAreas["ChartArea1"].AxisY.MajorGrid.LineColor = Color.LightGreen;
+            chart1.ChartAreas["ChartArea1"].AxisX.MajorGrid.LineColor = Color.Black;
+            chart1.ChartAreas["ChartArea1"].AxisY.MajorGrid.LineColor = Color.Black;
 
             //Minor grid
-            chart1.ChartAreas["ChartArea1"].AxisX.MinorGrid.Enabled = true;
-            chart1.ChartAreas["ChartArea1"].AxisY.MinorGrid.Enabled = true;
-            chart1.ChartAreas["ChartArea1"].AxisX.MinorGrid.LineColor = Color.LightGreen;
-            chart1.ChartAreas["ChartArea1"].AxisY.MinorGrid.LineColor = Color.LightGreen;
+            chart1.ChartAreas["ChartArea1"].AxisX.MinorGrid.Enabled = false;
+            chart1.ChartAreas["ChartArea1"].AxisY.MinorGrid.Enabled = false;
+            chart1.ChartAreas["ChartArea1"].AxisX.MinorGrid.LineColor = Color.Black;
+            chart1.ChartAreas["ChartArea1"].AxisY.MinorGrid.LineColor = Color.Black;
             chart1.ChartAreas["ChartArea1"].AxisX.MinorGrid.Interval = 20;
             chart1.ChartAreas["ChartArea1"].AxisY.MinorGrid.Interval = 0.1;
             chart1.ChartAreas["ChartArea1"].AxisY.MinorGrid.LineDashStyle = ChartDashStyle.Dot;
             chart1.ChartAreas["ChartArea1"].AxisX.MinorGrid.LineDashStyle = ChartDashStyle.Dot;
 
-            chart1.Invalidate();
+            for (int i = 0; i < _windowSize; i++)
+            {
+                chart1.Series[0].Points.AddY(0);
+            }
+
+            chart1.Refresh();
 
         }
 
@@ -183,6 +191,7 @@ namespace PresentationLogic
 
             if (StartStopBT.Text == "START")
             {
+
                 _dataProcessing.StartDataProcessingThread();
                 _dataCalculation.StartCalcThread();
 
@@ -202,6 +211,11 @@ namespace PresentationLogic
 
                 _dataCalculation.JoinCalcThread();
                 _dataProcessing.JoinThreads();
+
+                //chart1.Series[0].Points.Clear();
+                //AverageBP_TB.Text = "";
+                //PulseTB.Text = "";
+                //SysDiaTB.Text = "" + "/" + "";
             }
 
         }
@@ -324,12 +338,12 @@ namespace PresentationLogic
             SystolicMinTB.Enabled = false;
             DiastolicMaxTB.Enabled = false;
             DiastolicMinTB.Enabled = false;
-            
+
         }
 
         private void ThresholdCheckpoint_CheckedChanged(object sender, EventArgs e)
         {
-            if(ThresholdCheckpoint.Checked==true)
+            if (ThresholdCheckpoint.Checked == true)
             {
                 SystolicMaxTB.Enabled = true;
                 SystolicMinTB.Enabled = true;
@@ -344,7 +358,7 @@ namespace PresentationLogic
                 DiastolicMaxTB.Enabled = false;
                 DiastolicMinTB.Enabled = false;
             }
-            
+
 
 
         }

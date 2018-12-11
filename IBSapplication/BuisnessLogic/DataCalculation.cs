@@ -88,6 +88,7 @@ namespace BusinessLogic
         {
             while (!_dataQueue.IsCompleted)
             {
+                _incomingDataList = new List<double>();
                 try
                 {
                     _incomingDataList = _dataQueue.Take();
@@ -98,10 +99,10 @@ namespace BusinessLogic
                 }
                 _totalDataList = _processedDataCollector.getProcessedDataList(_incomingDataList);
 
-                _pulse.CalculatePulse(_totalDataList.ToArray(), f_sample*1/19);
+                _pulse.CalculatePulse(_totalDataList.ToArray(), f_sample/19);
                  CalculatedPulseValue = _pulse.pulse;
 
-                _bloodPressure.CalculateBP(_totalDataList.ToArray(), f_sample, CalculatedPulseValue);
+                _bloodPressure.CalculateBP(_totalDataList.ToArray(), f_sample/19, CalculatedPulseValue);
                 CalculatedSystolicValue = _bloodPressure._dtoBloodpressure.Systolic;
                 CalculatedDiastolicValue = _bloodPressure._dtoBloodpressure.Diastolic;
                 CalculatedAverageBPValue = _bloodPressure._dtoBloodpressure.AverageBP;
