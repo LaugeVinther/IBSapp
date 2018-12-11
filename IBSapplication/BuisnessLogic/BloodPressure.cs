@@ -26,7 +26,7 @@ namespace BusinessLogic
        public void CalculateBP(double [] measurements, double fs,int pulse)
        {
           int numberOfElementsIn2Cycles = (int)((fs * 2) * pulse);
-          double max = measurements[measurements.Length-1];
+          double max = measurements[measurements.Length - 1];
           double min = measurements[measurements.Length - 1];
           double sum = 0;
 

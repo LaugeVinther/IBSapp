@@ -32,13 +32,13 @@ namespace PresentationLogic
             _calibrateLoginForm = new CalibrateLoginForm(calibrateLoginLogic, this);
             _calibrateLoginForm.ShowDialog();
 
-            //if (this.LoginOK_ == true)
-            //{
-            //    this.Visible = true;
-            //}
-            //else
-            //    this.Close();
-        }
+         if (this.LoginOK_ == true)
+         {
+            this.Visible = true;
+         }
+         else
+            this.Close();
+      }
 
         private void Measure10mmHgBT_Click(object sender, EventArgs e)
         {
@@ -63,11 +63,12 @@ namespace PresentationLogic
         private void CalibrateBT_Click(object sender, EventArgs e)
         {
             _dataProcessing.GetCalibration();
+            MessageBox.Show("Calibration succeeded");
         }
 
         private void DateOfCalibration_Click(object sender, EventArgs e)
         {
-            DateOfCalibration.Text = "Date of calibration: {0}" + DateTime.Now.ToShortDateString();
+            DateOfCalibration.Text = DateTime.Now.ToShortDateString();
         }
 
         private void CalibrateChart_Click(object sender, EventArgs e)

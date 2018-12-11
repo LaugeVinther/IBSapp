@@ -52,7 +52,7 @@ namespace BusinessLogic
           }
 
           //Gennemløb hele listen og find max amplituden - denne er grundfrekvensen
-          double max = Amplitude[0];
+          double max = Amplitude[1];
           int index = 0;
 
           //Vi skal se bort fra målingen på plads 0. Og dividere med 2 for at undgå spejling

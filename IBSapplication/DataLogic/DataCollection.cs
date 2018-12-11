@@ -42,25 +42,25 @@ namespace DataLogic
             keepLoading = true;
 
             //Oprettelse af DAQ:
-           // NI_DAQ daq = new NI_DAQ();
+            NI_DAQ daq = new NI_DAQ();
 
             //5 Valg af Dev1 enhed og ai0 input kanal. Property på datacollector:
-            //daq.deviceName = "Dev1/ai0";
+            daq.deviceName = "Dev2/ai0";
 
             while (keepLoading == true)
             {
                 List<double> currentmV;
                 //DTO_mV currentDTO = new DTO_mV();
-                //daq.getVoltageSeqBlocking();
+                daq.getVoltageSeqBlocking();
 
-                //currentmV = daq.currentVoltageSeq;
-                currentmV = LavTestSamples();
+                currentmV = daq.currentVoltageSeq;
+                //currentmV = LavTestSamples();
                 //currentDTO.rawSamples = daq.currentVoltageSeq;
 
                 _dataQueue.Add(currentmV);
-                
+
                 Thread.Yield();
-                Thread.Sleep(2000);
+                //Thread.Sleep(1);}}
             }
 
             //Måske vi skal ahve noget kode, der giver hver sample en tid.
@@ -83,7 +83,7 @@ namespace DataLogic
             NI_DAQ daq = new NI_DAQ();
 
             //5 Valg af Dev1 enhed og ai0 input kanal. Property på datacollector:
-            daq.deviceName = "Dev1/ai0";
+            daq.deviceName = "Dev2/ai0";
 
             //Angivelse af samples der skal måles.
             daq.samplesPerChannel = 5;
@@ -96,20 +96,20 @@ namespace DataLogic
             return fiveDataPoint;
         }
 
-        public List<double> LavTestSamples() //til blodtryk
-        {
-            const int SIZE = 1000000;
-            const int SAMPLINGSRATE = 1000;
-            const int FREQUENCY = 1;
+        //public List<double> LavTestSamples() //til blodtryk
+        //{
+        //    const int SIZE = 1000000;
+        //    const int SAMPLINGSRATE = 1000;
+        //    const int FREQUENCY = 1;
 
-            // Funktionsbeskrivelsen
-            double[] sinus = new double[SIZE];
+        //    // Funktionsbeskrivelsen
+        //    double[] sinus = new double[SIZE];
 
-            for (int t = 0; t < SIZE; t++)
-                sinus[t] = 5 * Math.Sin(2 * Math.PI * (t * ((1 * FREQUENCY) / (1.0 * SAMPLINGSRATE))));
+        //    for (int t = 0; t < SIZE; t++)
+        //        sinus[t] = 5 * Math.Sin(2 * Math.PI * (t * ((1 * FREQUENCY) / (1.0 * SAMPLINGSRATE))));
 
-            return sinus.ToList();
-        }
+        //    return sinus.ToList();
+        //}
 
     }
 }

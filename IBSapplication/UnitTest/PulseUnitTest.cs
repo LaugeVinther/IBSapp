@@ -23,14 +23,14 @@ namespace UnitTest
       [Test]
       public void CalculatePulse_FS1000F1_ExpectPulseIs60()
       {
-         int size = 1000;
+         int size = 1000000;
          int f_sample = 1000;
          int frequency = 1;
 
          double[] sinus = new double[size];
 
          for (int t = 0; t < size; t++)
-            sinus[t] = 5 * Math.Sin(2 * Math.PI * (t * ((1 * frequency) / (1.0 * f_sample))));
+            sinus[t] = (2.5 * Math.Sin(2 * Math.PI * (t * ((1 * frequency) / (1.0 * f_sample)))))+2.5;
 
          uut.CalculatePulse(sinus,f_sample);
          Assert.That(uut.pulse, Is.EqualTo(60));

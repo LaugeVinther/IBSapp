@@ -26,15 +26,37 @@ namespace BusinessLogic
 
         public void AddVoltage(double voltage, int pressure)
         {
-            for (int i = 0; i <= voltageArray.Length; i++)
+            if (pressure == 10)
             {
-                if (counter == 3)
-                {
-                    counter = 0;
-                }
-                voltageArray[i] = voltage;
-                pressureArray[i] = pressure;
+                voltageArray[0] = voltage;
+                pressureArray[0] = pressure;
             }
+
+            if (pressure == 50)
+            {
+                voltageArray[1] = voltage;
+                pressureArray[1] = pressure;
+
+            }
+
+            if (pressure == 100)
+            {
+                voltageArray[2] = voltage;
+                pressureArray[2] = pressure;
+
+            }
+
+            //int counter = 0;
+            //for (int i = 0; i <= voltageArray.Length; i++)
+            //{
+            //    if (counter == 3)
+            //    {
+            //        counter = 0;
+            //    }
+            //    voltageArray[i] = voltage;
+            //    pressureArray[i] = pressure;
+            //    counter++;
+            //}
         }
 
         public double Calibration()
@@ -54,6 +76,9 @@ namespace BusinessLogic
             }
 
             slope = ((sumxy - sumx * sumy / n) / (sumx2 - sumx * sumx / n));
+
+            //BAre lige til test
+            slope = 50;
             return slope;
 
         }

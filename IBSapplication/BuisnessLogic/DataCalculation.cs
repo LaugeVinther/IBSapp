@@ -38,7 +38,7 @@ namespace BusinessLogic
         public int DiastolicMaxThreshold { get; set; }
         public int DiastolicMinThreshold { get; set; }
         private int f_sample;
-        private bool _alarmActivated;
+        public bool _alarmActivated;
         public List<double> _totalDataList;
         private List<double> _incomingDataList;
         private readonly BlockingCollection<List<double>> _dataQueue;
@@ -88,6 +88,7 @@ namespace BusinessLogic
         {
             while (!_dataQueue.IsCompleted)
             {
+                _incomingDataList = new List<double>();
                 try
                 {
                     _incomingDataList = _dataQueue.Take();
@@ -98,25 +99,21 @@ namespace BusinessLogic
                 }
                 _totalDataList = _processedDataCollector.getProcessedDataList(_incomingDataList);
 
-                _pulse.CalculatePulse(_totalDataList.ToArray(), f_sample);
-                CalculatedPulseValue = _pulse.pulse;
+                _pulse.CalculatePulse(_totalDataList.ToArray(), f_sample/19);
+                 CalculatedPulseValue = _pulse.pulse;
 
-                _bloodPressure.CalculateBP(_totalDataList.ToArray(), f_sample, CalculatedPulseValue);
+                _bloodPressure.CalculateBP(_totalDataList.ToArray(), f_sample/19, CalculatedPulseValue);
                 CalculatedSystolicValue = _bloodPressure._dtoBloodpressure.Systolic;
                 CalculatedDiastolicValue = _bloodPressure._dtoBloodpressure.Diastolic;
                 CalculatedAverageBPValue = _bloodPressure._dtoBloodpressure.AverageBP;
 
 
-                //_alarmActivated = _alarm.CheckAlarming(_bloodPressure._dtoBloodpressure);
+                _alarmActivated = _alarm.CheckAlarming(_bloodPressure._dtoBloodpressure);
 
-                //if (_alarmActivated == true)
-                //{
-                //    AlarmActivatedEvent?.Invoke(_alarmActivated);
-                //}
+               AlarmActivatedEvent?.Invoke(_alarmActivated);
 
-
-                //NewDataAvailableEvent?.Invoke(_totalDataList, CalculatedPulseValue, CalculatedSystolicValue, CalculatedDiastolicValue, CalculatedAverageBPValue);
-                NewDataAvailableEvent?.Invoke(_incomingDataList, CalculatedPulseValue, CalculatedSystolicValue, CalculatedDiastolicValue, CalculatedAverageBPValue);
+            //NewDataAvailableEvent?.Invoke(_totalDataList, CalculatedPulseValue, CalculatedSystolicValue, CalculatedDiastolicValue, CalculatedAverageBPValue);
+            NewDataAvailableEvent?.Invoke(_incomingDataList, CalculatedPulseValue, CalculatedSystolicValue, CalculatedDiastolicValue, CalculatedAverageBPValue);
 
                 Thread.Yield();
             }
