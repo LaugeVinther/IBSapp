@@ -30,7 +30,7 @@ namespace UnitTest
          double[] sinus = new double[size];
 
          for (int t = 0; t < size; t++)
-            sinus[t] = 5 * Math.Sin(2 * Math.PI * (t * ((1 * frequency) / (1.0 * f_sample))));
+            sinus[t] = (2.5 * Math.Sin(2 * Math.PI * (t * ((1 * frequency) / (1.0 * f_sample)))))+2.5;
 
          uut.CalculatePulse(sinus,f_sample);
          Assert.That(uut.pulse, Is.EqualTo(60));

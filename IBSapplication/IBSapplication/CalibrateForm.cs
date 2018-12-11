@@ -63,6 +63,7 @@ namespace PresentationLogic
         private void CalibrateBT_Click(object sender, EventArgs e)
         {
             _dataProcessing.GetCalibration();
+            MessageBox.Show("Calibration succeeded");
         }
 
         private void DateOfCalibration_Click(object sender, EventArgs e)
