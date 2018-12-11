@@ -11,16 +11,13 @@ namespace BusinessLogic
     public class BloodPressure : IBloodPressure
     {
         public DTO_Bloodpressure _dtoBloodpressure { get; private set; }
-        private Alarm _alarm;
+    
 
-
-        //events
-        public event Action<bool> AlarmActivatedEvent;
 
         public BloodPressure(Alarm alarm)
        {
           _dtoBloodpressure = new DTO_Bloodpressure();
-           _alarm = alarm;
+           
        }
 
        public void CalculateBP(double [] measurements, double fs,int pulse)
@@ -55,12 +52,6 @@ namespace BusinessLogic
           _dtoBloodpressure.Diastolic = (int)min;
           _dtoBloodpressure.Systolic = (int)max;
 
-          if(_alarm.CheckAlarming(_dtoBloodpressure))//tjekker værdierne for blodtryk og vil her sende request om enten at starte eller stoppe alarm
-                _alarm.startAlarm();
-          else
-          {
-              _alarm.stopAlarm();
-          }
           
        }
     }
