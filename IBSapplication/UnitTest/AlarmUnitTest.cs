@@ -14,14 +14,14 @@ namespace UnitTest
     {
         private Alarm uut;
         private DTO_Bloodpressure dtoBloodpressure;
-       
+
 
         [SetUp]
         public void SetUp()
         {
             uut = new Alarm();
             dtoBloodpressure = new DTO_Bloodpressure();
-            
+
         }
 
         [Test]
@@ -35,7 +35,7 @@ namespace UnitTest
             bool result = uut.CheckAlarming(dtoBloodpressure);
             Assert.That(result, Is.EqualTo(true));
         }
-       
+
 
     }
 }
