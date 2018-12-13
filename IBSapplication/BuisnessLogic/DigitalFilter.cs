@@ -11,8 +11,6 @@ namespace BusinessLogic
 {
     public class DigitalFilter : IDigitalFilter
     {
-        //public List<double> downSampledSamples { get; private set; }
-        //public List<double> smoothedSamples { get; private set; }
 
         public DigitalFilter()
         {

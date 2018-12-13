@@ -21,9 +21,7 @@ namespace BusinessLogic
         private IDatabaseSaver _databaseSaver;
         private IBinFormatter _binFormatter;
 
-        private List<bool> _alarmList;
-
-
+       
         //Events
         public event Action<List<double>, int, int, int, int> NewDataAvailableEvent;
         public event Action<bool> AlarmActivatedEvent;
@@ -39,7 +37,7 @@ namespace BusinessLogic
         public int DiastolicMinThreshold { get; set; }
         private int f_sample;
         public bool _alarmActivated;
-        public List<double> _totalDataList;
+        public List<double> _totalDataList; 
         private List<double> _incomingDataList;
         private readonly BlockingCollection<List<double>> _dataQueue;
         public Thread DataCalculationThread;
@@ -56,8 +54,7 @@ namespace BusinessLogic
             _databaseSaver = databaseSaver;
             _binFormatter = new BinFormatter();
             _alarm = new Alarm();
-            _alarmList = new List<bool>(2);
-            _dataQueue = dataQueueToCalculation;
+           _dataQueue = dataQueueToCalculation;
 
 
 

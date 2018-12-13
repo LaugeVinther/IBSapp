@@ -12,19 +12,19 @@ namespace BusinessLogic
     class BinFormatter : IBinFormatter
     {
         private byte[] _byteArray;
-        private MemoryStream _mf;
+        private MemoryStream _ms;
         private BinaryFormatter _bf;
 
         public BinFormatter()
         {
-            _mf = new MemoryStream();
+            _ms = new MemoryStream();
             _bf = new BinaryFormatter();
         }
 
         public byte[] ConvertToByteArray(List<double> processedDataList)
         {
-            _bf.Serialize(_mf, processedDataList);
-            _byteArray = _mf.ToArray();
+            _bf.Serialize(_ms, processedDataList);
+            _byteArray = _ms.ToArray();
 
             return _byteArray;
         }
