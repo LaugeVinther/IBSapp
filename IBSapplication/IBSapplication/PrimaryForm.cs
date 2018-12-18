@@ -26,9 +26,10 @@ namespace PresentationLogic
         private SoundPlayer _player;
         private const int _windowSize = 520;
         private int _currentSample = 0;
-       //public Thread AlarmThread;
-       private bool AlarmIsStarted;
-   
+        //public Thread AlarmThread;
+        private bool AlarmIsStarted;
+        private bool IsSaveEnabled;
+
         public PrimaryForm(DataProcessing dataProcessing, DataCalculation dataCalculation)
         {
             InitializeComponent();
@@ -42,14 +43,16 @@ namespace PresentationLogic
             _dataProcessing = dataProcessing;
             _dataCalculation = dataCalculation;
 
-           //AlarmThread = new Thread(Alarming);
-           AlarmIsStarted = false;
-           //_player = new System.Media.SoundPlayer(@"C:\Users\FridaH\Documents\ST\ST3\PRJ\alarm_high_priority_5overtoner.wav"); //korrekt stinavn skal indsættes
+            //AlarmThread = new Thread(Alarming);
+            AlarmIsStarted = false;
+            //_player = new System.Media.SoundPlayer(@"C:\Users\FridaH\Documents\ST\ST3\PRJ\alarm_high_priority_5overtoner.wav"); //korrekt stinavn skal indsættes
 
+            SaveBT.Enabled = false;
+            StartStopBT.Enabled = false;
 
-      }
+        }
 
-      public void PrimaryForm_Load(object sender, EventArgs e)
+        public void PrimaryForm_Load(object sender, EventArgs e)
         {
             _dataCalculation.NewDataAvailableEvent += NewDataAvailableEventMethod;
 
@@ -80,11 +83,11 @@ namespace PresentationLogic
                     }
                     chart1.Refresh();
 
-                   if (AlarmIsStarted == true)
-                   {
-                      Alarming();
-                   }
-                   
+                    if (AlarmIsStarted == true)
+                    {
+                        Alarming();
+                    }
+
                 }
 
                     ));
@@ -92,55 +95,55 @@ namespace PresentationLogic
             }
         }
 
-        public  void AlarmActivatedEventMethod(bool alarmActivated)
+        public void AlarmActivatedEventMethod(bool alarmActivated)
         {
-         if (InvokeRequired)
-         {
-            BeginInvoke((Action)(() =>
-                  {
-                     if (_dataCalculation._alarmActivated == true /*&& AlarmThreadIsStarted==false*/)
-                     {
-                        //AlarmThread.Start();
-                        AlarmIsStarted = true;
-                     }
-                     else if (_dataCalculation._alarmActivated==false /*&& AlarmThreadIsStarted==true*/)
-                     {
-                        //AlarmThread.Join();
-                        AlarmIsStarted = false;
-                     }
+            if (InvokeRequired)
+            {
+                BeginInvoke((Action)(() =>
+                      {
+                          if (_dataCalculation._alarmActivated == true /*&& AlarmThreadIsStarted==false*/)
+                          {
+                          //AlarmThread.Start();
+                          AlarmIsStarted = true;
+                          }
+                          else if (_dataCalculation._alarmActivated == false /*&& AlarmThreadIsStarted==true*/)
+                          {
+                          //AlarmThread.Join();
+                          AlarmIsStarted = false;
+                          }
 
 
-                  }
+                      }
 
-               ));
-            return;
-         }
+                   ));
+                return;
+            }
 
-      }
+        }
 
-       public void Alarming()
-       {
-         if (SysDiaTB.ForeColor == Color.Red)
-         {
-            SysDiaTB.ForeColor = Color.Lime;
-         }
-         else
-         {
-            SysDiaTB.ForeColor = Color.Red;
-         }
-      }
+        public void Alarming()
+        {
+            if (SysDiaTB.ForeColor == Color.Red)
+            {
+                SysDiaTB.ForeColor = Color.Lime;
+            }
+            else
+            {
+                SysDiaTB.ForeColor = Color.Red;
+            }
+        }
 
         private void graphSetting() // OBS! tallene skal laves om efter standarden!
         {
-            
-            
+
+
             //Major grid 
             chart1.Series["Blood Pressure"].IsXValueIndexed = false;
             chart1.ChartAreas["ChartArea1"].AxisX.Minimum = 0;
             chart1.ChartAreas["ChartArea1"].AxisX.Maximum = 520;
             chart1.ChartAreas["ChartArea1"].AxisX.Interval = 10;
             chart1.ChartAreas["ChartArea1"].AxisY.Minimum = 0;
-            chart1.ChartAreas["ChartArea1"].AxisY.Maximum = 220;
+            chart1.ChartAreas["ChartArea1"].AxisY.Maximum = 200;
             chart1.ChartAreas["ChartArea1"].AxisY.Interval = 20;
             chart1.ChartAreas["ChartArea1"].AxisX.MajorGrid.LineWidth = 2;
             chart1.ChartAreas["ChartArea1"].AxisY.MajorGrid.LineWidth = 2;
@@ -173,14 +176,18 @@ namespace PresentationLogic
 
         private void SaveBT_Click(object sender, EventArgs e)
         {
-            _saveDataForm = new SaveDataForm(_dataCalculation);
-            _saveDataForm.ShowDialog();
+           
+                SaveBT.Enabled = true;
+                _saveDataForm = new SaveDataForm(_dataCalculation);
+                _saveDataForm.ShowDialog();
+            
         }
 
         private void ZeroPointAdjustmentBT_Click(object sender, EventArgs e)
         {
             _zeroPointAdjustmentForm = new ZeroPointAdjustmentForm(_dataProcessing);
             _zeroPointAdjustmentForm.ShowDialog();
+            StartStopBT.Enabled = true;
         }
 
         private void StartStopBT_Click(object sender, EventArgs e)
@@ -214,9 +221,10 @@ namespace PresentationLogic
 
                     _dataCalculation.JoinCalcThread();
                     _dataProcessing.JoinThreads();
+                    SaveBT.Enabled = true;
                 }
 
-              
+
                 //chart1.Series[0].Points.Clear();
                 //AverageBP_TB.Text = "";
                 //PulseTB.Text = "";
@@ -227,47 +235,47 @@ namespace PresentationLogic
 
         private void AdaptThresholdsBT_Click(object sender, EventArgs e)
         {
-           int diaMin;
-           int diaMax;
-           int sysMin;
-           int sysMax;
-         try
-           {
-              sysMin = Convert.ToInt32(SystolicMinTB.Text);
-            diaMin = Convert.ToInt32(DiastolicMinTB.Text);
-              diaMax = Convert.ToInt32(DiastolicMaxTB.Text);
-              sysMax = Convert.ToInt32(SystolicMaxTB.Text);
-            if (diaMin > 0 && diaMax>0 && sysMin>0 && sysMax>0)
-              {
-                 _dataCalculation.DiastolicMinThreshold = diaMin;
-                 _dataCalculation.DiastolicMaxThreshold = diaMax;
-                 _dataCalculation.SystolicMinThreshold = sysMin;
-                 _dataCalculation.SystolicMaxThreshold = sysMax;
-                 SystolicMaxTB.Enabled = false;
-                 SystolicMinTB.Enabled = false;
-                 DiastolicMaxTB.Enabled = false;
-                 DiastolicMinTB.Enabled = false;
-                 AdaptThresholdsBT.Enabled = false;
-                 ThresholdCheckpoint.Checked = false;
-                 MessageBox.Show("De nye grænseværdier er sat");
-              }
-              else
-              {
-                 MessageBox.Show("En eller flere af de indtastede værdier er ugyldige");
-                 SystolicMaxTB.Clear();
-                 SystolicMinTB.Clear();
-                 DiastolicMaxTB.Clear();
-                 DiastolicMinTB.Clear();
+            int diaMin;
+            int diaMax;
+            int sysMin;
+            int sysMax;
+            try
+            {
+                sysMin = Convert.ToInt32(SystolicMinTB.Text);
+                diaMin = Convert.ToInt32(DiastolicMinTB.Text);
+                diaMax = Convert.ToInt32(DiastolicMaxTB.Text);
+                sysMax = Convert.ToInt32(SystolicMaxTB.Text);
+                if (diaMin > 0 && diaMax > 0 && sysMin > 0 && sysMax > 0)
+                {
+                    _dataCalculation.DiastolicMinThreshold = diaMin;
+                    _dataCalculation.DiastolicMaxThreshold = diaMax;
+                    _dataCalculation.SystolicMinThreshold = sysMin;
+                    _dataCalculation.SystolicMaxThreshold = sysMax;
+                    SystolicMaxTB.Enabled = false;
+                    SystolicMinTB.Enabled = false;
+                    DiastolicMaxTB.Enabled = false;
+                    DiastolicMinTB.Enabled = false;
+                    AdaptThresholdsBT.Enabled = false;
+                    ThresholdCheckpoint.Checked = false;
+                    MessageBox.Show("De nye grænseværdier er sat");
+                }
+                else
+                {
+                    MessageBox.Show("En eller flere af de indtastede værdier er ugyldige");
+                    SystolicMaxTB.Clear();
+                    SystolicMinTB.Clear();
+                    DiastolicMaxTB.Clear();
+                    DiastolicMinTB.Clear();
+                }
             }
-           }
-           catch (FormatException err)
-           {
-              MessageBox.Show("En eller flere af de indtastede værdier er ugyldige");
-              SystolicMaxTB.Clear();
-              SystolicMinTB.Clear();
-              DiastolicMaxTB.Clear();
-              DiastolicMinTB.Clear();
-         }
+            catch (FormatException err)
+            {
+                MessageBox.Show("En eller flere af de indtastede værdier er ugyldige");
+                SystolicMaxTB.Clear();
+                SystolicMinTB.Clear();
+                DiastolicMaxTB.Clear();
+                DiastolicMinTB.Clear();
+            }
         }
 
         private void ThresholdCheckpoint_CheckedChanged(object sender, EventArgs e)
