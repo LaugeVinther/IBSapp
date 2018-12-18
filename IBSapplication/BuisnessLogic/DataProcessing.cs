@@ -110,10 +110,7 @@ namespace BusinessLogic
             return _zeroPointAdjustment.AbnormalValue;
         }
 
-        //public BlockingCollection<List<double>> GetDataQueueToCalculation()
-        //{
-        //    return _dataQueueToCalculation;
-        //}
+      
 
         public void GetCalibration()
         {

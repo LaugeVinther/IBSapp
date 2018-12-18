@@ -12,7 +12,7 @@ namespace BusinessLogic
     {
       private List<double> processedDataList = new List<double>();
         
-        public List<double> getProcessedDataList(List<double> listFromDigitalFilter)
+        public List<double>getProcessedDataList(List<double> listFromDigitalFilter)
         {
             if (processedDataList.Count > 7000000)
             {

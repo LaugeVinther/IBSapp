@@ -17,19 +17,15 @@ namespace PresentationLogic
 {
     public partial class PrimaryForm : Form
     {
-        //private BuisnessLogicIF currentBuisnessLogic;
         private CalibrateForm _calibrateForm;
         private SaveDataForm _saveDataForm;
         private ZeroPointAdjustmentForm _zeroPointAdjustmentForm;
         private DataProcessing _dataProcessing;
         private DataCalculation _dataCalculation;
-        private SoundPlayer _player;
         private const int _windowSize = 520;
         private int _currentSample = 0;
-        //public Thread AlarmThread;
-        private bool AlarmIsStarted;
-        private bool IsSaveEnabled;
-
+       private bool AlarmIsStarted;
+   
         public PrimaryForm(DataProcessing dataProcessing, DataCalculation dataCalculation)
         {
             InitializeComponent();

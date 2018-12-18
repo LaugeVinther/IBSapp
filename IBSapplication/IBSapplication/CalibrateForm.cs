@@ -15,7 +15,6 @@ namespace PresentationLogic
     {
         private CalibrateLoginForm _calibrateLoginForm;
         private CalibrateLogin calibrateLoginLogic;
-        private Calibrate calibrate;
         private DataProcessing _dataProcessing;
 
         public bool LoginOK_ { get; set; }
@@ -25,7 +24,7 @@ namespace PresentationLogic
             InitializeComponent();
             _dataProcessing = dataProcessing;
 
-            calibrate = new Calibrate();
+            
             calibrateLoginLogic = new CalibrateLogin(); 
             this.Visible = false; //CalibrateForm skjules
 
